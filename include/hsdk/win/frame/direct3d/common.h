@@ -687,7 +687,7 @@ namespace hsdk
 			DEVICE_MATCH_TYPE eOutput;
 
 			// 설명 : 
-			DEVICE_MATCH_TYPE eWindowed;
+			DEVICE_MATCH_TYPE eFullScreen;
 
 			// 설명 : 
 			DEVICE_MATCH_TYPE eAdapterFormat;
@@ -755,13 +755,9 @@ namespace hsdk
 			/* [r] */ __inout const wchar_t * _strCommandLine,
 			/* [r] */ BOOL _ignoreFirstCommand);
 
-		// 설명 : get Direct3D_DeviceMatchOptions from Direct3D_INIT_DESC.
-		inline DECL_FUNC_T(Direct3D_DeviceMatchOptions, create_DeviceMatOpt_FrominitDesc)(
-			/* [r] */ const Direct3D_INIT_DESC & _initDesc);
-
 		// 설명 : get D3D9_DEVICE_DESC from Direct3D_INIT_DESC.
-		inline DECL_FUNC_T(D3D9_DEVICE_DESC, create_DeviceDesc_FrominitDesc)(
-			/* [r] */ const Direct3D_INIT_DESC & _initDesc,
+		inline DECL_FUNC_T(D3D9_DEVICE_DESC, initialize_DeviceDesc)(
+			/* [r] */ HWND _hwnd,
 			/* [r] */ BOOL _windowed = true,
 			/* [r] */ int _width = 640,
 			/* [r] */ int _height = 480);

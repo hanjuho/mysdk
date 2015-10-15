@@ -3,7 +3,6 @@
 
 
 #include "d3d10_common.h"
-#include <d3d10effect.h>
 #include <vector>
 
 
@@ -55,7 +54,7 @@ namespace hsdk
 
 
 		// 설명 : 
-		DECL_STRUCT(MY_MATERIAL)
+		DECL_STRUCT(D3D10MY_MATERIAL)
 		{
 
 			// 설명 : 
@@ -94,7 +93,7 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		DECL_STRUCT(MY_RENDER_DESC)
+		DECL_STRUCT(D3D10MY_RENDER_DESC)
 		{
 
 			// 설명 : 
@@ -104,25 +103,25 @@ namespace hsdk
 			unsigned int material_id;
 
 			// 설명 : 
-			unsigned long long indexStart;
+			unsigned int indexStart;
 
 			// 설명 : 
-			unsigned long long indexCount;
+			unsigned int indexCount;
 
 			// 설명 : 
-			unsigned long long vertexbufferStart;
+			unsigned int vertexbufferStart;
 
 			// 설명 : 
-			unsigned long long vertexbufferCount;
+			unsigned int vertexbufferCount;
 
 		};
 
 		// 설명 : 
-		DECL_STRUCT(MY_INDEXBUFFER)
+		DECL_STRUCT(D3D10MY_INDEXBUFFER)
 		{
 
 			// 설명 : 
-			unsigned long long numOfindices;
+			unsigned int numOfindices;
 
 			// 설명 : 
 			DXGI_FORMAT indexType;
@@ -133,17 +132,17 @@ namespace hsdk
 		};
 
 		//
-		DECL_STRUCT(MY_MESH)
+		DECL_STRUCT(D3D10MY_MESH)
 		{
 
 			// 설명 : 
 			std::wstring name;
 
 			// 설명 : 
-			std::vector<MY_RENDER_DESC> render_Descs;
+			std::vector<D3D10MY_RENDER_DESC> render_Descs;
 
 			// 설명 :
-			unsigned long long numOfVertices;
+			unsigned int numOfVertices;
 
 			// 설명 : 
 			std::vector<unsigned int> vertexbuffers_Strides;
@@ -155,7 +154,7 @@ namespace hsdk
 			std::vector<AutoRelease<ID3D10Buffer>> vertexbuffers;
 
 			// 설명 : 
-			MY_INDEXBUFFER indexbuffer;
+			D3D10MY_INDEXBUFFER indexbuffer;
 
 			// 설명 : 
 			D3DXVECTOR3 boundingBoxCenter;
@@ -189,14 +188,19 @@ namespace hsdk
 			DECL_FUNC(setup)(
 				/* [r] */ ID3D10Device * _device,
 				/* [r] */ unsigned int _numOfMaterials,
-				/* [r] */ unsigned int _numOfMeshs,
-				/* [r] */ unsigned int _numOfFrames);
+				/* [r] */ unsigned int _numOfMeshs);
 
 			// 설명 : 
 			DECL_FUNC(setup_Texture)(
 				/* [r] */ const wchar_t * _path,
 				/* [r] */ unsigned int _indexOfMaterial,
 				/* [r] */ unsigned int _attribute);
+
+			// 설명 : 
+			DECL_FUNC(setup_Texture)(
+				/* [r] */ unsigned int _indexOfMaterial,
+				/* [r] */ unsigned int _attribute,
+				/* [r] */ ID3D10ShaderResourceView * _resource);
 
 			// 설명 : 
 			DECL_FUNC(setup_Material)(
@@ -215,10 +219,10 @@ namespace hsdk
 				/* [r] */ unsigned int _indexOfMesh,
 				/* [r] */ unsigned int _indexOfRenderDesc,
 				/* [r] */ unsigned int _material_id,
-				/* [r] */ unsigned long long _indexStart,
-				/* [r] */ unsigned long long _indexCount,
-				/* [r] */ unsigned long long _vertexbufferStart,
-				/* [r] */ unsigned long long _vertexbufferCount,
+				/* [r] */ unsigned int _indexStart,
+				/* [r] */ unsigned int _indexCount,
+				/* [r] */ unsigned int _vertexbufferStart,
+				/* [r] */ unsigned int _vertexbufferCount,
 				/* [r] */ D3D10_PRIMITIVE_TOPOLOGY _primitiveType);
 
 			// 설명 : 
@@ -259,11 +263,11 @@ namespace hsdk
 			//--------------------------------------------------------------------------------------
 
 			// 설명 : 
-			DECL_FUNC(set_Loading)(
-				/* [x] */ bool _loaging);
+			DECL_FUNC(loadLock)(
+				/* [x] */ void);
 
 			// 설명 : 
-			DECL_FUNC_T(bool, is_Load)(
+			DECL_FUNC_T(long, is_Load)(
 				/* [x] */ void)const;
 
 			// 설명 : 
@@ -279,11 +283,11 @@ namespace hsdk
 				/* [x] */ void)const;
 
 			// 설명 : 
-			DECL_FUNC_T(const MY_MATERIAL &, get_Material)(
+			DECL_FUNC_T(const D3D10MY_MATERIAL &, get_Material)(
 				/* [r] */ unsigned int _indexOfMaterial)const;
 
 			// 설명 : 
-			DECL_FUNC_T(const MY_MESH &, get_Mesh)(
+			DECL_FUNC_T(const D3D10MY_MESH &, get_Mesh)(
 				/* [r] */ unsigned int _indexOfMesh)const;
 
 			// 설명 : 
@@ -296,14 +300,17 @@ namespace hsdk
 
 		private:
 
+			// 설명 :
+			volatile long my_LoadLock;
+
 			// 설명 : Keep track of the path
 			std::wstring my_MeshPath;
 
 			// 설명 : 
-			std::vector<MY_MATERIAL> my_Materials;
+			std::vector<D3D10MY_MATERIAL> my_Materials;
 
 			// 설명 :
-			std::vector<MY_MESH> my_Meshs;
+			std::vector<D3D10MY_MESH> my_Meshs;
 
 			// 설명 : 
 			ID3D10Device * my_refD3D10Device;

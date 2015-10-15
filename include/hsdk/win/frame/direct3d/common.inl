@@ -283,164 +283,42 @@ IMPL_FUNC_T(void, hsdk::direct3d::parse_CommandLine)(
 }
 
 //--------------------------------------------------------------------------------------
-IMPL_FUNC_T(hsdk::direct3d::Direct3D_DeviceMatchOptions, hsdk::direct3d::create_DeviceMatOpt_FrominitDesc)(
-	/* [r] */ const Direct3D_INIT_DESC & _initDesc)
-{
-	DEVICE_MATCH_TYPE eResolution =
-		_initDesc.width != 0 ||
-		_initDesc.height != 0
-		? PRESERVE_INPUT : IGNORE_INPUT;
-
-	// Override with settings from the command line
-	return {
-		// eAPIVersion
-		_initDesc.forceAPI == 9 ||
-		_initDesc.forceAPI == 10
-		? PRESERVE_INPUT : IGNORE_INPUT,
-
-		// eAdapterOrdinal
-		IGNORE_INPUT,
-
-		// eDeviceType
-		_initDesc.adapterOrdinal != -1 ||
-		_initDesc.forceHAL ||
-		_initDesc.forceREF
-		? PRESERVE_INPUT : IGNORE_INPUT,
-
-		// eOutput
-		IGNORE_INPUT,
-
-		// eWindowed
-		IGNORE_INPUT,
-
-		// eAdapterFormat
-		IGNORE_INPUT,
-
-		// eVertexProcessing
-		_initDesc.forcePureHWVP ||
-		_initDesc.forceHWVP ||
-		_initDesc.forceSWVP
-		? PRESERVE_INPUT : IGNORE_INPUT,
-
-		// eResolution
-		_initDesc.fullScreen
-		? PRESERVE_INPUT : eResolution,
-
-		// eBackBufferFormat
-		IGNORE_INPUT,
-
-		// eBackBufferCount
-		IGNORE_INPUT,
-
-		// eMultiSample
-		IGNORE_INPUT,
-
-		// eSwapEffect
-		IGNORE_INPUT,
-
-		// eDepthFormat
-		IGNORE_INPUT,
-
-		// eStencilFormat
-		IGNORE_INPUT,
-
-		// ePresentFlags
-		IGNORE_INPUT,
-
-		// eRefreshRate
-		IGNORE_INPUT,
-
-		// ePresentInterval
-		_initDesc.forceVsync == 0 ||
-		_initDesc.forceVsync == 1
-		? PRESERVE_INPUT : IGNORE_INPUT
-	};
-}
-
-//--------------------------------------------------------------------------------------
-IMPL_FUNC_T(hsdk::direct3d::D3D9_DEVICE_DESC, hsdk::direct3d::create_DeviceDesc_FrominitDesc)(
-	/* [r] */ const Direct3D_INIT_DESC & _initDesc,
+IMPL_FUNC_T(hsdk::direct3d::D3D9_DEVICE_DESC, hsdk::direct3d::initialize_DeviceDesc)(
+	/* [r] */ HWND _hwnd,
 	/* [r] */ BOOL _windowed,
 	/* [r] */ int _width,
 	/* [r] */ int _height)
 {
-	D3DDEVTYPE deviceType = D3DDEVTYPE_HAL;
-	if (_initDesc.forceHAL)
-	{
-		deviceType = D3DDEVTYPE_HAL;
-	}
-	if (_initDesc.forceREF)
-	{
-		deviceType = D3DDEVTYPE_REF;
-	}
-
-	unsigned long behaviorFlags = D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE;
-	if (_initDesc.forcePureHWVP)
-	{
-		behaviorFlags = D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE;
-	}
-	else if (_initDesc.forceHWVP)
-	{
-		behaviorFlags = D3DCREATE_HARDWARE_VERTEXPROCESSING;
-	}
-	else if (_initDesc.forceSWVP)
-	{
-		behaviorFlags = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
-	}
-
-	unsigned int presentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
-	switch (_initDesc.forceVsync)
-	{
-	case 0:
-		presentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
-		break;
-	case 1:
-		presentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
-		break;
-	case 2:
-		presentationInterval = D3DPRESENT_INTERVAL_TWO;
-		break;
-	case 3:
-		presentationInterval = D3DPRESENT_INTERVAL_THREE;
-		break;
-	case 4:
-		presentationInterval = D3DPRESENT_INTERVAL_FOUR;
-		break;
-	}
-
 	// Override with settings from the command line
 	return{
 		// adapterOrdinal
-		_initDesc.adapterOrdinal != -1
-		? _initDesc.adapterOrdinal : D3DADAPTER_DEFAULT,
+		D3DADAPTER_DEFAULT,
 
 		// deviceType
-		deviceType,
+		D3DDEVTYPE_HAL,
 
 		// adapterFormat
 		D3DFMT_UNKNOWN,
 
 		// behaviorFlags
-		behaviorFlags,
+		D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE,
 
 		// pp
 		{
 			// BackBufferWidth
-			_initDesc.width != 0
-			? _initDesc.width : _width,
+			_width,
 
 			// BackBufferHeight
-			_initDesc.height != 0
-			? _initDesc.height : _height,
+			_height,
 
 			// BackBufferFormat
-			D3DFMT_X8R8G8B8,
+			D3DFMT_A8R8G8B8,
 
 			// BackBufferCount			
 			2,
 
 			// MultiSampleType
-			D3DMULTISAMPLE_NONMASKABLE,
+			D3DMULTISAMPLE_NONE,
 
 			// MultiSampleQuality
 			0,
@@ -449,11 +327,10 @@ IMPL_FUNC_T(hsdk::direct3d::D3D9_DEVICE_DESC, hsdk::direct3d::create_DeviceDesc_
 			D3DSWAPEFFECT_DISCARD,
 
 			// hDeviceWindow
-			nullptr,
+			_hwnd,
 
 			// Windowed	
-			_initDesc.fullScreen
-			? FALSE : _windowed,
+			_windowed,
 
 			// EnableAutoDepthStencil
 			TRUE,
@@ -468,7 +345,7 @@ IMPL_FUNC_T(hsdk::direct3d::D3D9_DEVICE_DESC, hsdk::direct3d::create_DeviceDesc_
 			0,
 
 			// PresentationInterval
-			presentationInterval
+			D3DPRESENT_INTERVAL_DEFAULT
 		}
 	};
 }
@@ -478,51 +355,95 @@ IMPL_FUNC_T(DXGI_FORMAT, hsdk::direct3d::convert_Format_D3D9ToDXGI)(
 	/* [r] */ D3DFORMAT _format)
 {
 	switch (_format)
-	{		
+	{
 	case D3DFMT_UNKNOWN:
+
 		return DXGI_FORMAT_UNKNOWN;
+
 	case D3DFMT_R8G8B8:
 	case D3DFMT_A8R8G8B8:
 	case D3DFMT_X8R8G8B8:
-		return DXGI_FORMAT_R8G8B8A8_UNORM;
+
+		return DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+
 	case D3DFMT_R5G6B5:
+
 		return DXGI_FORMAT_B5G6R5_UNORM;
+
 	case D3DFMT_X1R5G5B5:
 	case D3DFMT_A1R5G5B5:
+
 		return DXGI_FORMAT_B5G5R5A1_UNORM;
+
 	case D3DFMT_A4R4G4B4:
+
 		return DXGI_FORMAT_R8G8B8A8_UNORM;
+
 	case D3DFMT_R3G3B2:
+
 		return DXGI_FORMAT_R8G8B8A8_UNORM;
+
 	case D3DFMT_A8:
+
 		return DXGI_FORMAT_A8_UNORM;
+
 	case D3DFMT_A8R3G3B2:
+
 		return DXGI_FORMAT_R8G8B8A8_UNORM;
+
 	case D3DFMT_X4R4G4B4:
+
 		return DXGI_FORMAT_R8G8B8A8_UNORM;
+
 	case D3DFMT_A2B10G10R10:
+
 		return DXGI_FORMAT_R10G10B10A2_UNORM;
+
 	case D3DFMT_A8B8G8R8:
 	case D3DFMT_X8B8G8R8:
+
 		return DXGI_FORMAT_B8G8R8A8_UNORM;
+
 	case D3DFMT_G16R16:
+
 		return DXGI_FORMAT_R16G16_UNORM;
+
 	case D3DFMT_A2R10G10B10:
+
 		return DXGI_FORMAT_R10G10B10A2_UNORM;
+
 	case D3DFMT_A16B16G16R16:
+
 		return DXGI_FORMAT_R16G16B16A16_UNORM;
+
 	case D3DFMT_R16F:
+
 		return DXGI_FORMAT_R16_FLOAT;
+
 	case D3DFMT_G16R16F:
+
 		return DXGI_FORMAT_R16G16_FLOAT;
+
 	case D3DFMT_A16B16G16R16F:
+
 		return DXGI_FORMAT_R16G16B16A16_FLOAT;
+
 	case D3DFMT_R32F:
+
 		return DXGI_FORMAT_R32_FLOAT;
+
 	case D3DFMT_G32R32F:
+
 		return DXGI_FORMAT_R32G32_FLOAT;
+
 	case D3DFMT_A32B32G32R32F:
+
 		return DXGI_FORMAT_R32G32B32A32_FLOAT;
+
+	case D3DFMT_D24S8:
+
+		return DXGI_FORMAT_D24_UNORM_S8_UINT;
+
 	}
 
 	return DXGI_FORMAT_UNKNOWN;
@@ -535,13 +456,21 @@ IMPL_FUNC_T(D3D10_DRIVER_TYPE, hsdk::direct3d::convert_DriverType_D3D9ToDXGI)(
 	switch (_type)
 	{
 	case D3DDEVTYPE_HAL:
+
 		return D3D10_DRIVER_TYPE_HARDWARE;
+
 	case D3DDEVTYPE_REF:
+
 		return D3D10_DRIVER_TYPE_REFERENCE;
+
 	case D3DDEVTYPE_SW:
+
 		return D3D10_DRIVER_TYPE_SOFTWARE;
+
 	case D3DDEVTYPE_NULLREF:
+
 		return D3D10_DRIVER_TYPE_NULL;
+
 	}
 
 	return D3D10_DRIVER_TYPE_NULL;
@@ -554,12 +483,19 @@ IMPL_FUNC_T(D3DDEVTYPE, hsdk::direct3d::convert_DriverType_DXGITOD3D9)(
 	switch (_type)
 	{
 	case D3D10_DRIVER_TYPE_HARDWARE:
+
 		return D3DDEVTYPE_HAL;
+
 	case D3D10_DRIVER_TYPE_REFERENCE:
+
 		return D3DDEVTYPE_REF;
+
 	case D3D10_DRIVER_TYPE_SOFTWARE:
+
 		return D3DDEVTYPE_SW;
+
 	case D3D10_DRIVER_TYPE_NULL:
+
 		return D3DDEVTYPE_NULLREF;
 	}
 
@@ -573,27 +509,34 @@ IMPL_FUNC_T(void, hsdk::direct3d::convert_DeviceDesc_9to10)(
 {
 	_out.adapterOrdinal = _in.adapterOrdinal;
 	_out.driverType = convert_DriverType_D3D9ToDXGI(_in.deviceType);
+
 	_out.sd.BufferDesc.Width = _in.pp.BackBufferWidth;
 	_out.sd.BufferDesc.Height = _in.pp.BackBufferHeight;
+
 	_out.sd.BufferDesc.RefreshRate.Numerator = 0;
 	_out.sd.BufferDesc.RefreshRate.Denominator = 0;
-	_out.sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	
+	_out.sd.BufferDesc.Format = convert_Format_D3D9ToDXGI(_in.pp.BackBufferFormat);
 
-	if (_in.pp.MultiSampleType == D3DMULTISAMPLE_NONMASKABLE)
+	if (_in.pp.MultiSampleType == D3DMULTISAMPLE_NONE)
 	{
-		_out.sd.SampleDesc.Count = _in.pp.MultiSampleType;
+		_out.sd.SampleDesc.Count = 1;
 		_out.sd.SampleDesc.Quality = 0;
 	}
 	else
 	{
 		_out.sd.SampleDesc.Count = _in.pp.MultiSampleType;
 		_out.sd.SampleDesc.Quality = _in.pp.MultiSampleQuality;
-	}
+	}	
 
 	_out.sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	_out.sd.BufferCount = _in.pp.BackBufferCount;
+
 	_out.sd.OutputWindow = _in.pp.hDeviceWindow;
 	_out.sd.Windowed = _in.pp.Windowed;
+
+	_out.autoCreateDepthStencil = _in.pp.EnableAutoDepthStencil;
+	_out.autoDepthStencilFormat = convert_Format_D3D9ToDXGI(_in.pp.AutoDepthStencilFormat);
 
 #if defined(DEBUG) || defined(_DEBUG)
 	_out.createFlags = D3D10_CREATE_DEVICE_DEBUG;
@@ -647,7 +590,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::build_OptimalDeviceDesc)(
 	//---------------------
 	// Windowed
 	//---------------------
-	_out.pp.Windowed = _matOpt.eWindowed == IGNORE_INPUT
+	_out.pp.Windowed = _matOpt.eFullScreen == IGNORE_INPUT
 		? TRUE : _in.pp.Windowed;
 
 	//---------------------
@@ -694,7 +637,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::build_OptimalDeviceDesc)(
 	if (_matOpt.eMultiSample == IGNORE_INPUT)
 	{
 		// Default to no multisampling 
-		_out.pp.MultiSampleType = D3DMULTISAMPLE_NONMASKABLE;
+		_out.pp.MultiSampleType = D3DMULTISAMPLE_NONE;
 		_out.pp.MultiSampleQuality = 0;
 	}
 	else
@@ -765,8 +708,8 @@ IMPL_FUNC_T(void, hsdk::direct3d::build_OptimalDeviceDesc)(
 	//---------------------
 	// Windowed
 	//---------------------
-	if (_matOpt.eWindowed == IGNORE_INPUT)
-		_out.sd.Windowed = TRUE;
+	if (_matOpt.eFullScreen == IGNORE_INPUT)
+		_out.sd.Windowed = FALSE;
 	else
 		_out.sd.Windowed = _in.sd.Windowed;
 
@@ -804,7 +747,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::build_OptimalDeviceDesc)(
 	//---------------------
 	if (_matOpt.eBackBufferFormat == IGNORE_INPUT)
 		// Default to match the adapter format
-		_out.sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+		_out.sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
 	else
 		_out.sd.BufferDesc.Format = _in.sd.BufferDesc.Format;
 

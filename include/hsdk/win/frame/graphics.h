@@ -3,7 +3,7 @@
 
 
 #include "../../interface/frame/graphics.h"
-#include "direct3d/d3d10_manager.h"
+#include "direct3d/d3d10_master.h"
 #include <string>
 
 
@@ -14,21 +14,6 @@ namespace hsdk
 		namespace frame
 		{
 			
-			// 설명 : 
-			DECL_STRUCT(D3D10_SCREEN_VERTEX)
-			{
-
-				// 설명 : 
-				float x, y, z;
-
-				// 설명 : 
-				D3DCOLORVALUE color;
-
-				// 설명 : 
-				float tu, tv;
-
-			};
-
 			// 설명 : 좌표평면의 시각적 요소를 제어할 수 있는 객체를 D3D11로 구현.
 			DECL_CLASS(Graphics)
 				: public i::frame::i_Graphics
@@ -38,7 +23,7 @@ namespace hsdk
 
 				// 설명 :
 				CLASS_DECL_OPEN_FUNC(initialize)(
-					/* [r] */ direct3d::D3D10_Manager & _manager);
+					/* [r] */ direct3d::D3D10_Master * _master);
 
 				// 설명 :
 				CLASS_DECL_OPEN_FUNC_T(void, destroy)(

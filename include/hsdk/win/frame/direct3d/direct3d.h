@@ -401,8 +401,7 @@ namespace hsdk
 				/* [ref] */ void * _userContext = nullptr);
 
 		};
-
-
+		
 		typedef HRESULT (WINAPI * callback_CreateDXGIFactory)(
 			REFIID riid,
 			void **ppFactory);
