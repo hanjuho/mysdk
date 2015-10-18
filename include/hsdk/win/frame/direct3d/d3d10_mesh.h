@@ -3,7 +3,6 @@
 
 
 #include "d3d10_common.h"
-#include <vector>
 
 
 
@@ -25,144 +24,6 @@ namespace hsdk
 {
 	namespace direct3d
 	{
-		//--------------------------------------------------------------------------------------
-		// AsyncLoading callbacks
-		//--------------------------------------------------------------------------------------
-
-		// 설명 : 
-		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_TEXTURE_FROMFILE)(
-			/* [w] */ ID3D10ShaderResourceView ** _srv,
-			/* [r] */ ID3D10Device * _d3d10Device,
-			/* [r] */ const wchar_t * _szFileName,
-			/* [r/w] */ void * _context);
-
-		// 설명 : 
-		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_VERTEXBUFFER)(
-			/* [w] */ ID3D10Buffer ** _buffer,
-			/* [r] */ ID3D10Device * _dev,
-			/* [r] */ D3D10_BUFFER_DESC _bufferDesc,
-			/* [r] */ const void * _data,
-			/* [r/w] */ void * _context);
-
-		// 설명 : 
-		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_INDEXBUFFER)(
-			/* [w] */ ID3D10Buffer ** _buffer,
-			/* [r] */ ID3D10Device * _dev,
-			/* [r] */ D3D10_BUFFER_DESC _bufferDesc,
-			/* [r] */ const void * _data,
-			/* [r/w] */ void * _context);
-
-
-		// 설명 : 
-		DECL_STRUCT(D3D10MY_MATERIAL)
-		{
-
-			// 설명 : 
-			std::wstring name;
-
-			// 설명 : 
-			D3DXVECTOR4 diffuse;
-
-			// 설명 : 
-			D3DXVECTOR4 ambient;
-
-			// 설명 : 
-			D3DXVECTOR4 specular;
-
-			// 설명 : 
-			D3DXVECTOR4 emissive;
-
-			// 설명 : 
-			AutoRelease<ID3D10Texture2D> diffuseTexture;
-
-			// 설명 : 
-			AutoRelease<ID3D10Texture2D> normalTexture;
-
-			// 설명 : 
-			AutoRelease<ID3D10Texture2D> specularTexture;
-
-			// 설명 : 
-			AutoRelease<ID3D10ShaderResourceView> diffuseRV;
-
-			// 설명 : 
-			AutoRelease<ID3D10ShaderResourceView> normalRV;
-
-			// 설명 : 
-			AutoRelease<ID3D10ShaderResourceView> specularRV;
-
-		};
-
-		// 설명 : 
-		DECL_STRUCT(D3D10MY_RENDER_DESC)
-		{
-
-			// 설명 : 
-			D3D10_PRIMITIVE_TOPOLOGY primitiveType;
-
-			// 설명 : 
-			unsigned int material_id;
-
-			// 설명 : 
-			unsigned int indexStart;
-
-			// 설명 : 
-			unsigned int indexCount;
-
-			// 설명 : 
-			unsigned int vertexbufferStart;
-
-			// 설명 : 
-			unsigned int vertexbufferCount;
-
-		};
-
-		// 설명 : 
-		DECL_STRUCT(D3D10MY_INDEXBUFFER)
-		{
-
-			// 설명 : 
-			unsigned int numOfindices;
-
-			// 설명 : 
-			DXGI_FORMAT indexType;
-
-			// 설명 : (This also forces the union to 64bits)
-			AutoRelease<ID3D10Buffer> indexbuffer;
-
-		};
-
-		//
-		DECL_STRUCT(D3D10MY_MESH)
-		{
-
-			// 설명 : 
-			std::wstring name;
-
-			// 설명 : 
-			std::vector<D3D10MY_RENDER_DESC> render_Descs;
-
-			// 설명 :
-			unsigned int numOfVertices;
-
-			// 설명 : 
-			std::vector<unsigned int> vertexbuffers_Strides;
-
-			// 설명 : 
-			std::vector<unsigned int> vertexbuffers_Offsets;
-
-			// 설명 : 
-			std::vector<AutoRelease<ID3D10Buffer>> vertexbuffers;
-
-			// 설명 : 
-			D3D10MY_INDEXBUFFER indexbuffer;
-
-			// 설명 : 
-			D3DXVECTOR3 boundingBoxCenter;
-
-			// 설명 : 
-			D3DXVECTOR3 boundingBoxSize;
-
-		};
 
 		// 설명 : CDXUTSDKMesh class.  This class reads the sdkmesh file format for use by the samples
 		DLL_DECL_CLASS(D3D10_Mesh)
@@ -185,37 +46,37 @@ namespace hsdk
 				/* [x] */ void);
 
 			// 설명 :
-			DECL_FUNC(setup)(
+			DECL_FUNC(setup0)(
 				/* [r] */ ID3D10Device * _device,
 				/* [r] */ unsigned int _numOfMaterials,
 				/* [r] */ unsigned int _numOfMeshs);
 
 			// 설명 : 
-			DECL_FUNC(setup_Texture)(
-				/* [r] */ const wchar_t * _path,
+			DECL_FUNC(setup1_Texture)(
+				/* [r] */ const wchar_t * _filepath,
 				/* [r] */ unsigned int _indexOfMaterial,
 				/* [r] */ unsigned int _attribute);
 
 			// 설명 : 
-			DECL_FUNC(setup_Texture)(
+			DECL_FUNC(setup1_Texture)(
 				/* [r] */ unsigned int _indexOfMaterial,
 				/* [r] */ unsigned int _attribute,
 				/* [r] */ ID3D10ShaderResourceView * _resource);
 
 			// 설명 : 
-			DECL_FUNC(setup_Material)(
+			DECL_FUNC(setup1_Material)(
 				/* [r] */ unsigned int _indexOfMaterial,
 				/* [r] */ unsigned int _attribute,
 				/* [r] */ const D3DXVECTOR4 & _value);
 
 			// 설명 :
-			DECL_FUNC(setup_Mesh)(
+			DECL_FUNC(setup1_Mesh)(
 				/* [r] */ unsigned int _indexOfMesh,
 				/* [r] */ unsigned int _numOfRenderDescs,
 				/* [r] */ unsigned int _numOfVertexBuffers);
 
 			// 설명 :
-			DECL_FUNC(setup_RenderDesc)(
+			DECL_FUNC(setup2_RenderDesc)(
 				/* [r] */ unsigned int _indexOfMesh,
 				/* [r] */ unsigned int _indexOfRenderDesc,
 				/* [r] */ unsigned int _material_id,
@@ -226,7 +87,7 @@ namespace hsdk
 				/* [r] */ D3D10_PRIMITIVE_TOPOLOGY _primitiveType);
 
 			// 설명 : 
-			DECL_FUNC(setup_Vertexbuffer)(
+			DECL_FUNC(setup2_Vertexbuffer)(
 				/* [r] */ unsigned int _indexOfMesh,
 				/* [r] */ unsigned int _indexOfBuffer,
 				/* [r] */ const D3D10_BUFFER_DESC & _desc,
@@ -236,7 +97,7 @@ namespace hsdk
 				/* [r] */ unsigned int _numOfVertices = 0);
 
 			// 설명 : 
-			DECL_FUNC(setup_indexbuffer)(
+			DECL_FUNC(setup2_indexbuffer)(
 				/* [r] */ unsigned int _indexOfMesh,
 				/* [r] */ const D3D10_BUFFER_DESC & _desc,
 				/* [r] */ const void * _indices,

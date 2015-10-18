@@ -86,8 +86,7 @@ namespace hsdk
 
 			// 설명 : Look for an adapter ordinal that is tied to a HMONITOR
 			CLASS_DECL_FUNC_T(unsigned int, get_AdapterOrdinalFromMonitor)(
-				/* [r] */ HMONITOR _monitor,
-				/* [r] */ IDirect3D9 * _d3d9 = nullptr);
+				/* [r] */ HMONITOR _monitor);
 
 			// 설명 : Look for a monitor ordinal that is tied to a HMONITOR (D3D10-only)
 			CLASS_DECL_FUNC_T(unsigned int, get_OutputOrdinalFromMonitor)(

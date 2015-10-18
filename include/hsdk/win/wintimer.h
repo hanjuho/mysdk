@@ -69,22 +69,22 @@ namespace hsdk
 				/* [x] */ void);
 
 			// 설명 : 
-			BOOL m_bUsingQPF;
+			BOOL m_bUsingQPF = FALSE;
 
 			// 설명 : 
-			BOOL m_bTimerStopped;
+			BOOL m_bTimerStopped = TRUE;
 
 			// 설명 : 
-			LONGLONG m_llQPFTicksPerSec;
+			LONGLONG m_llQPFTicksPerSec = 0;
 
 			// 설명 : 
-			LONGLONG m_llStopTime;
+			LONGLONG m_llStopTime = 0;
 
 			// 설명 : 
-			LONGLONG m_llLastElapsedTime;
+			LONGLONG m_llLastElapsedTime = 0;
 
 			// 설명 : 
-			LONGLONG m_llBaseTime;
+			LONGLONG m_llBaseTime = 0;
 
 		};
 

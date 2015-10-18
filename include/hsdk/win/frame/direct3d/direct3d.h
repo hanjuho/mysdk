@@ -3,6 +3,8 @@
 
 
 #include "common.h"
+#include "direct3d_device.h"
+#include "../../usertimestream.h"
 
 
 
@@ -10,6 +12,96 @@ namespace hsdk
 {
 	namespace direct3d
 	{
+
+		// Ό³Έν : 
+		DECL_STRUCT(Direct3D_State)
+		{
+			
+			// Ό³Έν :
+			bool modifyBackBuffer_inMsgProc = false;
+
+			// Ό³Έν : 
+			BOOL autoChangeAdapter = true;
+
+			// Ό³Έν : 
+			BOOL is_in_GammaCorrectMode = false;
+			
+			// Ό³Έν :
+			volatile long setupWindow = 0;
+
+			// Ό³Έν :
+			volatile long setupDeviceFactory = 0;
+
+			// Ό³Έν :
+			volatile long setupDevice = 0;
+
+			// Ό³Έν :
+			volatile long runMainLoop = 0;
+
+			// Ό³Έν :
+			BOOL minimizedSize = false;
+
+			// Ό³Έν :
+			BOOL maximizedSize = false;
+
+			// Ό³Έν : 
+			BOOL allowWhenFullscreen = false;
+
+			// Ό³Έν : 
+			BOOL allowWhenWindowed = false;
+
+			// 
+			BOOL calledWasKeyPressed = false;
+
+			// Ό³Έν : 
+			HHOOK keyboardHook = nullptr;
+
+			// Ό³Έν : StickyKey settings upon startup so they can be restored later
+			STICKYKEYS stickyKeys;
+
+			// Ό³Έν : ToggleKey settings upon startup so they can be restored later
+			TOGGLEKEYS toggleKeys;
+
+			// Ό³Έν : FilterKey settings upon startup so they can be restored later
+			FILTERKEYS filterKeys;
+
+			// Ό³Έν :
+			unsigned int adapter = 0;
+
+			// Ό³Έν : 
+			BOOL windowed = TRUE;
+
+			// Ό³Έν :
+			unsigned long width = 0;
+
+			// Ό³Έν :
+			unsigned long height = 0;
+
+			// Ό³Έν : 
+			unsigned long frameCount = 0;
+
+		};
+
+		// Ό³Έν : 
+		DECL_STRUCT(Direct3D_Window)
+		{
+
+			// Ό³Έν : handle to the app instance
+			HINSTANCE HINSTANCE = nullptr;
+
+			// Ό³Έν : window title     
+			std::wstring windowTitle;
+
+			// Ό³Έν : the main app focus window
+			HWND hwnd = nullptr;
+
+			// Ό³Έν : handle to menu
+			HMENU menu = nullptr;
+
+			// Ό³Έν : the monitor of the adapter 
+			HMONITOR adapterMonitor = nullptr;
+
+		};
 
 		// Ό³Έν : 
 		DLL_DECL_CLASS(Direct3D)
@@ -20,18 +112,11 @@ namespace hsdk
 			// initialize task
 			//--------------------------------------------------------------------------------------
 
-			// Ό³Έν : 
-			CLASS_DECL_FUNC(initialize_Default)(
-				/* [r] */ BOOL _parseCommandLine = true,
-				/* [r] */ BOOL _showMsgBoxOnError = true,
-				/* [r] */ __in_opt wchar_t * _strExtraCommandLineParams = nullptr,
-				/* [r] */ BOOL _threadSafe = false);
-
 			/*
 			Ό³Έν :
 			$ Βό°ν : Choose either createWindow or setWindow.If using setWindow, consider using staticWndProc.
 			*/
-			CLASS_DECL_FUNC(initialize_Window)(
+			CLASS_DECL_FUNC(setup0_Window)(
 				/* [r] */ const wchar_t * _strWindowTitle = L"Direct3D Window",
 				/* [r] */ int _x = CW_USEDEFAULT,
 				/* [r] */ int _y = CW_USEDEFAULT,
@@ -40,34 +125,30 @@ namespace hsdk
 				/* [r] */ HMENU _hMenu = nullptr);
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC(userSet_Window)(
-				/* [in] */ HWND _focus,
-				/* [in] */ HWND _fullScreen,
-				/* [in] */ HWND _windowScreen,
-				/* [r] */ BOOL _handleMessages = true);
+			CLASS_DECL_FUNC(setup1_DeviceFactory)(
+				/* [set] */ Direct3D_DeviceFactory * _factory);
+			
+			// Ό³Έν : 
+			CLASS_DECL_FUNC(setup2_Device9)(
+				/* [set] */ D3D9_DEVICE_DESC & _desc);
+
+			// Ό³Έν : 
+			CLASS_DECL_FUNC(setup2_Device10)(
+				/* [set] */ D3D10_DEVICE_DESC & _desc);
 
 			// Ό³Έν : 
 			CLASS_DECL_FUNC(dynamic_WndProc)(
-				/* [r] */ HWND _hWnd,
 				/* [r] */ unsigned int _uMsg,
 				/* [r] */ unsigned int _wParam,
 				/* [r] */ long _lParam);
 
-			/*
-			Ό³Έν :
-			$ Βό°ν : Choose either Direct3D::CreateDevice or Direct3D::SetD3D*Device or Direct3D::CreateD3DDeviceFromSettings.
-			*/
-			CLASS_DECL_FUNC(initialize_Device)(
-				/* [r] */ BOOL _windowed = true,
-				/* [r] */ int _suggestedWidth = 640,
-				/* [r] */ int _suggestedHeight = 480);
-
 			// Ό³Έν : 
-			CLASS_DECL_FUNC(userSet_Device)(
-				/* [r] */ const Direct3D_DeviceDescs & _d3dDescs,
-				/* [r] */ BOOL _clipWindowToSingleAdapter = true,
-				/* [r] */ BOOL _resetRecovery = false);
-
+			CLASS_DECL_FUNC(transform)(
+				/* [r] */ BOOL _windowed = true,
+				/* [r] */ unsigned long _suggestedWidth = 0,
+				/* [r] */ unsigned long _suggestedHeight = 0,
+				/* [r] */ unsigned int _adapter = -1);
+			
 			// Ό³Έν : 
 			CLASS_DECL_FUNC_T(void, destroy)(
 				/* [x] */ void);
@@ -82,130 +163,44 @@ namespace hsdk
 			*/
 			CLASS_DECL_FUNC(mainLoop)(
 				/* [r] */ HACCEL _accel = nullptr);
-
-			//--------------------------------------------------------------------------------------
-			// Common tasks 
-			//--------------------------------------------------------------------------------------
+			
+			// Ό³Έν : 
+			CLASS_DECL_FUNC_T(void, render)(
+				/* [x] */ void);
 
 			// Ό³Έν : 
 			CLASS_DECL_FUNC_T(void, shutdown)(
 				/* [r] */ int _exitCode = 0);
 
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, pause_Time)(
-				/* [r] */ BOOL _pauseTime);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, pause_Rendering)(
-				/* [r] */ BOOL _pauseRendering);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_ConstantFrameTime)(
-				/* [r] */ BOOL _constantFrameTime,
-				/* [r] */ float _fTimePerFrame = 0.0333f);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC(set_Timer)(
-				/* [r] */ CALLBACK_TIMER _callbackTimer,
-				/* [r] */ float _fTimeoutInSecs = 1.0f,
-				/* [r] */ unsigned int * _nIDEvent = nullptr,
-				/* [r] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC(kill_Timer)(
-				/* [r] */ UINT nIDEvent);
-
+			//--------------------------------------------------------------------------------------
+			// userSet tasks 
+			//--------------------------------------------------------------------------------------
+			
 			// Ό³Έν : Controls the Windows key, and accessibility shortcut keys.
-			CLASS_DECL_FUNC_T(void, set_ShortcutKeySettings)(
+			CLASS_DECL_FUNC_T(void, userSet_ShortcutKeySettings)(
 				/* [r] */ BOOL _allowWhenFullscreen = false,
 				/* [r] */ BOOL _allowWhenWindowed = true);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC(toggle_FullScreen)(
-				/* [x] */ void);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC(toggle_REF)(
-				/* [x] */ void);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC(toggle_WARP)(
-				/* [x] */ void);
 			
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, change_Monitor)(
-				/* [r] */ BOOL _windowed = true,
-				/* [r] */ int _suggestedWidth = 0,
-				/* [r] */ int _suggestedHeight = 0,
-				/* [r] */ unsigned int _adapter = -1);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_AutoChangeMoniter)(
+			CLASS_DECL_FUNC_T(void, userSet_AutoChangeMoniter)(
 				/* [r] */ BOOL _autoChange = true);
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_GammaCorrectMode)(
+			CLASS_DECL_FUNC_T(void, userSet_GammaCorrectMode)(
 				/* [r] */ BOOL _gammaCorrect = true);
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Vsync)(
+			CLASS_DECL_FUNC_T(void, userSet_Vsync)(
 				/* [r] */ BOOL _vsync = true);
 
 			//--------------------------------------------------------------------------------------
 			// General
 			//--------------------------------------------------------------------------------------
 
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(const wchar_t *, get_Window_Title)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(HINSTANCE, get_HINSTANCE)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(HWND, get_HWND_Focus)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(HWND, get_HWND_FullScreen)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(HWND, get_HWND_WindowScreen)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : Useful for returning to windowed mode with the same resolution as before toggle to full screen mode.
-			CLASS_DECL_FUNC_T(RECT, get_Window_ClientRect_AtModeChange)(
-				/* [x] */ void)const;
-
 			// Ό³Έν : Useful for returning to full screen mode with the same resolution as before toggle to windowed mode.
-			CLASS_DECL_FUNC_T(RECT, get_FullsceenClientRect_AtModeChange)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(double, get_Time)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(float, get_ElapsedTime)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(float, get_FPS)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(BOOL, is_Time_Paused)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(BOOL, is_Rendering_Paused)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(BOOL, is_Active)(
-				/* [x] */ void)const;
+			CLASS_DECL_FUNC_T(void, clip_Screen)(
+				/* [r] */ BOOL _windowed,
+				/* [r] */ RECT & _rect)const;
 
 			// Ό³Έν : Pass a virtual-key code, ex. VK_F1, 'A', VK_RETURN, VK_LSHIFT, etc.
 			CLASS_DECL_FUNC_T(BOOL, is_KeyDown)(
@@ -218,187 +213,38 @@ namespace hsdk
 			// Ό³Έν : Pass a virtual-key code: VK_LBUTTON, VK_RBUTTON, VK_MBUTTON, VK_XBUTTON1, VK_XBUTTON2.
 			CLASS_DECL_FUNC_T(BOOL, is_MouseButtonDown)(
 				/* [r] */ unsigned char vButton)const;
-			
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(BOOL, is_Windowed)(
-				/* [x] */ void)const;
-			
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(int, get_Width)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(int, get_Height)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(int, get_ExitCode)(
-				/* [x] */ void)const;
 
 			//--------------------------------------------------------------------------------------
 			// State retrieval  
 			//--------------------------------------------------------------------------------------
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(DEVICE_VERSION, get_D3DVersion)(
-				/* [x] */ void)const;
-
-			// Direct3D 9
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(IDirect3D9 *, get_D3D9)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(IDirect3DDevice9 *, get_D3D9_Device) (
+			CLASS_DECL_FUNC_T(Direct3D_Callbacks *, callbacks)(
 				/* [x] */ void)const;
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(D3D9_DEVICE_DESC, get_D3D9_Settings)(
+			CLASS_DECL_FUNC_T(win::UserTimeStream *, timeStream)(
 				/* [x] */ void)const;
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(D3DPRESENT_PARAMETERS, get_D3D9_PresentParameters) (
+			CLASS_DECL_FUNC_T(const Direct3D_State *, get_State)(
+				/* [x] */ void)const;
+			
+			// Ό³Έν : 
+			CLASS_DECL_FUNC_T(const Direct3D_Window *, get_Window)(
 				/* [x] */ void)const;
 
 			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(D3DSURFACE_DESC, get_D3D9_BackBufferSurfaceDesc) (
+			CLASS_DECL_FUNC_T(const Direct3D_Device *, get_Device)(
 				/* [x] */ void)const;
 
-			// Direct3D 10
-
-			// Ό³Έν : If D3D10 APIs are availible.
-			CLASS_DECL_FUNC_T(BOOL, is_D3D10_Available)(
+			// Ό³Έν : 
+			CLASS_DECL_FUNC_T(const D3D9_DEVICE_DESC *, get_Device9Desc)(
 				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(IDXGIFactory *, get_DXGIFactory)(
+			
+			// Ό³Έν : 
+			CLASS_DECL_FUNC_T(const D3D10_DEVICE_DESC *, get_Device10Desc)(
 				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(ID3D10Device *, get_D3D10_Device)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(ID3D10Device1 *, get_D3D10_Device1)(
-				/* [x] */ void)const;
-
-			CLASS_DECL_FUNC_T(D3D10_DEVICE_DESC, get_D3D10_Settings)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(IDXGISwapChain *, get_DXGISwapChain)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(ID3D10RenderTargetView *, get_D3D10_RenderTargetView)(
-				/* [x] */ void)const;
-
-			// Ό³Έν : Does not addref unlike typical Get* APIs.
-			CLASS_DECL_FUNC_T(ID3D10DepthStencilView *, get_D3D10_DepthStencilView)(
-				/* [x] */ void)const;
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(DXGI_SURFACE_DESC, get_DXGIBackBufferSurfaceDesc)(
-				/* [x] */ void)const;
-
-			//--------------------------------------------------------------------------------------
-			// General callbacks
-			//--------------------------------------------------------------------------------------
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_FrameMove)(
-				/* [ref] */ CALLBACK_FRAMEMOVE _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_Keyboard)(
-				/* [ref] */ CALLBACK_KEYBOARD _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_Mouse)(
-				/* [ref] */ CALLBACK_MOUSE _callback,
-				/* [r] */ BOOL _includeMouseMove = false,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_MsgProc)(
-				/* [ref] */ CALLBACK_MSGPROC _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_DeviceChanging)(
-				/* [ref] */ CALLBACK_MODIFY_DEVICE_SETTINGS _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_DeviceRemoved)(
-				/* [ref] */ CALLBACK_DEVICE_REMOVED _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Direct3D 9 callbacks
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D9_DeviceAcceptable)(
-				/* [ref] */ CALLBACK_IS_D3D9_DEVICE_ACCEPTABLE _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D9_DeviceCreated)(
-				/* [ref] */ CALLBACK_D3D9_DEVICE_CREATED _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D9_DeviceReset)(
-				/* [ref] */ CALLBACK_D3D9_DEVICE_RESET _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D9_DeviceLost)(
-				/* [ref] */ CALLBACK_D3D9_DEVICE_LOST _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D9_DeviceDestroyed)(
-				/* [ref] */ CALLBACK_D3D9_DEVICE_DESTROYED _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D9_FrameRender)(
-				/* [ref] */ CALLBACK_D3D9_FRAME_RENDER _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Direct3D 10 callbacks
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D10_DeviceAcceptable)(
-				/* [ref] */ CALLBACK_IS_D3D10_DEVICE_ACCEPTABLE _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D10_DeviceCreated)(
-				/* [ref] */ CALLBACK_D3D10_DEVICE_CREATED _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D10_SwapChainResized)(
-				/* [ref] */ CALLBACK_D3D10_SWAPCHAINRESIZED _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D10_SwapChainReleasing)(
-				/* [ref] */ CALLBACK_D3D10_SWAPCHAINRELEASING _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D10_DeviceDestroyed)(
-				/* [ref] */ CALLBACK_D3D10_DEVICE_DESTROYED _callback,
-				/* [ref] */ void * _userContext = nullptr);
-
-			// Ό³Έν : 
-			CLASS_DECL_FUNC_T(void, set_Callback_D3D10_FrameRender)(
-				/* [ref] */ CALLBACK_D3D10_FRAME_RENDER _callback,
-				/* [ref] */ void * _userContext = nullptr);
 
 		};
 		

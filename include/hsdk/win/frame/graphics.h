@@ -13,7 +13,7 @@ namespace hsdk
 	{
 		namespace frame
 		{
-			
+
 			// 설명 : 좌표평면의 시각적 요소를 제어할 수 있는 객체를 D3D11로 구현.
 			DECL_CLASS(Graphics)
 				: public i::frame::i_Graphics
@@ -37,23 +37,29 @@ namespace hsdk
 				// 가상 소멸자.
 				CLASS_DECL_DESTRUCTOR(Graphics)(void);
 
+				// 설명 :
+				INTERFACE_DECL_FUNC_T(void, set_Background)(
+					/* [r] */ const float(&_color)[4]);
+
 				// 설명 : 이미지를 설정.
 				INTERFACE_DECL_FUNC_T(void, set_image)(
 					/* [r] */ const wchar_t * _filename);
 
 				/*
 				설명 : 이미지를 상세 설정.
-				$ 참고 : _rectangle(x, y, w, h)
+				$ 참고 : _clip(x, y, w, h)
 				*/
 				INTERFACE_DECL_FUNC_T(void, set_imageDetail)(
-					/* [r] */ float _imageW,
-					/* [r] */ float _imageH,
-					/* [r] */ const float(&_rectangle)[4]);
+					/* [r] */ const float(&_clip)[4]);
 
 				// 설명 : 폰트를 설정.
 				INTERFACE_DECL_FUNC_T(void, set_Font)(
 					/* [r] */ const wchar_t * _fontname,
 					/* [r] */ unsigned int _fontsize);
+
+				// 설명 :
+				INTERFACE_DECL_FUNC_T(void, set_FontColor)(
+					/* [r] */ const float(&_color)[4]);
 
 				// 설명 : 텍스트를 설정.
 				INTERFACE_DECL_FUNC_T(void, set_Text)(
@@ -72,26 +78,11 @@ namespace hsdk
 
 			private:
 
-				// 설명 :
-				AutoRelease<ID3D10Buffer> my_Panel;
+				// 설명 : 
+				D3DX10_SPRITE my_Sprite;
 
-				// 설명 :
-				ID3D10ShaderResourceView * my_refCustom;
-
-				// 설명 :
-				ID3D10SamplerState * my_refSampler;
-
-				// 설명 :
-				float m_imageW;
-
-				// 설명 :
-				float m_imageH;
-
-				/*
-				설명 :
-				$ 참고 : uvRectangle(x, y, w, h)
-				*/
-				float m_uvRectangle[4];
+				// 설명 : 
+				AutoRelease<ID3DX10Font> my_Font;
 
 				// 설명 :
 				std::wstring m_Text;
