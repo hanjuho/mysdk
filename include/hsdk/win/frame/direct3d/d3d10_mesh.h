@@ -42,7 +42,7 @@ namespace hsdk
 			CLASS_DECL_DESTRUCTOR(D3D10_Mesh)(void);
 
 			// 설명 : 
-			DECL_FUNC_T(void, destroy)(
+			DECL_FUNC_T(void, clear)(
 				/* [x] */ void);
 
 			// 설명 :
@@ -68,6 +68,11 @@ namespace hsdk
 				/* [r] */ unsigned int _indexOfMaterial,
 				/* [r] */ unsigned int _attribute,
 				/* [r] */ const D3DXVECTOR4 & _value);
+
+			// 설명 : 
+			DECL_FUNC(setup1_Shininess)(
+				/* [r] */ unsigned int _indexOfMaterial,
+				/* [r] */ unsigned int _shininess);
 
 			// 설명 :
 			DECL_FUNC(setup1_Mesh)(

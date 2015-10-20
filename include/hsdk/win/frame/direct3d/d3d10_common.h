@@ -62,6 +62,30 @@ namespace hsdk
 
 		};
 
+		// 설명 : 
+		DECL_STRUCT(D3D10_SkinnedFormat)
+		{
+
+			// 설명 : 
+			D3DXVECTOR3 pos;
+
+			// 설명 : 
+			D3DXVECTOR3 norm;
+
+			// 설명 : 
+			D3DXVECTOR2 tex;
+
+			// 설명 :
+			D3DXVECTOR4 color;
+
+			// 설명 : 
+			unsigned int bindex;
+
+			// 설명 : 
+			D3DXVECTOR4 bweight;
+
+		};
+
 		// 설명 :
 		DECL_STRUCT(D3D10_TextureFormat)
 		{
@@ -73,9 +97,9 @@ namespace hsdk
 			D3DXVECTOR3 norm;
 
 			// 설명 : 
-			unsigned int blendindex;
+			unsigned int bindex;
 
-		};
+		}; 
 
 		//--------------------------------------------------------------------------------------
 		//
@@ -89,6 +113,9 @@ namespace hsdk
 			std::wstring name;
 
 			// 설명 : 
+			unsigned int shininess;
+
+			// 설명 : 
 			D3DXVECTOR4 diffuse;
 
 			// 설명 : 
@@ -99,15 +126,6 @@ namespace hsdk
 
 			// 설명 : 
 			D3DXVECTOR4 emissive;
-
-			// 설명 : 
-			AutoRelease<ID3D10Texture2D> diffuseTexture;
-
-			// 설명 : 
-			AutoRelease<ID3D10Texture2D> normalTexture;
-
-			// 설명 : 
-			AutoRelease<ID3D10Texture2D> specularTexture;
 
 			// 설명 : 
 			AutoRelease<ID3D10ShaderResourceView> diffuseRV;
@@ -189,6 +207,18 @@ namespace hsdk
 
 			// 설명 : 
 			D3DXVECTOR3 boundingBoxSize;
+
+		};
+
+		// 설명 : 
+		DECL_STRUCT(D3D10MY_TEXTURE)
+		{
+
+			// 설명 : 
+			D3DX10_IMAGE_INFO info;
+
+			// 설명 : 
+			AutoRelease<ID3D10ShaderResourceView> texture;
 
 		};
 	}

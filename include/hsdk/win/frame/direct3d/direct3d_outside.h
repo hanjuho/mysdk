@@ -95,15 +95,11 @@ namespace hsdk
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, destroy)(
 				/* [x] */ void);
-			
-			//// 설명 : 
-			//CLASS_DECL_FUNC(initialize_DeviceCombos)(IDXGIFactory* pFactory, CD3D10EnumAdapterInfo* pAdapterInfo);
-
-			//// 설명 : 
-			//CLASS_DECL_FUNC(initialize_DeviceCombosNoAdapter)(CD3D10EnumAdapterInfo* pAdapterInfo);
-
 
 		};
+
+		// 설명 : 
+		extern HSDK_DLL Direct3D_Outside g_Direct3D_Outside;
 
 	}
 }

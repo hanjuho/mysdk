@@ -15,20 +15,9 @@ namespace hsdk
 		{
 
 			// 설명 : 좌표평면의 시각적 요소를 제어할 수 있는 객체를 D3D11로 구현.
-			DECL_CLASS(Graphics)
+			DLL_DECL_CLASS(Graphics)
 				: public i::frame::i_Graphics
 			{
-
-			public:
-
-				// 설명 :
-				CLASS_DECL_OPEN_FUNC(initialize)(
-					/* [r] */ direct3d::D3D10_Master * _master);
-
-				// 설명 :
-				CLASS_DECL_OPEN_FUNC_T(void, destroy)(
-					/* [x] */ void);
-
 			public:
 
 				// 생성자.
@@ -74,18 +63,24 @@ namespace hsdk
 
 				// 설명 : graphics를 화면에 뿌려줌.
 				CLASS_DECL_FUNC_T(void, render)(
-					/* [x] */ void);
+					/* [x] */ float _persent);
 
 			private:
 
 				// 설명 : 
-				D3DX10_SPRITE my_Sprite;
-
-				// 설명 : 
-				AutoRelease<ID3DX10Font> my_Font;
+				D3DXMATRIX my_Position;
 
 				// 설명 :
-				std::wstring m_Text;
+				const D3DX10_IMAGE_INFO * my_Texture_info = nullptr;
+
+				// 설명 :
+				ID3D10ShaderResourceView * my_Texture = nullptr;
+
+				// 설명 : 
+				D3DXVECTOR4 my_BGColor = { 0.0f, 0.0f, 0.0f, 1.0f };
+
+				// 설명 :
+				D3DXVECTOR4 my_Sprite = { 0.0f, 0.0f, 1.0f, 1.0f };
 
 			};
 		}

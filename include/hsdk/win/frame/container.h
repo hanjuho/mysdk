@@ -54,6 +54,10 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(void, render)(
 					/* [x] */ void);
 
+				// 설명 : 
+				INTERFACE_DECL_FUNC_T(void, clear)(
+					/* [x] */ void);
+
 			protected:
 
 				// 설명 :
