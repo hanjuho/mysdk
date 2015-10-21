@@ -45,6 +45,10 @@ namespace hsdk
 				*/
 				INTERFACE_DECL_FUNC_T(bool, event_chain)(
 					/* [r/w] */ i::frame::i_inputEventHelper * _eventhelper);
+
+				// 설명 : component 갱신.
+				INTERFACE_DECL_FUNC_T(void, update)(
+					/* [x] */ void);
 				
 				// 설명 : component의 좌표를 갱신.
 				INTERFACE_DECL_FUNC_T(void, reform)(
@@ -62,12 +66,6 @@ namespace hsdk
 
 				// 설명 :
 				std::hash_map<unsigned int, Component *> m_Container;
-
-				/*
-				설명 :
-				$ 참고 : clip(x, y, x2, y2).
-				*/
-				float my_Clip[4];
 
 			};
 

@@ -28,7 +28,11 @@ namespace hsdk
 			public:
 
 				// 생성자.
-				CLASS_DECL_CONSTRUCTOR(Component)(void);
+				CLASS_DECL_CONSTRUCTOR(Component)(
+					/* [r] */ float _x = 0.0f,
+					/* [r] */ float _y = 0.0f,
+					/* [r] */ float _w = 0.0f,
+					/* [r] */ float _h = 0.0f);
 
 				// 가상 소멸자.
 				CLASS_DECL_DESTRUCTOR(Component)(void);
@@ -109,7 +113,7 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(bool, event_chain)(
 					/* [r] */ i::frame::i_inputEventHelper * _eventhelper);
 
-				// 설명 : component를 갱신.
+				// 설명 : component 갱신.
 				INTERFACE_DECL_FUNC_T(void, update)(
 					/* [x] */ void);
 
@@ -205,10 +209,10 @@ namespace hsdk
 
 				// 설명 :  이 component 위에서 일어난 마우스 이벤트를 외부에 전달하는 객체.
 				AutoDelete<i::frame::i_Mouseable> m_Mouseable;
-				
+
 				// 설명 :  이 component 위에서 일어난 키보드 이벤트를 외부에 전달하는 객체.
 				AutoDelete<i::frame::i_Keyboardable> m_Keyboardable;
-				
+
 				// 설명 :  이 component 위에서 일어난 액션 이벤트를 외부에 전달하는 객체.
 				AutoDelete<i::frame::i_Actable> m_Actable;
 
@@ -237,7 +241,7 @@ namespace hsdk
 				$ 참고 : rectangle(x, y, w, h), update()함수에서 m_d3d11Graphics::form 절대 값을 구하는 데 사용.
 				*/
 				float my_Rectangle[4];
-				
+
 				// 설명 :
 				bool my_Visible;
 

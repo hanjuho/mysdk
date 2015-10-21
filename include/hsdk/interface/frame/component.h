@@ -96,7 +96,7 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(bool, event_chain)(
 					/* [r/w] */ i_inputEventHelper * _eventhelper) = 0;
 
-				// 설명 : component를 갱신.
+				// 설명 : component 갱신.
 				INTERFACE_DECL_FUNC_T(void, update)(
 					/* [x] */ void) = 0;
 
