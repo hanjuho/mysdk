@@ -4,6 +4,8 @@
 
 #include "../../interface/frame/component.h"
 #include "../../interface/frame/mouseable.h"
+#include "../../interface/frame/keyboardable.h"
+#include "../../interface/frame/actable.h"
 #include "../../autodelete.h"
 #include "graphics.h"
 
@@ -37,14 +39,6 @@ namespace hsdk
 
 				// 설명 : component의 시각적 요소에 접근.
 				INTERFACE_DECL_FUNC_T(i::frame::i_Graphics *, graphics)(
-					/* [x] */ void)const;
-
-				// 설명 : 마우스 이벤트에 반응하는 객체를 component에 추가.
-				INTERFACE_DECL_FUNC_T(void, set_Mouseable)(
-					/* [set] */ i::frame::i_Mouseable * _mouseable);
-
-				// 설명 : 마우스 이벤트에 반응하는 객체를 component로부터 호출.
-				INTERFACE_DECL_FUNC_T(i::frame::i_Mouseable *, get_Mouseable)(
 					/* [x] */ void)const;
 
 				// 설명 : 이 component에 새로운 컴포넌트를 추가.
@@ -119,15 +113,82 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(void, update)(
 					/* [x] */ void);
 
+				// 설명 : component의 좌표를 갱신.
+				INTERFACE_DECL_FUNC_T(void, reform)(
+					/* [x] */ void);
+
 				// 설명 : component를 화면에 뿌려줌.
 				INTERFACE_DECL_FUNC_T(void, render)(
 					/* [x] */ void);
 
 				// 설명 : component에게 문제가 생겼을 때, component를 초기화.
 				INTERFACE_DECL_FUNC_T(void, reset)(
-					/* [x] */ void){
-					return;
-				}
+					/* [x] */ void);
+
+				// 설명 : 마우스 이벤트에 반응하는 객체를 component에 추가.
+				INTERFACE_DECL_FUNC_T(void, set_Mouseable)(
+					/* [set] */ i::frame::i_Mouseable * _mouseable);
+
+				// 설명 : 마우스 이벤트에 반응하는 객체를 component로부터 호출.
+				INTERFACE_DECL_FUNC_T(i::frame::i_Mouseable *, get_Mouseable)(
+					/* [x] */ void)const;
+
+				// 설명 : 키보드 이벤트에 반응하는 객체를 component에 추가.
+				INTERFACE_DECL_FUNC_T(void, set_Keyboardable)(
+					/* [set] */ i::frame::i_Keyboardable * _Keyboardable);
+
+				// 설명 : 키보드 이벤트에 반응하는 객체를 component로부터 호출.
+				INTERFACE_DECL_FUNC_T(i::frame::i_Keyboardable *, get_Keyboardable)(
+					/* [x] */ void)const;
+
+				// 설명 : 액션 이벤트에 반응하는 객체를 component에 추가.
+				INTERFACE_DECL_FUNC_T(void, set_Actable)(
+					/* [set] */ i::frame::i_Actable * _actable);
+
+				// 설명 : 액션 이벤트에 반응하는 객체를 component로부터 호출.
+				INTERFACE_DECL_FUNC_T(i::frame::i_Actable *, get_Actable)(
+					/* [x] */ void)const;
+
+				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onClick_Down)(
+					/* [r] */ i::frame::MOUSE_BUTTON _button,
+					/* [r] */ int _x,
+					/* [r] */ int _y);
+
+				// 설명 : mouse의 버튼이 눌렸다가 때면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onClick_Up)(
+					/* [r] */ i::frame::MOUSE_BUTTON _button,
+					/* [r] */ int _x,
+					/* [r] */ int _y);
+
+				// 설명 : mouse의 버튼을 누른 채 커서를 이동하면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onDrag)(
+					/* [r] */ i::frame::MOUSE_BUTTON _button,
+					/* [r] */ int _x,
+					/* [r] */ int _y);
+
+				// 설명 : mouse의 커서를 이동시키면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onMove)(
+					/* [r] */ int _x,
+					/* [r] */ int _y);
+
+				// 설명 : mouse의 wheel을 조작하면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onWheel)(
+					/* [r] */ int _x,
+					/* [r] */ int _y,
+					/* [r] */ int _w);
+
+				// 설명 : keyboard의 버튼이 눌렸을 때 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onKey_Down)(
+					/* [r] */ unsigned char _vKey);
+
+				// 설명 : keyboard의 버튼을 눌렀다가 띄우면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onKey_Up)(
+					/* [r] */ unsigned char _vKey);
+
+				// 설명 : 
+				INTERFACE_DECL_FUNC_T(void, onAct)(
+					/* [x] */ void);
 
 				// 설명 : 절대 x 좌표를 얻어옴(단, set_X함수가 호출되더라도 update 함수를 통해 갱신이 되야 적용됨).
 				CLASS_DECL_FUNC_T(float, get_AbsX)(
@@ -140,10 +201,16 @@ namespace hsdk
 			protected:
 
 				// 설명 : component의 시각적 요소를 편집하는 객체.
-				AutoDelete<Graphics> m_D3D10Graphics;
+				Graphics m_D3D10Graphics;
 
 				// 설명 :  이 component 위에서 일어난 마우스 이벤트를 외부에 전달하는 객체.
 				AutoDelete<i::frame::i_Mouseable> m_Mouseable;
+				
+				// 설명 :  이 component 위에서 일어난 키보드 이벤트를 외부에 전달하는 객체.
+				AutoDelete<i::frame::i_Keyboardable> m_Keyboardable;
+				
+				// 설명 :  이 component 위에서 일어난 액션 이벤트를 외부에 전달하는 객체.
+				AutoDelete<i::frame::i_Actable> m_Actable;
 
 			private:
 

@@ -44,19 +44,19 @@ namespace hsdk
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onClick_Down)(
-					/* [r] */ i::frame::i_Mouseable::MOUSE_BUTTON _button,
+					/* [r] */ i::frame::MOUSE_BUTTON _button,
 					/* [r] */ int _x,
 					/* [r] */ int _y);
 
 				// 설명 : mouse의 버튼이 눌렸다가 때면 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onClick_Up)(
-					/* [r] */ i::frame::i_Mouseable::MOUSE_BUTTON _button,
+					/* [r] */ i::frame::MOUSE_BUTTON _button,
 					/* [r] */ int _x,
 					/* [r] */ int _y);
 
 				// 설명 : mouse의 버튼을 누른 채 커서를 이동하면 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onDrag)(
-					/* [r] */ i::frame::i_Mouseable::MOUSE_BUTTON _button,
+					/* [r] */ i::frame::MOUSE_BUTTON _button,
 					/* [r] */ int _x,
 					/* [r] */ int _y);
 
@@ -83,12 +83,6 @@ namespace hsdk
 
 				// 설명 : event helper가 주시하고 있는 component
 				i::frame::i_Component * my_FocusComponent;
-
-				/*
-				설명 : event helper가 주시하고 있는 mouseable
-				$ 참고 : component로부터 가져옴
-				*/
-				i::frame::i_Mouseable * my_FocusMouseable;
 				
 			};
 

@@ -207,7 +207,7 @@ namespace hsdk
 
 		// Ό³Έν : 
 		typedef void (CALLBACK *CALLBACK_KEYBOARD)(
-			/* [r] */ unsigned int _key,
+			/* [r] */ unsigned char _key,
 			/* [r] */ BOOL _keyDown,
 			/* [r] */ BOOL _altDown,
 			/* [r/w] */ void * _userContext);

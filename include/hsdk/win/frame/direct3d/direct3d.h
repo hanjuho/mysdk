@@ -48,7 +48,7 @@ namespace hsdk
 			BOOL allowWhenWindowed = false;
 
 			// 
-			BOOL calledWasKeyPressed = false;
+			BOOL storeLastKeyPressed = true;
 
 			// 설명 : 
 			HHOOK keyboardHook = nullptr;
@@ -109,7 +109,11 @@ namespace hsdk
 
 		};
 
-		// 설명 : 
+		/*
+		설명 : direct3d framework
+		$ 참고 : do not generate this class, use global variable g_Direct3D.
+		even if you will generate this class it links with g_Direct3D.
+		*/
 		DLL_DECL_CLASS(Direct3D)
 		{
 		public:
@@ -224,13 +228,13 @@ namespace hsdk
 			//--------------------------------------------------------------------------------------
 			// State retrieval  
 			//--------------------------------------------------------------------------------------
-
+			
 			// 설명 : 
-			CLASS_DECL_FUNC_T(Direct3D_Callbacks *, callbacks)(
+			CLASS_DECL_FUNC_T(win::UserTimeStream *, timeStream)(
 				/* [x] */ void)const;
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(win::UserTimeStream *, timeStream)(
+			CLASS_DECL_FUNC_T(Direct3D_Callbacks *, callbacks)(
 				/* [x] */ void)const;
 
 			// 설명 : 
@@ -255,7 +259,23 @@ namespace hsdk
 
 		};
 
-		// 설명 : 
-		extern HSDK_DLL Direct3D g_D3D;
+		// 설명 : direct3d grobal variable
+		extern HSDK_DLL Direct3D g_Direct3D;
+
+		// 설명 : direct3d grobal variable. you can read and write. just do not call update.
+		extern HSDK_DLL win::UserTimeStream & g_Direct3D_TimeStream;
+
+		// 설명 : direct3d grobal variable.
+		extern HSDK_DLL Direct3D_Callbacks & g_Direct3D_Callbacks;
+
+		// 설명 : direct3d grobal variable. only read, so do not write forced.
+		extern HSDK_DLL const Direct3D_State & g_Direct3D_State;
+
+		// 설명 : direct3d grobal variable. only read, so do not write forced.
+		extern HSDK_DLL const Direct3D_Window & g_Direct3D_Window;
+
+		// 설명 : direct3d grobal variable. only read, so do not write forced.
+		extern HSDK_DLL const Direct3D_Device & g_Direct3D_Device;
+
 	}
 }

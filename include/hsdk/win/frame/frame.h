@@ -27,8 +27,8 @@ namespace hsdk
 				CLASS_DECL_DESTRUCTOR(Frame)(void);
 				
 				// Ό³Έν : message procedure.
-				INTERFACE_DECL_FUNC_T(void, message_Proc)(
-					/* [r] */unsigned int _uMsg,
+				INTERFACE_DECL_FUNC_T(void, event_Proc)(
+					/* [r] */unsigned int _uEvent,
 					/* [r] */unsigned int _wParam,
 					/* [r] */unsigned long _lParam);
 

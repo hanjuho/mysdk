@@ -31,14 +31,6 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(i_Graphics *, graphics)(
 					/* [x] */ void)const = 0;
 
-				// 설명 : 마우스 이벤트에 반응하는 객체를 component에 추가.
-				INTERFACE_DECL_FUNC_T(void, set_Mouseable)(
-					/* [set] */ i_Mouseable * _mouseable) = 0;
-
-				// 설명 : 마우스 이벤트에 반응하는 객체를 component로부터 호출.
-				INTERFACE_DECL_FUNC_T(i_Mouseable *, get_Mouseable)(
-					/* [x] */ void)const = 0;
-
 				// 설명 : 이 component에 새로운 컴포넌트를 추가.
 				INTERFACE_DECL_FUNC(add_Component)(
 					/* [set] */ i_Component * _component) = 0;
@@ -108,12 +100,81 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(void, update)(
 					/* [x] */ void) = 0;
 
+				// 설명 : component의 좌표를 갱신.
+				INTERFACE_DECL_FUNC_T(void, reform)(
+					/* [x] */ void) = 0;
+
 				// 설명 : component를 화면에 뿌려줌.
 				INTERFACE_DECL_FUNC_T(void, render)(
 					/* [x] */ void) = 0;
 
 				// 설명 : component에게 문제가 생겼을 때, component를 초기화.
 				INTERFACE_DECL_FUNC_T(void, reset)(
+					/* [x] */ void) = 0;
+
+				// 설명 : 마우스 이벤트에 반응하는 객체를 component에 추가.
+				INTERFACE_DECL_FUNC_T(void, set_Mouseable)(
+					/* [set] */ i_Mouseable * _mouseable) = 0;
+
+				// 설명 : 마우스 이벤트에 반응하는 객체를 component로부터 호출.
+				INTERFACE_DECL_FUNC_T(i_Mouseable *, get_Mouseable)(
+					/* [x] */ void)const = 0;
+
+				// 설명 : 키보드 이벤트에 반응하는 객체를 component에 추가.
+				INTERFACE_DECL_FUNC_T(void, set_Keyboardable)(
+					/* [set] */ i_Keyboardable * _Keyboardable) = 0;
+
+				// 설명 : 키보드 이벤트에 반응하는 객체를 component로부터 호출.
+				INTERFACE_DECL_FUNC_T(i_Keyboardable *, get_Keyboardable)(
+					/* [x] */ void)const = 0;
+
+				// 설명 : 액션 이벤트에 반응하는 객체를 component에 추가.
+				INTERFACE_DECL_FUNC_T(void, set_Actable)(
+					/* [set] */ i_Actable * _actable) = 0;
+
+				// 설명 : 액션 이벤트에 반응하는 객체를 component로부터 호출.
+				INTERFACE_DECL_FUNC_T(i_Actable *, get_Actable)(
+					/* [x] */ void)const = 0;
+
+				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onClick_Down)(
+					/* [r] */ MOUSE_BUTTON _button,
+					/* [r] */ int _x,
+					/* [r] */ int _y) = 0;
+
+				// 설명 : mouse의 버튼이 눌렸다가 때면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onClick_Up)(
+					/* [r] */ MOUSE_BUTTON _button,
+					/* [r] */ int _x,
+					/* [r] */ int _y) = 0;
+
+				// 설명 : mouse의 버튼을 누른 채 커서를 이동하면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onDrag)(
+					/* [r] */ MOUSE_BUTTON _button,
+					/* [r] */ int _x,
+					/* [r] */ int _y) = 0;
+
+				// 설명 : mouse의 커서를 이동시키면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onMove)(
+					/* [r] */ int _x,
+					/* [r] */ int _y) = 0;
+
+				// 설명 : mouse의 wheel을 조작하면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onWheel)(
+					/* [r] */ int _x,
+					/* [r] */ int _y,
+					/* [r] */ int _w) = 0;
+
+				// 설명 : keyboard의 버튼이 눌렸을 때 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onKey_Down)(
+					/* [r] */ unsigned char _vKey) = 0;
+
+				// 설명 : keyboard의 버튼을 눌렀다가 띄우면 발생하는 event.
+				INTERFACE_DECL_FUNC_T(void, onKey_Up)(
+					/* [r] */ unsigned char _vKey) = 0;
+
+				// 설명 : 
+				INTERFACE_DECL_FUNC_T(void, onAct)(
 					/* [x] */ void) = 0;
 
 			};
