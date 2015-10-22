@@ -33,13 +33,12 @@ namespace hsdk
 
 			// 설명 :
 			DECL_FUNC(setup0)(
-				/* [r] */ ID3D10Device * _device,
 				/* [r] */ unsigned int _numOfMaterials,
 				/* [r] */ unsigned int _numOfMeshs);
 
 			// 설명 : 
 			DECL_FUNC(setup1_Texture)(
-				/* [r] */ const wchar_t * _filepath,
+				/* [r] */ const wchar_t * _directory,
 				/* [r] */ unsigned int _indexOfMaterial,
 				/* [r] */ unsigned int _attribute);
 
@@ -97,7 +96,7 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC(userSet_MeshPath)(
-				/* [r] */ const wchar_t * _path);
+				/* [r] */ const wchar_t * _directory);
 
 			// 설명 : 
 			DECL_FUNC(userSet_MeshBoundingBox)(
@@ -163,9 +162,6 @@ namespace hsdk
 
 			// 설명 :
 			std::vector<D3D10MY_MESH> my_Meshs;
-
-			// 설명 : 
-			ID3D10Device * my_refD3D10Device;
 
 			// 설명 :
 			CALLBACK_D3D10_CREATE_TEXTURE_FROMFILE my_refCallback_Create_Texture_FromFile;
