@@ -6,26 +6,12 @@
 
 
 
-//--------------------------------------------------------------------------------------
-// File: SDKMesh.h
-//
-// Disclaimer:  
-//   The SDK Mesh format (.sdkmesh) is not a recommended file format for shipping titles.  
-//   It was designed to meet the specific needs of the SDK samples.  Any real-world 
-//   applications should avoid this file format in favor of a destination format that 
-//   meets the specific needs of the application.
-//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-//--------------------------------------------------------------------------------------
-
-
-
 namespace hsdk
 {
 	namespace direct3d
 	{
 
-		// 설명 : CDXUTSDKMesh class.  This class reads the sdkmesh file format for use by the samples
+		// 설명 : 
 		DLL_DECL_CLASS(D3D10_Mesh)
 		{
 
@@ -72,7 +58,7 @@ namespace hsdk
 			// 설명 : 
 			DECL_FUNC(setup1_Shininess)(
 				/* [r] */ unsigned int _indexOfMaterial,
-				/* [r] */ unsigned int _shininess);
+				/* [r] */ float _shininess);
 
 			// 설명 :
 			DECL_FUNC(setup1_Mesh)(

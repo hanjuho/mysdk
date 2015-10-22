@@ -79,10 +79,10 @@ namespace hsdk
 			D3DXVECTOR4 color;
 
 			// 설명 : 
-			unsigned int bindex;
+			unsigned int bindexs[4];
 
 			// 설명 : 
-			D3DXVECTOR4 bweight;
+			float bweight[4];
 
 		};
 
@@ -113,7 +113,7 @@ namespace hsdk
 			std::wstring name;
 
 			// 설명 : 
-			unsigned int shininess;
+			float shininess;
 
 			// 설명 : 
 			D3DXVECTOR4 diffuse;

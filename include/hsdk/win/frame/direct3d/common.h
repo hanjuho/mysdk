@@ -208,13 +208,13 @@ namespace hsdk
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_KEYBOARD)(
 			/* [r] */ unsigned char _key,
-			/* [r] */ BOOL _keyDown,
-			/* [r] */ BOOL _altDown,
+			/* [r] */ short _keyDown,
+			/* [r] */ short _altDown,
 			/* [r/w] */ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_MOUSE)(
-			/* [r] */ const BOOL * _buttonsDown,
+			/* [r] */ const short * _buttonsDown,
 			/* [r] */ unsigned int _buttonCount,
 			/* [r] */ int _mouseWheelDelta,
 			/* [r] */ int _xPos,
