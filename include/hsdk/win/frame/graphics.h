@@ -28,38 +28,38 @@ namespace hsdk
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(void, set_Background)(
-					/* [r] */ const float(&_color)[4]);
+					_In_ const float(&_color)[4]);
 
 				// 설명 : 이미지를 설정.
 				INTERFACE_DECL_FUNC_T(void, set_image)(
-					/* [r] */ const wchar_t * _filename);
+					_In_ const wchar_t * _filename);
 
 				/*
 				설명 : 이미지를 상세 설정.
 				$ 참고 : _clip(x, y, w, h)
 				*/
 				INTERFACE_DECL_FUNC_T(void, set_imageDetail)(
-					/* [r] */ const float(&_clip)[4]);
+					_In_ const float(&_clip)[4]);
 
 				// 설명 : 폰트를 설정.
 				INTERFACE_DECL_FUNC_T(void, set_Font)(
-					/* [r] */ const wchar_t * _fontname,
-					/* [r] */ unsigned int _fontsize);
+					_In_ const wchar_t * _fontname,
+					_In_ unsigned int _fontsize);
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(void, set_FontColor)(
-					/* [r] */ const float(&_color)[4]);
+					_In_ const float(&_color)[4]);
 
 				// 설명 : 텍스트를 설정.
 				INTERFACE_DECL_FUNC_T(void, set_Text)(
-					/* [r] */ const wchar_t * _text);
+					_In_ const wchar_t * _text);
 
 				/*
 				설명 : graphics를 갱신.
 				$ 참고 : _rectangle(x, y, w, h)
 				*/
 				CLASS_DECL_FUNC_T(void, update)(
-					/* [r] */ const float(&_rectangle)[4]);
+					_In_ const float(&_rectangle)[4]);
 
 				// 설명 : graphics를 화면에 뿌려줌.
 				CLASS_DECL_FUNC_T(void, render)(
@@ -67,20 +67,29 @@ namespace hsdk
 
 			private:
 
-				// 설명 : 
-				D3DXMATRIX my_Position;
+				// 설명 :
+				ID3D10ShaderResourceView * my_Texture = nullptr;
 
 				// 설명 :
 				const D3DX10_IMAGE_INFO * my_Texture_info = nullptr;
 
-				// 설명 :
-				ID3D10ShaderResourceView * my_Texture = nullptr;
+				// 설명 : 
+				D3DXVECTOR4 my_BGColor = {
+					0.0f, 0.0f, 0.0f, 1.0f };
 
 				// 설명 : 
-				D3DXVECTOR4 my_BGColor = { 0.0f, 0.0f, 0.0f, 1.0f };
+				D3DXMATRIX my_Position = {
+					1.0f, 0.0f, 0.0f, 0.0f,
+					0.0f, 1.0f, 0.0f, 0.0f,
+					0.0f, 0.0f, 1.0f, 0.0f,
+					0.0f, 0.0f, 0.0f, 1.0f };
 
 				// 설명 :
-				D3DXVECTOR4 my_Sprite = { 0.0f, 0.0f, 1.0f, 1.0f };
+				D3DXMATRIX my_Texcoord = {
+					1.0f, 0.0f, 0.0f, 0.0f,
+					0.0f, 1.0f, 0.0f, 0.0f,
+					0.0f, 0.0f, 1.0f, 0.0f,
+					0.0f, 0.0f, 0.0f, 1.0f };
 
 			};
 		}

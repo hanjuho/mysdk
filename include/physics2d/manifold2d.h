@@ -45,18 +45,18 @@ namespace hsdk
 
 			// 설명 : 
 			DLL_DECL_FUNC_T(void, initialize)(
-				/* [w] */ Manifold2D & _m,
-				/* [r] */ const i::i_RigidBody2D * _abody,
-				/* [r] */ const i::i_RigidBody2D * _bbody);
+				_Out_ Manifold2D & _m,
+				_In_ const i::i_RigidBody2D * _abody,
+				_In_ const i::i_RigidBody2D * _bbody);
 
 			// 설명 : 
 			DLL_DECL_FUNC_T(void, impulse_Apply)(
-				/* [w] */ Manifold2D & _m,
-				/* [r] */ const Vector2D & _apos,
-				/* [r] */ i::i_RigidBody2D * _abody,
-				/* [r] */ const Vector2D & _bpos,
-				/* [r] */ i::i_RigidBody2D * _bbody,
-				/* [r] */ float _glength);
+				_Out_ Manifold2D & _m,
+				_In_ const Vector2D & _apos,
+				_In_ i::i_RigidBody2D * _abody,
+				_In_ const Vector2D & _bpos,
+				_In_ i::i_RigidBody2D * _bbody,
+				_In_ float _glength);
 		}
 
 	}

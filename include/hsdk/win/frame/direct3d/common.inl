@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(DXGI_FORMAT, hsdk::direct3d::convert_Format_D3D9ToDXGI)(
-	/* [r] */ D3DFORMAT _format)
+	_In_ D3DFORMAT _format)
 {
 	switch (_format)
 	{
@@ -101,7 +101,7 @@ IMPL_FUNC_T(DXGI_FORMAT, hsdk::direct3d::convert_Format_D3D9ToDXGI)(
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(D3D10_DRIVER_TYPE, hsdk::direct3d::convert_DriverType_D3D9ToDXGI)(
-	/* [r] */ D3DDEVTYPE _type)
+	_In_ D3DDEVTYPE _type)
 {
 	switch (_type)
 	{
@@ -128,7 +128,7 @@ IMPL_FUNC_T(D3D10_DRIVER_TYPE, hsdk::direct3d::convert_DriverType_D3D9ToDXGI)(
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(D3DDEVTYPE, hsdk::direct3d::convert_DriverType_DXGIToD3D9)(
-	/* [r] */ D3D10_DRIVER_TYPE _type)
+	_In_ D3D10_DRIVER_TYPE _type)
 {
 	switch (_type)
 	{

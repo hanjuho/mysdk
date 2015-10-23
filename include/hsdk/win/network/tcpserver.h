@@ -28,16 +28,16 @@ namespace hsdk
 
 				// 설명 : 특정 포트로 클라이언트와 통신할 게이트를 오픈.
 				INTERFACE_DECL_FUNC(open)(
-					/* [r] */ unsigned int _port);
+					_In_ unsigned int _port);
 
 				// 설명 : 열린 포트를 닫음.
 				INTERFACE_DECL_FUNC(close)(
-					/* [r] */ void);
+					_In_ void);
 
 				// 설명 : server에게 접근할 client를 _time만큼 대기.
 				INTERFACE_DECL_FUNC(accept)(
-					/* [w] */ i::network::i_Proxy * (&_proxy),
-					/* [r] */ unsigned int _time);
+					_Out_ i::network::i_Proxy * (&_proxy),
+					_In_ unsigned int _time);
 
 				// 설명 : server에 문제가 생겼을 때, server를 초기화.
 				INTERFACE_DECL_FUNC(reset)(
@@ -45,9 +45,9 @@ namespace hsdk
 
 				// 설명 : server에게 접근할 client를 _time만큼 대기.
 				CLASS_DECL_FUNC(accept)(
-					/* [w] */ SOCKET & _socket,
-					/* [w] */ unsigned int & _ip,
-					/* [r] */ unsigned int _time);
+					_Out_ SOCKET & _socket,
+					_Out_ unsigned int & _ip,
+					_In_ unsigned int _time);
 
 				// 설명 : 
 				CLASS_DECL_FUNC_T(SOCKET, get_Socket)(

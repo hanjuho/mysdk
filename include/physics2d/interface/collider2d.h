@@ -33,7 +33,7 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(Vector2D, vertex)(
-					/* [r] */ unsigned int _index)const = 0;
+					_In_ unsigned int _index)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(const Vector2D *, vertices)(
@@ -41,7 +41,7 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(Vector2D, normal)(
-					/* [r] */ unsigned int _index)const = 0;
+					_In_ unsigned int _index)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(const Vector2D *, normals)(

@@ -23,7 +23,7 @@ namespace hsdk
 
 				// 생성자.
 				CLASS_DECL_CONSTRUCTOR(inputEventHelper)(
-					/* [r] */ i::frame::i_Component * _component);
+					_In_ i::frame::i_Component * _component);
 				
 				// 가상 소멸자.
 				CLASS_DECL_DESTRUCTOR(inputEventHelper)(void);
@@ -33,7 +33,7 @@ namespace hsdk
 				$ 참고 : 멤버변수 xy가 _component안에 있어야하며, i_Component::is_Visible의 반환 값이 참이어야 함.
 				*/
 				INTERFACE_DECL_FUNC_T(bool, chain)(
-					/* [r] */ const i::frame::i_Component * _component);
+					_In_ const i::frame::i_Component * _component);
 
 				/*
 				설명 : input event focus 대상을 갱신.
@@ -44,32 +44,32 @@ namespace hsdk
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onClick_Down)(
-					/* [r] */ i::frame::MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ i::frame::MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 버튼이 눌렸다가 때면 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onClick_Up)(
-					/* [r] */ i::frame::MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ i::frame::MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 버튼을 누른 채 커서를 이동하면 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onDrag)(
-					/* [r] */ i::frame::MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ i::frame::MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 커서를 이동시키면 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onMove)(
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 wheel을 조작하면 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onWheel)(
-					/* [r] */ int _x,
-					/* [r] */ int _y,
-					/* [r] */ int _w);
+					_In_ int _x,
+					_In_ int _y,
+					_In_ int _w);
 
 			public:
 					

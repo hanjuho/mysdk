@@ -32,30 +32,30 @@ namespace hsdk
 
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(Matrix2D)(
-				/* [r] */ float _radians);
+				_In_ float _radians);
 
 			// 생성자
 			CLASS_DECL_CONSTRUCTOR(Matrix2D)(
-				/* [r] */ float _a,
-				/* [r] */ float _b,
-				/* [r] */ float _c,
-				/* [r] */ float _d);
+				_In_ float _a,
+				_In_ float _b,
+				_In_ float _c,
+				_In_ float _d);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(const Vector2D, operator*)(
-				/* [r] */ const Vector2D & _rhs) const;
+				_In_ const Vector2D & _rhs) const;
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(const Matrix2D, operator*)(
-				/* [r] */ const Matrix2D & _rhs) const;
+				_In_ const Matrix2D & _rhs) const;
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, operator=)(
-				/* [r] */ const Matrix2D & _rhs);
+				_In_ const Matrix2D & _rhs);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, operator=)(
-				/* [r] */ float _radians);
+				_In_ float _radians);
 
 		};
 
@@ -64,8 +64,8 @@ namespace hsdk
 
 			// 설명 : 
 			inline CLASS_DECL_FUNC_T(void, rotate)(
-				/* [w] */ Matrix2D & _mat,
-				/* [r] */ float _radians)
+				_Out_ Matrix2D & _mat,
+				_In_ float _radians)
 			{
 				float c = std::cos(_radians);
 				float s = std::sin(_radians);
@@ -78,7 +78,7 @@ namespace hsdk
 
 			// 설명 :
 			inline CLASS_DECL_FUNC_T(Matrix2D, abs)(
-				/* [r] */ const Matrix2D & _mat)
+				_In_ const Matrix2D & _mat)
 			{
 				return Matrix2D(
 					std::abs(_mat.m00), 
@@ -89,7 +89,7 @@ namespace hsdk
 
 			// 설명 :
 			inline CLASS_DECL_FUNC_T(Vector2D, axisX)(
-				/* [r] */ const Matrix2D & _mat)
+				_In_ const Matrix2D & _mat)
 			{
 				return Vector2D(
 					_mat.m00, 
@@ -98,7 +98,7 @@ namespace hsdk
 
 			// 설명 :
 			inline CLASS_DECL_FUNC_T(Vector2D, axisY)(
-				/* [r] */ const Matrix2D & _mat)
+				_In_ const Matrix2D & _mat)
 			{
 				return Vector2D(
 					_mat.m01,
@@ -107,8 +107,8 @@ namespace hsdk
 
 			// 설명 :
 			inline CLASS_DECL_FUNC_T(Matrix2D &, transpose)(
-				/* [w] */ Matrix2D & _out,
-				/* [r] */ const Matrix2D & _in)
+				_Out_ Matrix2D & _out,
+				_In_ const Matrix2D & _in)
 			{
 				_out = Matrix2D(
 					_in.m00,

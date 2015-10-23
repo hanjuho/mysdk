@@ -26,9 +26,9 @@ namespace hsdk
 
 				// 서버의 특정 포트로 접속
 				INTERFACE_DECL_FUNC(connect)(
-					/* [r] */ const char * _url,
-					/* [r] */ unsigned int _port,
-					/* [r] */ unsigned int _wait = 0) = 0;
+					_In_ const char * _url,
+					_In_ unsigned int _port,
+					_In_ unsigned int _wait = 0) = 0;
 
 				// 서버와 단절
 				INTERFACE_DECL_FUNC(disconnect)(

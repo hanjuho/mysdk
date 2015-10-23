@@ -57,40 +57,40 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC(initialize)(
-				/* [r] */ IDXGIFactory * _dxgiFactory,
-				/* [r] */ BOOL _enumerateAllAdapterFormats = true,
-				/* [r] */ BOOL _is_in_GammaCorrectMode = true);
+				_In_ IDXGIFactory * _dxgiFactory,
+				_In_ BOOL _enumerateAllAdapterFormats = true,
+				_In_ BOOL _is_in_GammaCorrectMode = true);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(initialize_Outputs)(
-				/* [w] */ VideoCard_Output_info & _output_info,
-				/* [r] */ unsigned int _index,
-				/* [r] */ IDXGIAdapter * _dxgiAdapter);
+				_Out_ VideoCard_Output_info & _output_info,
+				_In_ unsigned int _index,
+				_In_ IDXGIAdapter * _dxgiAdapter);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(initialize_DisplayModes)(
-				/* [w] */ VideoCard_Output_info & _output_info);
+				_Out_ VideoCard_Output_info & _output_info);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(const VideoCard_info *, get_info)(
-				/* [r] */ unsigned int _adapterOrdinal);
+				_In_ unsigned int _adapterOrdinal);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(const VideoCard_Output_info *, get_Output_info)(
-				/* [r] */ unsigned int _adapterOrdinal,
-				/* [r] */ unsigned int _output);
+				_In_ unsigned int _adapterOrdinal,
+				_In_ unsigned int _output);
 
 			// 설명 : Returns the HMONITOR attached to an adapter/output
 			CLASS_DECL_FUNC_T(HMONITOR, get_MonitorFromAdapter)(
-				/* [r] */ const D3D10_DEVICE_DESC & _desc);
+				_In_ const D3D10_DEVICE_DESC & _desc);
 
 			// 설명 : Look for an adapter ordinal that is tied to a HMONITOR
 			CLASS_DECL_FUNC_T(unsigned int, get_AdapterOrdinalFromMonitor)(
-				/* [r] */ HMONITOR _monitor);
+				_In_ HMONITOR _monitor);
 
 			// 설명 : Look for a monitor ordinal that is tied to a HMONITOR (D3D10-only)
 			CLASS_DECL_FUNC_T(unsigned int, get_OutputOrdinalFromMonitor)(
-				/* [r] */ HMONITOR _monitor);
+				_In_ HMONITOR _monitor);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, destroy)(

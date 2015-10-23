@@ -27,42 +27,42 @@ namespace hsdk
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, attack)(
-					/* [r] */ long _flag) = 0;
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, suffer)(
-					/* [r] */ unsigned int _frequency,
-					/* [r] */ float _amount,
-					/* [r] */ long _flag) = 0;
+					_In_ unsigned int _frequency,
+					_In_ float _amount,
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, move)(
-					/* [r] */ float _x,
-					/* [r] */ float _y,
-					/* [r] */ long _flag) = 0;
+					_In_ float _x,
+					_In_ float _y,
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, wait)(
-					/* [r] */ long _flag) = 0;
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, effect)(
-					/* [r] */ unsigned int _effect,
-					/* [r] */ long _flag) = 0;
+					_In_ unsigned int _effect,
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, recovery)(
-					/* [r] */ unsigned int _frequency,
-					/* [r] */ float _amount,
-					/* [r] */ long _flag) = 0;
+					_In_ unsigned int _frequency,
+					_In_ float _amount,
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, resurrect)(
-					/* [r] */ long _flag) = 0;
+					_In_ long _flag) = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(T, disappear)(
-					/* [r] */ long _flag) = 0;
+					_In_ long _flag) = 0;
 
 			};
 

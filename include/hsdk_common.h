@@ -3,6 +3,10 @@
 
 
 
+#include <sal.h>
+
+
+
 // 반환 값이 HRESULT로 고정된 함수 선언.
 #define DECL_FUNC(func)	\
 	__declspec(nothrow) long __stdcall func

@@ -27,7 +27,7 @@ namespace hsdk
 		{
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(AutoID)(
-				/* [r] */ AutoSlot * _slot)
+				_In_ AutoSlot * _slot)
 				: my_id(_slot->my_autoID++)
 			{
 				// 유효성 검사.
@@ -82,7 +82,7 @@ namespace hsdk
 
 		// 설명 : << 연산자에 대해 key의 index를 반환.
 		CLASS_DECL_FUNC_T(unsigned int, operator <<)(
-			/* [r] */ K & _key)
+			_In_ K & _key)
 		{
 			std::hash_map<K, h_AutoID>::iterator _where;
 
@@ -108,14 +108,14 @@ namespace hsdk
 		$ 참고 : V 는 연속된 배열로 만들어졌음.
 		*/
 		CLASS_DECL_FUNC_T(V &, operator [])(
-			/* [r] */ unsigned int index)
+			_In_ unsigned int index)
 		{
 			return my_Buffer[index];
 		}
 
 		// 설명 : [] 연산자에 대해 V & 를 반환.
 		CLASS_DECL_FUNC_T(V &, operator [])(
-			/* [r] */ K & _key)
+			_In_ K & _key)
 		{
 			return my_Buffer[this->operator<<(_key)];
 		}

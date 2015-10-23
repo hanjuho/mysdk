@@ -28,7 +28,7 @@ namespace hsdk
 
 				// 설명 : section로 들어감, 만원인 경우 _time만큼 대기.
 				INTERFACE_DECL_FUNC(enter)(
-					/* [r] */ unsigned long _time);
+					_In_ unsigned long _time);
 
 				// 설명 : section로부터 나옴.
 				INTERFACE_DECL_FUNC(leave)(

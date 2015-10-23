@@ -39,14 +39,14 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC(read_Table)(
-					/* [r] */ unsigned int _offset,
-					/* [r] */ unsigned int _size,
-					/* [w] */ void * (&_data))const;
+					_In_ unsigned int _offset,
+					_In_ unsigned int _size,
+					_Out_ void * (&_data))const;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC(write_Table)(
-					/* [r] */ unsigned int _state,
-					/* [r] */ ...);
+					_In_ unsigned int _state,
+					_In_ ...);
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(const wchar_t *, name)(

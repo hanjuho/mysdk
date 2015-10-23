@@ -127,12 +127,12 @@ namespace hsdk
 			$ 참고 : Choose either createWindow or setWindow.If using setWindow, consider using staticWndProc.
 			*/
 			CLASS_DECL_FUNC(setup0_Window)(
-				/* [r] */ const wchar_t * _strWindowTitle = L"Direct3D Window",
-				/* [r] */ int _x = CW_USEDEFAULT,
-				/* [r] */ int _y = CW_USEDEFAULT,
-				/* [r] */ HINSTANCE _hInstance = nullptr,
-				/* [r] */ HICON _hIcon = nullptr,
-				/* [r] */ HMENU _hMenu = nullptr);
+				_In_ const wchar_t * _strWindowTitle = L"Direct3D Window",
+				_In_ int _x = CW_USEDEFAULT,
+				_In_ int _y = CW_USEDEFAULT,
+				_In_ HINSTANCE _hInstance = nullptr,
+				_In_ HICON _hIcon = nullptr,
+				_In_ HMENU _hMenu = nullptr);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(setup1_DeviceFactory)(
@@ -148,17 +148,17 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC(dynamic_WndProc)(
-				/* [r] */ unsigned int _uMsg,
-				/* [r] */ unsigned int _wParam,
-				/* [r] */ long _lParam);
+				_In_ unsigned int _uMsg,
+				_In_ unsigned int _wParam,
+				_In_ long _lParam);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(transform)(
-				/* [r] */ BOOL _windowed = true,
-				/* [r] */ unsigned long _suggestedWidth = 0,
-				/* [r] */ unsigned long _suggestedHeight = 0,
-				/* [r] */ bool _clipMonitor = false,
-				/* [r] */ unsigned int _adapter = -1);
+				_In_ BOOL _windowed = true,
+				_In_ unsigned long _suggestedWidth = 0,
+				_In_ unsigned long _suggestedHeight = 0,
+				_In_ bool _clipMonitor = false,
+				_In_ unsigned int _adapter = -1);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, destroy)(
@@ -173,7 +173,7 @@ namespace hsdk
 			$ 참고 : Choose either Direct3D::MainLoop or implement your own main loop.
 			*/
 			CLASS_DECL_FUNC(mainLoop)(
-				/* [r] */ HACCEL _accel = nullptr);
+				_In_ HACCEL _accel = nullptr);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, render)(
@@ -181,7 +181,7 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, shutdown)(
-				/* [r] */ int _exitCode = 0);
+				_In_ int _exitCode = 0);
 
 			//--------------------------------------------------------------------------------------
 			// userSet tasks 
@@ -189,20 +189,20 @@ namespace hsdk
 
 			// 설명 : Controls the Windows key, and accessibility shortcut keys.
 			CLASS_DECL_FUNC_T(void, userSet_ShortcutKeySettings)(
-				/* [r] */ BOOL _allowWhenFullscreen = false,
-				/* [r] */ BOOL _allowWhenWindowed = true);
+				_In_ BOOL _allowWhenFullscreen = false,
+				_In_ BOOL _allowWhenWindowed = true);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, userSet_AutoChangeMoniter)(
-				/* [r] */ BOOL _autoChange = true);
+				_In_ BOOL _autoChange = true);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, userSet_GammaCorrectMode)(
-				/* [r] */ BOOL _gammaCorrect = true);
+				_In_ BOOL _gammaCorrect = true);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, userSet_Vsync)(
-				/* [r] */ BOOL _vsync = true);
+				_In_ BOOL _vsync = true);
 
 			//--------------------------------------------------------------------------------------
 			// General
@@ -210,20 +210,20 @@ namespace hsdk
 
 			// 설명 : _rect must have (x, y, w, h)
 			CLASS_DECL_FUNC_T(BOOL, clip_Screen)(
-				/* [r] */ RECT & _rect,
-				/* [r] */ BOOL _windowed)const;
+				_In_ RECT & _rect,
+				_In_ BOOL _windowed)const;
 
 			// 설명 : Pass a virtual-key code, ex. VK_F1, 'A', VK_RETURN, VK_LSHIFT, etc.
 			CLASS_DECL_FUNC_T(BOOL, is_KeyDown)(
-				/* [r] */ unsigned char vKey)const;
+				_In_ unsigned char vKey)const;
 
 			// 설명 : Like Direct3D::IsKeyDown() but return true only if the key was just pressed.
 			CLASS_DECL_FUNC_T(BOOL, was_KeyPressed)(
-				/* [r] */ unsigned char vKey)const;
+				_In_ unsigned char vKey)const;
 
 			// 설명 : Pass a virtual-key code: VK_LBUTTON, VK_RBUTTON, VK_MBUTTON, VK_XBUTTON1, VK_XBUTTON2.
 			CLASS_DECL_FUNC_T(BOOL, is_MouseButtonDown)(
-				/* [r] */ unsigned char vButton)const;
+				_In_ unsigned char vButton)const;
 
 			//--------------------------------------------------------------------------------------
 			// State retrieval  

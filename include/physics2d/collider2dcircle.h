@@ -19,8 +19,8 @@ namespace hsdk
 
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(Collider2DCircle)(
-				/* [r] */ float _radius,
-				/* [r] */ float _density);
+				_In_ float _radius,
+				_In_ float _density);
 			
 			// 설명 : collider의 속성
 			INTERFACE_DECL_FUNC_T(unsigned int, type)(
@@ -32,7 +32,7 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(Vector2D, vertex)(
-				/* [r] */ unsigned int _index)const;
+				_In_ unsigned int _index)const;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(const Vector2D *, vertices)(
@@ -40,7 +40,7 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(Vector2D, normal)(
-				/* [r] */ unsigned int _index)const;
+				_In_ unsigned int _index)const;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(const Vector2D *, normals)(

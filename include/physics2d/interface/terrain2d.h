@@ -25,8 +25,8 @@ namespace hsdk
 
 				// 설명 : _x 좌표 지형의 높이, _dy는 기울기.
 				INTERFACE_DECL_FUNC_T(float, height)(
-					/* [r] */ float _x,
-					/* [w] */ float * _dy = nullptr)const = 0;
+					_In_ float _x,
+					_Out_ float * _dy = nullptr)const = 0;
 
 			};
 

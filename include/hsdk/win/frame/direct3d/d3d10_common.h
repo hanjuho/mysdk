@@ -22,31 +22,31 @@ namespace hsdk
 
 		// 설명 : 
 		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_TEXTURE_FROMFILE)(
-			/* [w] */ ID3D10ShaderResourceView ** _srv,
-			/* [r] */ ID3D10Device * _d3d10Device,
-			/* [r] */ const wchar_t * _filepath,
+			_Out_ ID3D10ShaderResourceView ** _srv,
+			_In_ ID3D10Device * _d3d10Device,
+			_In_ const wchar_t * _filepath,
 			/* [r/w] */ void * _context);
 
 		// 설명 : 
 		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_VERTEXBUFFER)(
-			/* [w] */ ID3D10Buffer ** _buffer,
-			/* [r] */ ID3D10Device * _dev,
-			/* [r] */ D3D10_BUFFER_DESC _bufferDesc,
-			/* [r] */ const void * _data,
+			_Out_ ID3D10Buffer ** _buffer,
+			_In_ ID3D10Device * _dev,
+			_In_ D3D10_BUFFER_DESC _bufferDesc,
+			_In_ const void * _data,
 			/* [r/w] */ void * _context);
 
 		// 설명 : 
 		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_INDEXBUFFER)(
-			/* [w] */ ID3D10Buffer ** _buffer,
-			/* [r] */ ID3D10Device * _dev,
-			/* [r] */ D3D10_BUFFER_DESC _bufferDesc,
-			/* [r] */ const void * _data,
+			_Out_ ID3D10Buffer ** _buffer,
+			_In_ ID3D10Device * _dev,
+			_In_ D3D10_BUFFER_DESC _bufferDesc,
+			_In_ const void * _data,
 			/* [r/w] */ void * _context);
 
 		//--------------------------------------------------------------------------------------
 		//
 		//--------------------------------------------------------------------------------------
-
+		
 		// 설명 :
 		DECL_STRUCT(D3D10_BasicFormat)
 		{
@@ -87,19 +87,13 @@ namespace hsdk
 		};
 
 		// 설명 :
-		DECL_STRUCT(D3D10_TextureFormat)
+		DECL_STRUCT(D3D10_SkyBoxFormat)
 		{
 
 			// 설명 : 
 			D3DXVECTOR3 pos;
 
-			// 설명 : 
-			D3DXVECTOR3 norm;
-
-			// 설명 : 
-			unsigned int bindex;
-
-		}; 
+		};
 
 		//--------------------------------------------------------------------------------------
 		//

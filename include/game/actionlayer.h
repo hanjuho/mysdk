@@ -29,7 +29,7 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(bool, act)(
-				/* [r] */ float _dt)const;
+				_In_ float _dt)const;
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(unsigned int, priority)(

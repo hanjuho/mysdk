@@ -36,29 +36,29 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, find)(
-					/* [r] */ i_Physics2DObject * _object,
-					/* [r] */ i_Boundary2DListener * _listener,
-					/* [r] */ float _distance,
-					/* [r] */ long _sort = false) = 0;
+					_In_ i_Physics2DObject * _object,
+					_In_ i_Boundary2DListener * _listener,
+					_In_ float _distance,
+					_In_ long _sort = false) = 0;
 				
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, operate)(
-					/* [r] */ i_Physics2DObject * _objA,
-					/* [r] */ i_Physics2DObject * _objB,
-					/* [r] */ const i::i_Terrain2D * _terrain,
-					/* [r] */ void * _param = nullptr) = 0;
+					_In_ i_Physics2DObject * _objA,
+					_In_ i_Physics2DObject * _objB,
+					_In_ const i::i_Terrain2D * _terrain,
+					_In_ void * _param = nullptr) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC(update)(
-					/* [r] */ SOURCE_DESC * (&_source),
-					/* [r] */ unsigned int _size) = 0;
+					_In_ SOURCE_DESC * (&_source),
+					_In_ unsigned int _size) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, run)(
-					/* [r] */ const i_Terrain2D * _terrain,
-					/* [r] */ const Vector2D & _gravity,
-					/* [r] */ float _dt,
-					/* [r] */ void * _param = nullptr) = 0;
+					_In_ const i_Terrain2D * _terrain,
+					_In_ const Vector2D & _gravity,
+					_In_ float _dt,
+					_In_ void * _param = nullptr) = 0;
 
 			};
 

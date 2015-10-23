@@ -25,42 +25,42 @@ namespace hsdk
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, attack)(
-				/* [r] */ long _flag);
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, suffer)(
-				/* [r] */ unsigned int _frequency,
-				/* [r] */ float _amount,
-				/* [r] */ long _flag);
+				_In_ unsigned int _frequency,
+				_In_ float _amount,
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, move)(
-				/* [r] */ float _x,
-				/* [r] */ float _y,
-				/* [r] */ long _flag);
+				_In_ float _x,
+				_In_ float _y,
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, wait)(
-				/* [r] */ long _flag);
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, effect)(
-				/* [r] */ unsigned int _effect,
-				/* [r] */ long _flag);
+				_In_ unsigned int _effect,
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, recovery)(
-				/* [r] */ unsigned int _frequency,
-				/* [r] */ float _amount,
-				/* [r] */ long _flag);
+				_In_ unsigned int _frequency,
+				_In_ float _amount,
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, resurrect)(
-				/* [r] */ long _flag);
+				_In_ long _flag);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_ActionLayer *, disappear)(
-				/* [r] */ long _flag);
+				_In_ long _flag);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, link_DataTable)(

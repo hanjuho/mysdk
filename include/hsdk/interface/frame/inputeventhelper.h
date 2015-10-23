@@ -25,7 +25,7 @@ namespace hsdk
 
 				// 설명 : component가 event 발생 조건을 충족하는지 검사
 				INTERFACE_DECL_FUNC_T(bool, chain)(
-					/* [r] */ const i_Component * _component) = 0;
+					_In_ const i_Component * _component) = 0;
 				
 				// 설명 : input event focus 대상을 갱신
 				INTERFACE_DECL_FUNC_T(void, update)(

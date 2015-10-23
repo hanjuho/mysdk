@@ -32,12 +32,12 @@ namespace hsdk
 
 				// 설명 : 이 container에 _component가 있는지 검사.
 				INTERFACE_DECL_FUNC_T(bool, contain_Component)(
-					/* [r] */ i_Component * _component)const;
+					_In_ i_Component * _component)const;
 
 				// 설명 : 이 container로부터 _component를 제거.
 				INTERFACE_DECL_FUNC(get_Component)(
-					/* [w] */ i_Component * (&_component),
-					/* [r] */ unsigned int _id)const;
+					_Out_ i_Component * (&_component),
+					_In_ unsigned int _id)const;
 
 				/*
 				설명 : 이벤트에 반응하는 하위 혹은 이 container를 갱신(단, 부모를 거슬러 올라가진 않음).

@@ -25,24 +25,24 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, apply_Shape)(
-					/* [r] */ const i_Collider2D * _collider) = 0;
+					_In_ const i_Collider2D * _collider) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, impulse)(
-					/* [r] */ const Vector2D & _impulse,
-					/* [r] */ const Vector2D & _contact) = 0;
+					_In_ const Vector2D & _impulse,
+					_In_ const Vector2D & _contact) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, increase)(
-					/* [r] */ const Vector2D & _vector) = 0;
+					_In_ const Vector2D & _vector) = 0;
 
 				// 설명 : 속도 증가.
 				INTERFACE_DECL_FUNC_T(void, accelerate)(
-					/* [r] */ const Vector2D & _vector) = 0;
+					_In_ const Vector2D & _vector) = 0;
 
 				// 설명 : 속도 설정.
 				INTERFACE_DECL_FUNC_T(void, spin)(
-					/* [r] */ float _value) = 0;
+					_In_ float _value) = 0;
 				// 설명 : 속도 반환.
 				INTERFACE_DECL_FUNC_T(Vector2D, velocity)(
 					/* [x] */ void)const = 0;
@@ -77,11 +77,11 @@ namespace hsdk
 
 				// 설명 : 움직이지 않는 몸체.
 				INTERFACE_DECL_FUNC_T(void, fixed)(
-					/* [r] */ void) = 0;
+					_In_ void) = 0;
 				
 				// 설명 : 힘 초기화.
 				INTERFACE_DECL_FUNC_T(void, expended)(
-					/* [r] */ void) = 0;
+					_In_ void) = 0;
 
 			};
 

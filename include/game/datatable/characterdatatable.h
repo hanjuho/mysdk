@@ -27,14 +27,14 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC(read_Table)(
-					/* [r] */ unsigned int _state,
-					/* [w] */ void * (&_data),
-					/* [r] */ unsigned int _size)const;
+					_In_ unsigned int _state,
+					_Out_ void * (&_data),
+					_In_ unsigned int _size)const;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC(write_Table)(
-					/* [r] */ unsigned int _state,
-					/* [r] */ ...);
+					_In_ unsigned int _state,
+					_In_ ...);
 
 			protected:
 

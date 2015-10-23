@@ -29,10 +29,10 @@ namespace hsdk
 
 				// 생성자.
 				CLASS_DECL_CONSTRUCTOR(Component)(
-					/* [r] */ float _x = 0.0f,
-					/* [r] */ float _y = 0.0f,
-					/* [r] */ float _w = 0.0f,
-					/* [r] */ float _h = 0.0f);
+					_In_ float _x = 0.0f,
+					_In_ float _y = 0.0f,
+					_In_ float _w = 0.0f,
+					_In_ float _h = 0.0f);
 
 				// 가상 소멸자.
 				CLASS_DECL_DESTRUCTOR(Component)(void);
@@ -55,12 +55,12 @@ namespace hsdk
 
 				// 설명 : 이 component에 _component가 있는지 검사.
 				INTERFACE_DECL_FUNC_T(bool, contain_Component)(
-					/* [r] */ i_Component * _component)const;
+					_In_ i_Component * _component)const;
 
 				// 설명 : 이 component로부터 _component를 제거.
 				INTERFACE_DECL_FUNC(get_Component)(
-					/* [w] */ i_Component * (&_component),
-					/* [r] */ unsigned int _id)const;
+					_Out_ i_Component * (&_component),
+					_In_ unsigned int _id)const;
 
 				// 설명 : 이 component의 고유 식별 번호.
 				INTERFACE_DECL_FUNC_T(unsigned int, get_id)(
@@ -68,19 +68,19 @@ namespace hsdk
 
 				// 설명 : 상대적 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_X)(
-					/* [r] */ float _value);
+					_In_ float _value);
 
 				// 설명 : 상대적 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_Y)(
-					/* [r] */ float _value);
+					_In_ float _value);
 
 				// 설명 : 절대적 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_W)(
-					/* [r] */ float _value);
+					_In_ float _value);
 
 				// 설명 : 절대적 높이를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_H)(
-					/* [r] */ float _value);
+					_In_ float _value);
 
 				// 설명 : 상대적 x 좌표를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_X)(
@@ -100,7 +100,7 @@ namespace hsdk
 
 				// 설명 : 파라미터 값이 true면 스크린을 보여주고, false면 감춤.
 				INTERFACE_DECL_FUNC(set_Visible)(
-					/* [r] */ bool _visible);
+					_In_ bool _visible);
 
 				// 설명 : 이 component가 보이는지 확인.
 				INTERFACE_DECL_FUNC_T(bool, is_Visible)(
@@ -111,7 +111,7 @@ namespace hsdk
 				$ 참고 : 반환값이 true일 경우, i_inputEvent는 이 component를 주시하게 됨.
 				*/
 				INTERFACE_DECL_FUNC_T(bool, event_chain)(
-					/* [r] */ i::frame::i_inputEventHelper * _eventhelper);
+					_In_ i::frame::i_inputEventHelper * _eventhelper);
 
 				// 설명 : component 갱신.
 				INTERFACE_DECL_FUNC_T(void, update)(
@@ -155,40 +155,40 @@ namespace hsdk
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Down)(
-					/* [r] */ i::frame::MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ i::frame::MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 버튼이 눌렸다가 때면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Up)(
-					/* [r] */ i::frame::MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ i::frame::MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 버튼을 누른 채 커서를 이동하면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onDrag)(
-					/* [r] */ i::frame::MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ i::frame::MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 커서를 이동시키면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onMove)(
-					/* [r] */ int _x,
-					/* [r] */ int _y);
+					_In_ int _x,
+					_In_ int _y);
 
 				// 설명 : mouse의 wheel을 조작하면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onWheel)(
-					/* [r] */ int _x,
-					/* [r] */ int _y,
-					/* [r] */ int _w);
+					_In_ int _x,
+					_In_ int _y,
+					_In_ int _w);
 
 				// 설명 : keyboard의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onKey_Down)(
-					/* [r] */ unsigned char _vKey);
+					_In_ unsigned char _vKey);
 
 				// 설명 : keyboard의 버튼을 눌렀다가 띄우면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onKey_Up)(
-					/* [r] */ unsigned char _vKey);
+					_In_ unsigned char _vKey);
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, onAct)(

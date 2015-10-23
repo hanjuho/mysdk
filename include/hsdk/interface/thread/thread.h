@@ -34,7 +34,7 @@ namespace hsdk
 
 				// 설명 : thread가 종료되기를 _time만큼 기다림.
 				INTERFACE_DECL_FUNC(wait)(
-					/* [r] */ unsigned int _time) = 0;
+					_In_ unsigned int _time) = 0;
 
 				// 설명 : thread에 문제가 생겼을 때, thread를 초기화.
 				INTERFACE_DECL_FUNC(reset)(

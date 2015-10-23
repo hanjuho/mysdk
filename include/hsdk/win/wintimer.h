@@ -50,9 +50,9 @@ namespace hsdk
 
 			// 설명 : get all time values at once.
 			CLASS_DECL_FUNC_T(void, get_TimeValues)(
-				/* [w] */ double * _fTime,
-				/* [w] */ double * _fAbsoluteTime,
-				/* [w] */ float * _fElapsedTime);
+				_Out_ double * _fTime,
+				_Out_ double * _fAbsoluteTime,
+				_Out_ float * _fElapsedTime);
 
 			// 설명 : returns true if timer stopped.
 			CLASS_DECL_FUNC_T(BOOL, is_Stopped)(

@@ -62,8 +62,8 @@ namespace hsdk
 
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(Vector2D)(
-				/* [r] */ float _x,
-				/* [r] */ float _y);
+				_In_ float _x,
+				_In_ float _y);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator-)(
@@ -71,51 +71,51 @@ namespace hsdk
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator+)(
-				/* [r] */ const Vector2D & _rhs) const;
+				_In_ const Vector2D & _rhs) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator-)(
-				/* [r] */ const Vector2D & _rhs) const;
+				_In_ const Vector2D & _rhs) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, operator+=)(
-				/* [r] */ const Vector2D & _rhs);
+				_In_ const Vector2D & _rhs);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, operator-=)(
-				/* [r] */ const Vector2D & _rhs);
+				_In_ const Vector2D & _rhs);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator+)(
-				/* [r] */ float _s) const;
+				_In_ float _s) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator-)(
-				/* [r] */ float _s) const;
+				_In_ float _s) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator*)(
-				/* [r] */ float _s) const;
+				_In_ float _s) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator/)(
-				/* [r] */ float _s) const;
+				_In_ float _s) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, operator+=)(
-				/* [r] */ float _s);
+				_In_ float _s);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, operator-=)(
-				/* [r] */ float _s);
+				_In_ float _s);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, operator*=)(
-				/* [r] */ float _s);
+				_In_ float _s);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, operator/=)(
-				/* [r] */ float _s);
+				_In_ float _s);
 
 		};
 
@@ -124,22 +124,22 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(float, lenSqr)(
-				/* [r] */ const Vector2D & _in)
+				_In_ const Vector2D & _in)
 			{
 				return _in.x * _in.x + _in.y * _in.y;
 			}
 
 			// 설명 :
 			inline DECL_FUNC_T(float, len)(
-				/* [r] */ const Vector2D & _in)
+				_In_ const Vector2D & _in)
 			{
 				return std::sqrt(_in.x * _in.x + _in.y * _in.y);
 			}
 
 			// 설명 :
 			inline DECL_FUNC_T(Vector2D &, normalize)(
-				/* [w] */ Vector2D & _out,
-				/* [r] */ const Vector2D & _in)
+				_Out_ Vector2D & _out,
+				_In_ const Vector2D & _in)
 			{
 				float length = len(_in);
 				if (length > EPSILON)
@@ -155,9 +155,9 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(Vector2D &, rotate)(
-				/* [w] */ Vector2D & _out,
-				/* [r] */ const Vector2D & _in,
-				/* [r] */ float _radians)
+				_Out_ Vector2D & _out,
+				_In_ const Vector2D & _in,
+				_In_ float _radians)
 			{
 				float c = std::cos(_radians);
 				float s = std::sin(_radians);
@@ -171,8 +171,8 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(Vector2D, min)(
-				/* [r] */ const Vector2D & _a,
-				/* [r] */ const Vector2D & _b)
+				_In_ const Vector2D & _a,
+				_In_ const Vector2D & _b)
 			{
 				return Vector2D(
 					std::min(_a.x, _b.x),
@@ -181,8 +181,8 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(Vector2D, max)(
-				/* [r] */ const Vector2D & _a,
-				/* [r] */ const Vector2D & _b)
+				_In_ const Vector2D & _a,
+				_In_ const Vector2D & _b)
 			{
 				return Vector2D(
 					std::max(_a.x, _b.x),
@@ -191,16 +191,16 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(float, dot)(
-				/* [r] */ const Vector2D & _a,
-				/* [r] */ const Vector2D & _b)
+				_In_ const Vector2D & _a,
+				_In_ const Vector2D & _b)
 			{
 				return _a.x * _b.x + _a.y * _b.y;
 			}
 
 			// 설명 :
 			inline DECL_FUNC_T(float, distSqr)(
-				/* [r] */ const Vector2D & _a,
-				/* [r] */ const Vector2D & _b)
+				_In_ const Vector2D & _a,
+				_In_ const Vector2D & _b)
 			{
 				Vector2D c = _a - _b;
 				return dot(c, c);
@@ -208,8 +208,8 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(Vector2D, cross)(
-				/* [r] */ const Vector2D & v,
-				/* [r] */ float _a)
+				_In_ const Vector2D & v,
+				_In_ float _a)
 			{
 				return Vector2D(
 					_a * v.y, 
@@ -218,8 +218,8 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(Vector2D, cross)(
-				/* [r] */ float _a,
-				/* [r] */ const Vector2D & _v)
+				_In_ float _a,
+				_In_ const Vector2D & _v)
 			{
 				return Vector2D(
 					-_a * _v.y,
@@ -228,16 +228,16 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(float, cross)(
-				/* [r] */ const Vector2D & _a,
-				/* [r] */ const Vector2D & _b)
+				_In_ const Vector2D & _a,
+				_In_ const Vector2D & _b)
 			{
 				return _a.x * _b.y - _a.y * _b.x;
 			}
 
 			// 설명 : Comparison with tolerance of EPSILON
 			inline DECL_FUNC_T(bool, equal)(
-				/* [r] */ float _a,
-				/* [r] */ float _b)
+				_In_ float _a,
+				_In_ float _b)
 			{
 				// <= instead of < for NaN comparison safety
 				return std::abs(_a - _b) <= EPSILON;
@@ -245,16 +245,16 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(float, sqr)(
-				/* [r] */ float _a)
+				_In_ float _a)
 			{
 				return _a * _a;
 			}
 
 			// 설명 :
 			inline DECL_FUNC_T(float, clamp)(
-				/* [r] */ float _min,
-				/* [r] */ float _max,
-				/* [r] */ float _a)
+				_In_ float _min,
+				_In_ float _max,
+				_In_ float _a)
 			{
 				if (_a < _min) return _min;
 				if (_a > _max) return _max;
@@ -263,15 +263,15 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(int, round)(
-				/* [r] */ float _a)
+				_In_ float _a)
 			{
 				return (int)(_a + 0.5f);
 			}
 
 			// 설명 :
 			inline DECL_FUNC_T(float, random)(
-				/* [r] */ float _l,
-				/* [r] */ float _h)
+				_In_ float _l,
+				_In_ float _h)
 			{
 				float r = (float)rand();
 				r /= RAND_MAX;
@@ -281,8 +281,8 @@ namespace hsdk
 
 			// 설명 :
 			inline DECL_FUNC_T(bool, biasGreaterThan)(
-				/* [r] */ float _a,
-				/* [r] */ float _b)
+				_In_ float _a,
+				_In_ float _b)
 			{
 				const float k_biasRelative = 0.95f;
 				const float k_biasAbsolute = 0.01f;

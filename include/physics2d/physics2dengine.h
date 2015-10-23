@@ -32,14 +32,14 @@ namespace hsdk
 				CLASS_DECL_CONSTRUCTOR(My_SOURCE_DESC)(
 					/* [set] */ i::i_Physics2DObject * _object,
 					/* [set] */ i::i_Collision2DListener * _listner,
-					/* [r] */ long _valid);
+					_In_ long _valid);
 
 				// 소멸자.
 				CLASS_DECL_WARN_DESTRUCTOR(My_SOURCE_DESC)(void);
 
 				// 설명 : 
 				CLASS_DECL_FUNC_T(void, operator =)(
-					/* [r] */ const SOURCE_DESC & _desc);
+					_In_ const SOURCE_DESC & _desc);
 
 				// 설명 : 
 				i::i_Physics2DObject * const object;
@@ -67,10 +67,10 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, find)(
-				/* [r] */ i::i_Physics2DObject * _object,
-				/* [r] */ i::i_Boundary2DListener * _listener,
-				/* [r] */ float _distance,
-				/* [r] */ long _sort = false)final;
+				_In_ i::i_Physics2DObject * _object,
+				_In_ i::i_Boundary2DListener * _listener,
+				_In_ float _distance,
+				_In_ long _sort = false)final;
 
 			/*
 			설명 : 두 물리 오브젝트의 충돌 관계를 서술.
@@ -79,8 +79,8 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, operate)(
 				/* [r/w] */ i::i_Physics2DObject * _objA,
 				/* [r/w] */ i::i_Physics2DObject * _objB,
-				/* [r] */ const i::i_Terrain2D * _terrain,
-				/* [r] */ void * _param = nullptr)final;
+				_In_ const i::i_Terrain2D * _terrain,
+				_In_ void * _param = nullptr)final;
 
 			/*
 			설명 : Physics2DEngine::run() 함수를 호출했을 때 사용되는 연산 자원을 갱신.
@@ -89,18 +89,18 @@ namespace hsdk
 			(vaild & 0x02) : delete SOURCE_DESC::listener
 			*/
 			INTERFACE_DECL_FUNC(update)(
-				/* [r] */ SOURCE_DESC * (&_source),
-				/* [r] */ unsigned int _size)final;
+				_In_ SOURCE_DESC * (&_source),
+				_In_ unsigned int _size)final;
 
 			/*
 			설명 : Physics2DEngine::update() 함수를 통해 갱신된 연산 자원을 바탕으로 물리 계산을 수행.
 			$ 참고 : _param 파라미터는 사용되지 않음.
 			*/
 			INTERFACE_DECL_FUNC_T(void, run)(
-				/* [r] */ const i::i_Terrain2D * _terrain,
-				/* [r] */ const Vector2D & _gravity,
-				/* [r] */ float _dt,
-				/* [r] */ void * _param = nullptr)final;
+				_In_ const i::i_Terrain2D * _terrain,
+				_In_ const Vector2D & _gravity,
+				_In_ float _dt,
+				_In_ void * _param = nullptr)final;
 
 		private:
 

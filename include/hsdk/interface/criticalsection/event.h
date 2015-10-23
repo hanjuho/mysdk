@@ -29,7 +29,7 @@ namespace hsdk
 
 				// 설명 : thread가 signal 상태를 _time만큼 대기.
 				INTERFACE_DECL_FUNC(wait)(
-					/* [r] */ unsigned long _time) = 0;
+					_In_ unsigned long _time) = 0;
 
 				// 설명 : event에 문제가 생긴 경우, event를 초기화.
 				INTERFACE_DECL_FUNC(reset)(

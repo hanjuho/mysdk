@@ -34,14 +34,14 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, integrate_Velocity)(
-				/* [r] */ const Vector2D & _gravity,
-				/* [r] */ float _dt);
+				_In_ const Vector2D & _gravity,
+				_In_ float _dt);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, integrate_Forces)(
-				/* [r] */ const Vector2D & _gravity,
-				/* [r] */ float _torque,
-				/* [r] */ float _dt);
+				_In_ const Vector2D & _gravity,
+				_In_ float _torque,
+				_In_ float _dt);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, initialize_Body)(

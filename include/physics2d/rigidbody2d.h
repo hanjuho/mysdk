@@ -20,18 +20,18 @@ namespace hsdk
 			
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(RigidBody2D)(
-				/* [r] */float sFriction,
-				/* [r] */float dFriction,
-				/* [r] */float restitution);
+				_In_ float sFriction,
+				_In_ float dFriction,
+				_In_ float restitution);
 			
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, apply_Shape)(
-				/* [r] */ const i::i_Collider2D * _collider);
+				_In_ const i::i_Collider2D * _collider);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, impulse)(
-				/* [r] */ const Vector2D & _impulse,
-				/* [r] */ const Vector2D & _contact);
+				_In_ const Vector2D & _impulse,
+				_In_ const Vector2D & _contact);
 			
 			// 설명 : 질량.
 			INTERFACE_DECL_FUNC_T(float, mass)(
@@ -55,7 +55,7 @@ namespace hsdk
 
 			// 설명 : 움직이지 않는 몸체.
 			INTERFACE_DECL_FUNC_T(void, fixed)(
-				/* [r] */ void);
+				_In_ void);
 
 		protected:
 

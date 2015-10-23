@@ -27,14 +27,14 @@ namespace hsdk
 
 		// 생성자.
 		CLASS_DECL_CONSTRUCTOR(AutoDelete)(
-			/* [r] */ T * _ptr)
+			_In_ T * _ptr)
 		{
 			m_Ptr = _ptr;
 		}
 
 		// 생성자.
 		CLASS_DECL_CONSTRUCTOR(AutoDelete)(
-			/* [r] */ AutoDelete && _move)
+			_In_ AutoDelete && _move)
 		{
 			m_Ptr = _move.m_Ptr;
 			_move.m_Ptr = nullptr;
@@ -49,7 +49,7 @@ namespace hsdk
 
 		// 설명 : = 연산자에 대해 AutoDelete & 를 반환, 이전 포인터가 삭제됨을 보장.
 		CLASS_DECL_FUNC_T(AutoDelete &, operator =)(
-			/* [r] */ T * _move)
+			_In_ T * _move)
 		{
 			this->~AutoDelete();
 			new(this) AutoDelete(_move);
@@ -58,7 +58,7 @@ namespace hsdk
 
 		// 설명 : = 연산자에 대해 AutoDelete & 를 반환, 이전 포인터가 삭제됨을 보장.
 		CLASS_DECL_FUNC_T(AutoDelete &, operator =)(
-			/* [r] */ AutoDelete && _move)
+			_In_ AutoDelete && _move)
 		{
 			this->~AutoDelete();
 			new(this) AutoDelete(_move);
@@ -70,7 +70,7 @@ namespace hsdk
 		$ 경고 : 사용하지 않을 것을 권장.
 		*/
 		explicit AutoDelete(
-			/* [r] */ const AutoDelete & _copy)
+			_In_ const AutoDelete & _copy)
 		{
 			throw HSDK_FAIL;
 		}
@@ -80,7 +80,7 @@ namespace hsdk
 		$ 경고 : 사용하지 않을 것을 권장함
 		*/
 		AutoDelete & operator = (
-			/* [r] */ const AutoDelete & _copy)
+			_In_ const AutoDelete & _copy)
 		{
 			throw HSDK_FAIL;
 		}

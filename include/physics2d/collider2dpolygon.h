@@ -20,7 +20,7 @@ namespace hsdk
 
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(Collider2DPolygon)(
-				/* [r] */ float _density);
+				_In_ float _density);
 
 			// 설명 : collider의 속성.
 			INTERFACE_DECL_FUNC_T(unsigned int, type)(
@@ -32,7 +32,7 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(Vector2D, vertex)(
-				/* [r] */ unsigned int _index)const;
+				_In_ unsigned int _index)const;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(const Vector2D *, vertices)(
@@ -40,7 +40,7 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(Vector2D, normal)(
-				/* [r] */ unsigned int _index)const;
+				_In_ unsigned int _index)const;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(const Vector2D *, normals)(
@@ -60,17 +60,17 @@ namespace hsdk
 
 			// 설명 : Half width and half height.
 			CLASS_DECL_FUNC_T(void, set_Box)(
-				/* [r] */ float _hw,
-				/* [r] */ float _hh);
+				_In_ float _hw,
+				_In_ float _hh);
 
 			// 설명 : vertex = Vector2D.
 			CLASS_DECL_FUNC_T(void, set_Polygon)(
-				/* [r] */ const Vector2D * _vertices,
-				/* [r] */ unsigned int _size);
+				_In_ const Vector2D * _vertices,
+				_In_ unsigned int _size);
 
 			// 설명 : The extreme point along a direction within a Collider2DPolygon.
 			CLASS_DECL_FUNC_T(Vector2D, support)(
-				/* [r] */ const Vector2D & _dir)const;
+				_In_ const Vector2D & _dir)const;
 		
 		protected:
 

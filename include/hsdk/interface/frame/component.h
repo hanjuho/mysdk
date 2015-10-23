@@ -41,12 +41,12 @@ namespace hsdk
 
 				// 설명 : 이 component에 _component가 있는지 검사.
 				INTERFACE_DECL_FUNC_T(bool, contain_Component)(
-					/* [r] */ i_Component * _component)const = 0;
+					_In_ i_Component * _component)const = 0;
 
 				// 설명 : 이 component로부터 _component를 제거.
 				INTERFACE_DECL_FUNC(get_Component)(
-					/* [w] */ i_Component * (&_component),
-					/* [r] */ unsigned int _id)const = 0;
+					_Out_ i_Component * (&_component),
+					_In_ unsigned int _id)const = 0;
 
 				// 설명 : 이 component의 고유 식별 번호.
 				INTERFACE_DECL_FUNC_T(unsigned int, get_id)(
@@ -54,19 +54,19 @@ namespace hsdk
 
 				// 설명 : 화면의 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_X)(
-					/* [r] */ float _value) = 0;
+					_In_ float _value) = 0;
 
 				// 설명 : 화면의 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_Y)(
-					/* [r] */ float _value) = 0;
+					_In_ float _value) = 0;
 
 				// 설명 : 화면의 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_W)(
-					/* [r] */ float _value) = 0;
+					_In_ float _value) = 0;
 
 				// 설명 : 화면의 높이를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_H)(
-					/* [r] */ float _value) = 0;
+					_In_ float _value) = 0;
 
 				// 설명 : 화면의 x 좌표를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_X)(
@@ -86,7 +86,7 @@ namespace hsdk
 
 				// 설명 : 파라미터 값이 true면 스크린을 보여주고, false면 감춤.
 				INTERFACE_DECL_FUNC(set_Visible)(
-					/* [r] */ bool _visible) = 0;
+					_In_ bool _visible) = 0;
 
 				// 설명 : 이 component가 보이는지 확인.
 				INTERFACE_DECL_FUNC_T(bool, is_Visible)(
@@ -138,40 +138,40 @@ namespace hsdk
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Down)(
-					/* [r] */ MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y) = 0;
+					_In_ MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y) = 0;
 
 				// 설명 : mouse의 버튼이 눌렸다가 때면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Up)(
-					/* [r] */ MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y) = 0;
+					_In_ MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y) = 0;
 
 				// 설명 : mouse의 버튼을 누른 채 커서를 이동하면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onDrag)(
-					/* [r] */ MOUSE_BUTTON _button,
-					/* [r] */ int _x,
-					/* [r] */ int _y) = 0;
+					_In_ MOUSE_BUTTON _button,
+					_In_ int _x,
+					_In_ int _y) = 0;
 
 				// 설명 : mouse의 커서를 이동시키면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onMove)(
-					/* [r] */ int _x,
-					/* [r] */ int _y) = 0;
+					_In_ int _x,
+					_In_ int _y) = 0;
 
 				// 설명 : mouse의 wheel을 조작하면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onWheel)(
-					/* [r] */ int _x,
-					/* [r] */ int _y,
-					/* [r] */ int _w) = 0;
+					_In_ int _x,
+					_In_ int _y,
+					_In_ int _w) = 0;
 
 				// 설명 : keyboard의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onKey_Down)(
-					/* [r] */ unsigned char _vKey) = 0;
+					_In_ unsigned char _vKey) = 0;
 
 				// 설명 : keyboard의 버튼을 눌렀다가 띄우면 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onKey_Up)(
-					/* [r] */ unsigned char _vKey) = 0;
+					_In_ unsigned char _vKey) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, onAct)(

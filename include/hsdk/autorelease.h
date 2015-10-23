@@ -27,7 +27,7 @@ namespace hsdk
 
 		// 생성자.
 		CLASS_DECL_CONSTRUCTOR(AutoRelease)(
-			/* [r] */ T * _ptr)
+			_In_ T * _ptr)
 		{
 			m_Ptr = _ptr;
 			IF_TRUE(m_Ptr)
@@ -38,7 +38,7 @@ namespace hsdk
 
 		// 생성자.
 		CLASS_DECL_CONSTRUCTOR(AutoRelease)(
-			/* [r] */ const AutoRelease & _copy)
+			_In_ const AutoRelease & _copy)
 		{
 			m_Ptr = _copy.m_Ptr;
 			IF_TRUE(m_Ptr)
@@ -49,7 +49,7 @@ namespace hsdk
 
 		// 생성자.
 		CLASS_DECL_CONSTRUCTOR(AutoRelease)(
-			/* [r] */ AutoRelease && _move)
+			_In_ AutoRelease && _move)
 		{
 			m_Ptr = _move.m_Ptr;
 			_move.m_Ptr = nullptr;
@@ -66,7 +66,7 @@ namespace hsdk
 		$ 주의 : 포인터를 복사(Addref함수가 호출됨).
 		*/
 		CLASS_DECL_FUNC_T(void, clone)(
-			/* [w] */ T * (&_out))const
+			_Out_ T * (&_out))const
 		{
 			IF_TRUE(m_Ptr)
 			{
@@ -78,7 +78,7 @@ namespace hsdk
 
 		// 설명 : = 연산자에 대해 AutoDelete & 를 반환, 이전 포인터가 삭제됨을 보장.
 		CLASS_DECL_FUNC_T(AutoRelease &, operator =)(
-			/* [r] */ const AutoRelease & _copy)
+			_In_ const AutoRelease & _copy)
 		{
 			this->~AutoRelease();
 			new(this) AutoRelease(_copy);
@@ -87,7 +87,7 @@ namespace hsdk
 
 		// 설명 : = 연산자에 대해 AutoDelete & 를 반환, 이전 포인터가 삭제됨을 보장.
 		CLASS_DECL_FUNC_T(AutoRelease &, operator =)(
-			/* [r] */ AutoRelease && _move)
+			_In_ AutoRelease && _move)
 		{
 			this->~AutoRelease();
 			new(this) AutoRelease(std::move(_move));
