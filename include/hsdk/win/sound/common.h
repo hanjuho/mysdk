@@ -13,8 +13,7 @@
 //////////////
 // INCLUDES //
 //////////////
-#include "../../../hsdk_common.h"
-#include "../../autorelease.h"
+#include "../common.h"
 #include <windows.h>
 #include <mmsystem.h>
 #include <dsound.h>

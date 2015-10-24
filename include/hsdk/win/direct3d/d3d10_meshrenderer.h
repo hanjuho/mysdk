@@ -3,7 +3,6 @@
 
 
 #include "d3d10_common.h"
-#include "d3d10_master.h"
 #include "d3d10_mesh.h"
 
 

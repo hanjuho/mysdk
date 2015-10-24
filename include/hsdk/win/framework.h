@@ -259,22 +259,22 @@ namespace hsdk
 
 		};
 
-		// 설명 : direct3d grobal variable
+		// 설명 : framework grobal variable
 		extern HSDK_DLL Framework g_Direct3D;
 
-		// 설명 : direct3d grobal variable. you can read and write. just do not call update.
+		// 설명 : framework grobal variable. you can read and write. just do not call update.
 		extern HSDK_DLL Framework_UserTimeStream & g_Direct3D_TimeStream;
 
-		// 설명 : direct3d grobal variable.
+		// 설명 : framework grobal variable.
 		extern HSDK_DLL Framework_Callbacks & g_Direct3D_Callbacks;
 
-		// 설명 : direct3d grobal variable. only read, so do not write forced.
+		// 설명 : framework grobal variable. only read, so do not write forced.
 		extern HSDK_DLL const Framework_State & g_Direct3D_State;
 
-		// 설명 : direct3d grobal variable. only read, so do not write forced.
-		extern HSDK_DLL const Framework_Window & g_Direct3D_Window;
+		// 설명 : framework grobal variable. only read, so do not write forced.
+		extern HSDK_DLL const Framework_Window & g_Framework_Window;
 
-		// 설명 : direct3d grobal variable. only read, so do not write forced.
+		// 설명 : framework grobal variable. only read, so do not write forced.
 		extern HSDK_DLL const Framework_Device & g_Framework_Device;
 
 	}

@@ -24,7 +24,7 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		DLL_DECL_CLASS(D3D10_Master)
+		DLL_DECL_CLASS(D3D10_Factory)
 		{
 		public:
 
@@ -116,7 +116,7 @@ namespace hsdk
 		};
 
 		// 설명 :
-		extern HSDK_DLL D3D10_Master g_D3D10_Master;
+		extern HSDK_DLL D3D10_Factory g_D3D10_Factory;
 
 	}
 }

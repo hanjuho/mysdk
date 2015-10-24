@@ -12,12 +12,12 @@ namespace hsdk
 	{
 
 		// 설명 : 
-		DLL_DECL_CLASS(Direct3D_Camera)
+		DLL_DECL_CLASS(Framework_Camera)
 		{
 		public:
 
 			// 생성자.
-			CLASS_DECL_STRUCTOR(Direct3D_Camera)(void);
+			CLASS_DECL_STRUCTOR(Framework_Camera)(void);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, multiply)(

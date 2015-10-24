@@ -38,9 +38,9 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC(setup1_Texture)(
-				_In_ const wchar_t * _directory,
 				_In_ unsigned int _indexOfMaterial,
-				_In_ unsigned int _attribute);
+				_In_ unsigned int _attribute,
+				_In_ const wchar_t * _directory);
 
 			// 설명 : 
 			DECL_FUNC(setup1_Texture)(
