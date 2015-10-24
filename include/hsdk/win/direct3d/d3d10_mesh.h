@@ -29,7 +29,7 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC_T(void, clear)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 :
 			DECL_FUNC(setup0)(
@@ -115,23 +115,23 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC(loadLock)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 : 
 			DECL_FUNC_T(long, is_Load)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 
 			DECL_FUNC_T(const wchar_t *, get_MeshPath)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 
 			DECL_FUNC_T(unsigned int, get_NumMeshes)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 
 			DECL_FUNC_T(unsigned int, get_NumMaterials)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 
 			DECL_FUNC_T(const D3D10MY_MATERIAL &, get_Material)(

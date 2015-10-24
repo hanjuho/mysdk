@@ -48,11 +48,11 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, update)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, render)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(void, listen_Action)(
@@ -62,7 +62,7 @@ namespace hsdk
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, act_ActionLayers)(
-				/* [x] */ void);
+				_X_ void);
 
 		protected:
 

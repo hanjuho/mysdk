@@ -39,11 +39,11 @@ namespace hsdk
 
 				// 설명 : 이 component를 포함하고 있는 부모의 주소 반환.
 				INTERFACE_DECL_FUNC_T(i_Component *, parent)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : component의 시각적 요소에 접근.
 				INTERFACE_DECL_FUNC_T(i::frame::i_Graphics *, graphics)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 이 component에 새로운 컴포넌트를 추가.
 				INTERFACE_DECL_FUNC(add_Component)(
@@ -64,7 +64,7 @@ namespace hsdk
 
 				// 설명 : 이 component의 고유 식별 번호.
 				INTERFACE_DECL_FUNC_T(unsigned int, get_id)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 상대적 x 좌표를 _value로 설정.
 				INTERFACE_DECL_FUNC_T(void, set_X)(
@@ -84,19 +84,19 @@ namespace hsdk
 
 				// 설명 : 상대적 x 좌표를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_X)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 상대적 y 좌표를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_Y)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 절대적 너비를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_W)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 절대적 높이를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_H)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 파라미터 값이 true면 스크린을 보여주고, false면 감춤.
 				INTERFACE_DECL_FUNC(set_Visible)(
@@ -104,7 +104,7 @@ namespace hsdk
 
 				// 설명 : 이 component가 보이는지 확인.
 				INTERFACE_DECL_FUNC_T(bool, is_Visible)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				/*
 				설명 : 이벤트에 반응하는 component를 갱신(단, 부모를 거슬러 올라가진 않음).
@@ -115,19 +115,19 @@ namespace hsdk
 
 				// 설명 : component 갱신.
 				INTERFACE_DECL_FUNC_T(void, update)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : component의 좌표를 갱신.
 				INTERFACE_DECL_FUNC_T(void, reform)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : component를 화면에 뿌려줌.
 				INTERFACE_DECL_FUNC_T(void, render)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : component에게 문제가 생겼을 때, component를 초기화.
 				INTERFACE_DECL_FUNC_T(void, reset)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : 마우스 이벤트에 반응하는 객체를 component에 추가.
 				INTERFACE_DECL_FUNC_T(void, set_Mouseable)(
@@ -135,7 +135,7 @@ namespace hsdk
 
 				// 설명 : 마우스 이벤트에 반응하는 객체를 component로부터 호출.
 				INTERFACE_DECL_FUNC_T(i::frame::i_Mouseable *, get_Mouseable)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 키보드 이벤트에 반응하는 객체를 component에 추가.
 				INTERFACE_DECL_FUNC_T(void, set_Keyboardable)(
@@ -143,7 +143,7 @@ namespace hsdk
 
 				// 설명 : 키보드 이벤트에 반응하는 객체를 component로부터 호출.
 				INTERFACE_DECL_FUNC_T(i::frame::i_Keyboardable *, get_Keyboardable)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 액션 이벤트에 반응하는 객체를 component에 추가.
 				INTERFACE_DECL_FUNC_T(void, set_Actable)(
@@ -151,7 +151,7 @@ namespace hsdk
 
 				// 설명 : 액션 이벤트에 반응하는 객체를 component로부터 호출.
 				INTERFACE_DECL_FUNC_T(i::frame::i_Actable *, get_Actable)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Down)(
@@ -192,15 +192,15 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, onAct)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : 절대 x 좌표를 얻어옴(단, set_X함수가 호출되더라도 update 함수를 통해 갱신이 되야 적용됨).
 				CLASS_DECL_FUNC_T(float, get_AbsX)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 				// 설명 : 절대 y 좌표를 얻어옴(단, set_Y함수가 호출되더라도 update 함수를 통해 갱신이 되야 적용됨).
 				CLASS_DECL_FUNC_T(float, get_AbsY)(
-					/* [x] */ void)const;
+					_X_ void)const;
 
 			protected:
 

@@ -36,15 +36,15 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(const wchar_t *, name)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(unsigned int, type)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(unsigned int, state)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 			};
 

@@ -20,7 +20,7 @@ namespace hsdk
 
 		// 持失切.
 		CLASS_DECL_CONSTRUCTOR(AutoDelete)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			m_Ptr = nullptr;
 		}
@@ -42,7 +42,7 @@ namespace hsdk
 
 		// 社瑚切.
 		CLASS_DECL_WARN_DESTRUCTOR(AutoDelete)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			DEL_POINTER(m_Ptr);
 		}

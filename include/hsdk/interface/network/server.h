@@ -38,7 +38,7 @@ namespace hsdk
 
 				// 설명 : server에 문제가 생겼을 때, server를 초기화.
 				INTERFACE_DECL_FUNC(reset)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 			};
 

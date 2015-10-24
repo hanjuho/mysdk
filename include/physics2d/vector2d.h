@@ -67,7 +67,7 @@ namespace hsdk
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator-)(
-				/* [x] */ void) const;
+				_X_ void) const;
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(Vector2D, operator+)(

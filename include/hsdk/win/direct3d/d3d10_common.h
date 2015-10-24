@@ -3,7 +3,7 @@
 
 
 
-#include "common.h"
+#include "../common.h"
 #include <d3dx10.h>
 #include <d3dx10math.h>
 #include <string>

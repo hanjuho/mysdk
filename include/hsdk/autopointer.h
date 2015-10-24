@@ -29,35 +29,35 @@ namespace hsdk
 
 		// 설명 : T * 로 취급.
 		CLASS_DECL_FUNC_T(, operator T *)(
-			/* [x] */ void)const
+			_X_ void)const
 		{
 			return m_Ptr;
 		}
 
 		// 설명 : * 연산자에 대해 T &를 반환.
 		CLASS_DECL_FUNC_T(T &, operator *)(
-			/* [x] */ void)const
+			_X_ void)const
 		{
 			return (*m_Ptr);
 		}
 
 		// 설명 : -> 연산자에 대해 T * 를 반환.
 		CLASS_DECL_FUNC_T(T *, operator ->)(
-			/* [x] */ void)const
+			_X_ void)const
 		{
 			return m_Ptr;
 		}
 
 		// 설명 : & 연산자에 대해 T * CONST * 를 반환.
 		CLASS_DECL_FUNC_T(T * const *, operator &)(
-			/* [x] */ void)const
+			_X_ void)const
 		{
 			return &m_Ptr;
 		}
 
 		// 설명 : & 연산자에 대해 T ** 를 반환.
 		CLASS_DECL_FUNC_T(T **, operator &)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			return &m_Ptr;
 		}

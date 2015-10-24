@@ -48,19 +48,19 @@ namespace hsdk
 
 				// 설명 : component 갱신.
 				INTERFACE_DECL_FUNC_T(void, update)(
-					/* [x] */ void);
+					_X_ void);
 				
 				// 설명 : component의 좌표를 갱신.
 				INTERFACE_DECL_FUNC_T(void, reform)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : container를 화면에 뿌려줌.
 				INTERFACE_DECL_FUNC_T(void, render)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, clear)(
-					/* [x] */ void);
+					_X_ void);
 
 			protected:
 

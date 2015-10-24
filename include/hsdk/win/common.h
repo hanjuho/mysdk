@@ -51,8 +51,8 @@
 
 
 
-#include "../../../../hsdk_common.h"
-#include "../../../autorelease.h"
+#include "../../hsdk_common.h"
+#include "../autorelease.h"
 
 
 
@@ -84,7 +84,7 @@ enum
 
 namespace hsdk
 {
-	namespace direct3d
+	namespace framework
 	{
 
 		// 설명 : 
@@ -325,7 +325,7 @@ namespace hsdk
 		//--------------------------------------------------------------------------------------
 
 		// 설명 : 
-		DECL_STRUCT(Direct3D_Callbacks)
+		DECL_STRUCT(Framework_Callbacks)
 		{
 
 			// 설명 : frame move callback.

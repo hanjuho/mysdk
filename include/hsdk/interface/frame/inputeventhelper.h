@@ -29,7 +29,7 @@ namespace hsdk
 				
 				// 설명 : input event focus 대상을 갱신
 				INTERFACE_DECL_FUNC_T(void, update)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 			};
 

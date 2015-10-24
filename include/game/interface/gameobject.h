@@ -25,23 +25,23 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(i_DataTable *, datatalbe)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(i_Controller *, controller)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(i_ModelRenderer *, renderer)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 				
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, update)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, render)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 			};
 

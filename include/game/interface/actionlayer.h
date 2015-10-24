@@ -25,15 +25,15 @@ namespace hsdk
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, initialize)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(bool, act)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 				// 설명 :
 				INTERFACE_DECL_FUNC_T(unsigned int, priority)(
-					/* [x] */ void)const = 0;
+					_X_ void)const = 0;
 
 			};
 

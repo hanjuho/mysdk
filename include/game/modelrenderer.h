@@ -25,11 +25,11 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, initialize)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, render)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, link_DataTable)(

@@ -29,11 +29,11 @@ namespace hsdk
 
 				// 설명 : section로부터 나옴.
 				INTERFACE_DECL_FUNC(leave)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 				// 설명 : section에 문제가 생긴 경우, section을 초기화.
 				INTERFACE_DECL_FUNC(reset)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 			};
 

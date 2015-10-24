@@ -3,7 +3,7 @@
 
 
 #include "../../interface/frame/graphics.h"
-#include "direct3d/d3d10_master.h"
+#include "../direct3d/d3d10_master.h"
 #include <string>
 
 
@@ -63,7 +63,7 @@ namespace hsdk
 
 				// º≥∏Ì : graphics∏¶ »≠∏Èø° ª—∑¡¡‹.
 				CLASS_DECL_FUNC_T(void, render)(
-					/* [x] */ float _persent);
+					_X_ float _persent);
 
 			private:
 

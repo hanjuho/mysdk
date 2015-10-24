@@ -35,23 +35,23 @@ namespace hsdk
 			
 			// 설명 : 질량.
 			INTERFACE_DECL_FUNC_T(float, mass)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 탄성.
 			INTERFACE_DECL_FUNC_T(float, inertia)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 정지 마찰력.
 			INTERFACE_DECL_FUNC_T(float, s_Friction)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 운동 마찰력.
 			INTERFACE_DECL_FUNC_T(float, d_Friction)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 복원력.
 			INTERFACE_DECL_FUNC_T(float, restitution)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 움직이지 않는 몸체.
 			INTERFACE_DECL_FUNC_T(void, fixed)(

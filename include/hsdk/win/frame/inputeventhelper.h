@@ -40,7 +40,7 @@ namespace hsdk
 				$ 참고 : 이 클래스 멤버함수 중 onClick_Down에서만 update가 호출됨.
 				*/
 				INTERFACE_DECL_FUNC_T(void, update)(
-					/* [x] */ void);
+					_X_ void);
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				CLASS_DECL_FUNC_T(void, onClick_Down)(

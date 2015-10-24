@@ -26,11 +26,11 @@ namespace hsdk
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_RigidBody2D *, rigidBody)(
-				/* [x] */ void)const final;
+				_X_ void)const final;
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::i_Collider2D *, collider)(
-				/* [x] */ void)const final;
+				_X_ void)const final;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, integrate_Velocity)(
@@ -45,7 +45,7 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, initialize_Body)(
-				/* [x] */ void);
+				_X_ void);
 
 		protected:
 

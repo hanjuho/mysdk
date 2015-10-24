@@ -32,11 +32,11 @@ namespace hsdk
 
 				// 서버와 단절
 				INTERFACE_DECL_FUNC(disconnect)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 				// 설명 : client에게 문제가 생겼을 때, client를 초기화.
 				INTERFACE_DECL_FUNC(reset)(
-					/* [x] */ void) = 0;
+					_X_ void) = 0;
 
 			};
 

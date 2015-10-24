@@ -9,7 +9,7 @@
 
 namespace hsdk
 {
-	namespace direct3d
+	namespace framework
 	{
 		// 설명 : 
 		DECL_STRUCT(VideoCard_Output_info)
@@ -50,7 +50,7 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		DLL_DECL_CLASS(Direct3D_Outside)
+		DLL_DECL_CLASS(Framework_Outside)
 		{
 
 		public:
@@ -94,12 +94,12 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, destroy)(
-				/* [x] */ void);
+				_X_ void);
 
 		};
 
 		// 설명 : 
-		extern HSDK_DLL Direct3D_Outside g_Direct3D_Outside;
+		extern HSDK_DLL Framework_Outside g_Direct3D_Outside;
 
 	}
 }

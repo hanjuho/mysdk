@@ -20,7 +20,7 @@ namespace hsdk
 
 		// »ý¼ºÀÚ.
 		CLASS_DECL_CONSTRUCTOR(AutoRelease)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			m_Ptr = nullptr;
 		}

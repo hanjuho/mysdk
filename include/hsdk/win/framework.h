@@ -3,18 +3,18 @@
 
 
 #include "common.h"
-#include "direct3d_device.h"
-#include "../../usertimestream.h"
+#include "framework_device.h"
+#include "framework_usertimestream.h"
 
 
 
 namespace hsdk
 {
-	namespace direct3d
+	namespace framework
 	{
 
 		// 설명 : 
-		DECL_STRUCT(Direct3D_State)
+		DECL_STRUCT(Framework_State)
 		{
 
 			// 설명 :
@@ -68,7 +68,7 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		DECL_STRUCT(Direct3D_Window)
+		DECL_STRUCT(Framework_Window)
 		{
 
 			// 설명 : handle to the app instance
@@ -114,7 +114,7 @@ namespace hsdk
 		$ 참고 : do not generate this class, use global variable g_Direct3D.
 		even if you will generate this class it links with g_Direct3D.
 		*/
-		DLL_DECL_CLASS(Direct3D)
+		DLL_DECL_CLASS(Framework)
 		{
 		public:
 
@@ -127,7 +127,7 @@ namespace hsdk
 			$ 참고 : Choose either createWindow or setWindow.If using setWindow, consider using staticWndProc.
 			*/
 			CLASS_DECL_FUNC(setup0_Window)(
-				_In_ const wchar_t * _strWindowTitle = L"Direct3D Window",
+				_In_ const wchar_t * _strWindowTitle = L"Direct3DWindow",
 				_In_ int _x = CW_USEDEFAULT,
 				_In_ int _y = CW_USEDEFAULT,
 				_In_ HINSTANCE _hInstance = nullptr,
@@ -136,7 +136,7 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC(setup1_DeviceFactory)(
-				/* [set] */ Direct3D_DeviceFactory * _factory);
+				/* [set] */ Framework_DeviceFactory * _factory);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(setup2_Device9)(
@@ -162,7 +162,7 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, destroy)(
-				/* [x] */ void);
+				_X_ void);
 
 			//--------------------------------------------------------------------------------------
 			// Active task
@@ -177,7 +177,7 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, render)(
-				/* [x] */ void);
+				_X_ void);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, shutdown)(
@@ -230,52 +230,52 @@ namespace hsdk
 			//--------------------------------------------------------------------------------------
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(win::UserTimeStream *, timeStream)(
-				/* [x] */ void)const;
+			CLASS_DECL_FUNC_T(Framework_UserTimeStream *, timeStream)(
+				_X_ void)const;
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(Direct3D_Callbacks *, callbacks)(
-				/* [x] */ void)const;
+			CLASS_DECL_FUNC_T(Framework_Callbacks *, callbacks)(
+				_X_ void)const;
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(const Direct3D_State *, get_State)(
-				/* [x] */ void)const;
+			CLASS_DECL_FUNC_T(const Framework_State *, get_State)(
+				_X_ void)const;
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(const Direct3D_Window *, get_Window)(
-				/* [x] */ void)const;
+			CLASS_DECL_FUNC_T(const Framework_Window *, get_Window)(
+				_X_ void)const;
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(const Direct3D_Device *, get_Device)(
-				/* [x] */ void)const;
+			CLASS_DECL_FUNC_T(const Framework_Device *, get_Device)(
+				_X_ void)const;
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(const D3D9_DEVICE_DESC *, get_Device9Desc)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(const D3D10_DEVICE_DESC *, get_Device10Desc)(
-				/* [x] */ void)const;
+				_X_ void)const;
 
 		};
 
 		// 설명 : direct3d grobal variable
-		extern HSDK_DLL Direct3D g_Direct3D;
+		extern HSDK_DLL Framework g_Direct3D;
 
 		// 설명 : direct3d grobal variable. you can read and write. just do not call update.
-		extern HSDK_DLL win::UserTimeStream & g_Direct3D_TimeStream;
+		extern HSDK_DLL Framework_UserTimeStream & g_Direct3D_TimeStream;
 
 		// 설명 : direct3d grobal variable.
-		extern HSDK_DLL Direct3D_Callbacks & g_Direct3D_Callbacks;
+		extern HSDK_DLL Framework_Callbacks & g_Direct3D_Callbacks;
 
 		// 설명 : direct3d grobal variable. only read, so do not write forced.
-		extern HSDK_DLL const Direct3D_State & g_Direct3D_State;
+		extern HSDK_DLL const Framework_State & g_Direct3D_State;
 
 		// 설명 : direct3d grobal variable. only read, so do not write forced.
-		extern HSDK_DLL const Direct3D_Window & g_Direct3D_Window;
+		extern HSDK_DLL const Framework_Window & g_Direct3D_Window;
 
 		// 설명 : direct3d grobal variable. only read, so do not write forced.
-		extern HSDK_DLL const Direct3D_Device & g_Direct3D_Device;
+		extern HSDK_DLL const Framework_Device & g_Framework_Device;
 
 	}
 }

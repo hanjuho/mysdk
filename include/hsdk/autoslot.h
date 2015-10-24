@@ -51,7 +51,7 @@ namespace hsdk
 
 		// 생성자.
 		CLASS_DECL_CONSTRUCTOR(AutoSlot)(
-			/* [x] */ void)
+			_X_ void)
 			: my_autoID(0)
 		{
 
@@ -59,21 +59,21 @@ namespace hsdk
 
 		// 소멸자.
 		CLASS_DECL_WARN_DESTRUCTOR(AutoSlot)(
-			/* [x] */ void)
+			_X_ void)
 		{
 
 		};
 
 		// 설명 : 슬롯의 개수 반환.
 		CLASS_DECL_FUNC_T(unsigned int, size)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			return my_Buffer.size();
 		}
 
 		// 설명 : 슬롯 초기화.
 		CLASS_DECL_FUNC_T(void, clear)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			my_autoID = 0;
 			my_Buffer.clear();
@@ -123,7 +123,7 @@ namespace hsdk
 		// ! 연산자에 대해 CONST std::vector<V> * 를 반환.
 		// $ 경고 : CONST std::vector<V> * 를 강제로 캐스팅하여 수정을 가할 경우, 어떤 경우에서든 치명적인 에러 발생.
 		CLASS_DECL_FUNC_T(const std::vector<V> *, operator !)(
-			/* [x] */ void)
+			_X_ void)
 		{
 			return &my_Buffer;
 		}
