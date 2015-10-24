@@ -111,8 +111,8 @@ namespace hsdk
 
 		/*
 		설명 : direct3d framework
-		$ 참고 : do not generate this class, use global variable g_Direct3D.
-		even if you will generate this class it links with g_Direct3D.
+		$ 참고 : do not generate this class, use global variable g_Framework.
+		even if you will generate this class it links with g_Framework.
 		*/
 		DLL_DECL_CLASS(Framework)
 		{
@@ -260,13 +260,13 @@ namespace hsdk
 		};
 
 		// 설명 : framework grobal variable
-		extern HSDK_DLL Framework g_Direct3D;
+		extern HSDK_DLL Framework g_Framework;
 
 		// 설명 : framework grobal variable. you can read and write. just do not call update.
 		extern HSDK_DLL Framework_UserTimeStream & g_Direct3D_TimeStream;
 
 		// 설명 : framework grobal variable.
-		extern HSDK_DLL Framework_Callbacks & g_Direct3D_Callbacks;
+		extern HSDK_DLL Framework_Callbacks & g_Framework_Callbacks;
 
 		// 설명 : framework grobal variable. only read, so do not write forced.
 		extern HSDK_DLL const Framework_State & g_Direct3D_State;

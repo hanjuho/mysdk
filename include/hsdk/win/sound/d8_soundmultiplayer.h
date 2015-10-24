@@ -67,8 +67,8 @@ namespace hsdk
 			// 설명 : 
 			CLASS_DECL_FUNC(userSet_Distance)(
 				_In_ unsigned int _indexOfSound,
-				_In_ long _minDistance,
-				_In_ long _maxDistance);
+				_In_ float _minDistance,
+				_In_ float _maxDistance);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(userSet_Translation)(

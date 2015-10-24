@@ -63,6 +63,12 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(const D3DX10_IMAGE_INFO *, get_Texture_info)(
 				_In_ const wchar_t * _directory);
 
+
+			// 설명 : DirectX가 지원하지 않는 텍스처를 로드.
+			CLASS_DECL_FUNC(create_Texture)(
+				_Out_ ID3D10ShaderResourceView ** _texture,
+				_In_ const wchar_t * _directory);
+
 			// 설명 : 
 			CLASS_DECL_FUNC(create_SkyBoxTexture)(
 				_Out_ ID3D10ShaderResourceView ** _texture,
