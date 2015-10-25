@@ -16,7 +16,7 @@ namespace hsdk
 		// 설명 : 
 		typedef BOOL(CALLBACK *CALLBACK_ALARM)(
 			_In_ unsigned int _idEvent,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		DLL_DECL_CLASS(Framework_UserTimeStream)

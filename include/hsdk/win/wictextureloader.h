@@ -69,7 +69,7 @@ namespace DirectX
 	public:
 
 		// 데이터
-		// 초기화가 안되어있으면 NULL을 갖는다
+		// 초기화가 안되어있으면 nullptr을 갖는다
 		inline void * getData()
 		{
 			return m_data;
@@ -136,7 +136,7 @@ namespace DirectX
 		}
 
 		// 기본 생성자
-		// data를 NULL로 초기화한다.
+		// data를 nullptr로 초기화한다.
 		inline Image()
 		{
 			m_data = nullptr;

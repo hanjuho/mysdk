@@ -17,6 +17,13 @@ namespace hsdk
 		{
 		public:
 
+			// 생성자
+			CLASS_DECL_CONSTRUCTOR(Container)(
+				_In_ float _x = 0.0f,
+				_In_ float _y = 0.0f,
+				_In_ float _w = 0.0f,
+				_In_ float _h = 0.0f);
+
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Container)(void);
 
@@ -26,7 +33,7 @@ namespace hsdk
 
 			// 설명 : 이 container로부터 _component를 제거.
 			INTERFACE_DECL_FUNC(remove_Component)(
-				/* [r/w] */ i_Component * _component);
+				_Inout_ i_Component * _component);
 
 			// 설명 : 이 container에 _component가 있는지 검사.
 			INTERFACE_DECL_FUNC_T(bool, contain_Component)(
@@ -42,7 +49,7 @@ namespace hsdk
 			$ 참고 : 반환값이 true일 경우, i_inputEvent는 하위 혹은 이 component를 주시하게 됨.
 			*/
 			INTERFACE_DECL_FUNC_T(bool, event_chain)(
-				/* [r/w] */ i::frame::i_inputEventHelper * _eventhelper);
+				_Inout_ i::frame::i_inputEventHelper * _eventhelper);
 
 			// 설명 : component 갱신.
 			INTERFACE_DECL_FUNC_T(void, update)(

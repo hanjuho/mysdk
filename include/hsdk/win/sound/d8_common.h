@@ -79,10 +79,7 @@ namespace hsdk
 			Direct8Sound_WAVEHEADERTYPE soundHeader;
 			
 			// 설명 :
-			AutoRelease<IDirectSoundBuffer8> d8Sound;
-
-			// 설명 : 
-			AutoRelease<IDirectSound3DBuffer8> d8Sound3D;
+			AutoRelease<IDirectSoundBuffer> soundBuffer;
 
 		};
 

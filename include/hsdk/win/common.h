@@ -203,14 +203,14 @@ namespace hsdk
 		typedef void (CALLBACK *CALLBACK_FRAMEMOVE)(
 			_In_ double _fTime,
 			_In_ float _fElapsedTime,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_KEYBOARD)(
 			_In_ unsigned char _key,
 			_In_ short _keyDown,
 			_In_ short _altDown,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_MOUSE)(
@@ -219,7 +219,7 @@ namespace hsdk
 			_In_ int _mouseWheelDelta,
 			_In_ int _xPos,
 			_In_ int _yPos,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef long (CALLBACK *CALLBACK_MSGPROC)(
@@ -228,21 +228,21 @@ namespace hsdk
 			_In_ unsigned int _uMsg,
 			_In_ unsigned int _wParam,
 			_In_ long _lParam,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef BOOL(CALLBACK *CALLBACK_MODIFY_DEVICE9_SETTINGS)(
 			_Out_ const D3D9_DEVICE_DESC & _refDeviceDescs,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef BOOL(CALLBACK *CALLBACK_MODIFY_DEVICE10_SETTINGS)(
 			_Out_ const D3D10_DEVICE_DESC & _refDeviceDescs,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef BOOL(CALLBACK *CALLBACK_DEVICE_REMOVED)(
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// Direct3D 9 callbacks
 
@@ -252,34 +252,34 @@ namespace hsdk
 			_In_ D3DFORMAT _adapterFormat,
 			_In_ D3DFORMAT _backBufferFormat,
 			_In_ BOOL _windowed,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef long (CALLBACK *CALLBACK_D3D9_DEVICE_CREATED)(
 			_In_ IDirect3DDevice9 * _d3dDevice,
 			_In_ const D3DSURFACE_DESC & _backBufferSurfaceDesc,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef long (CALLBACK *CALLBACK_D3D9_DEVICE_RESET)(
 			_In_ IDirect3DDevice9 * _d3dDevice,
 			_In_ const D3DSURFACE_DESC & _backBufferSurfaceDesc,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_D3D9_FRAME_RENDER)(
 			_In_ IDirect3DDevice9 * _d3dDevice,
 			_In_ double _fTime,
 			_In_ float _fElapsedTime,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_D3D9_DEVICE_LOST)(
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_D3D9_DEVICE_DESTROYED)(
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// Direct3D 10 callbacks
 
@@ -290,35 +290,35 @@ namespace hsdk
 			_In_ D3D10_DRIVER_TYPE _deviceType,
 			_In_ DXGI_FORMAT _backBufferFormat,
 			_In_ BOOL _windowed,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef long (CALLBACK *CALLBACK_D3D10_DEVICE_CREATED)(
 			_In_ ID3D10Device * _d3dDevice,
 			_In_ const DXGI_SURFACE_DESC & _backBufferSurfaceDesc,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef long (CALLBACK *CALLBACK_D3D10_SWAPCHAINRESIZED)(
 			_In_ ID3D10Device * _d3dDevice,
 			_In_ IDXGISwapChain * _swapChain,
 			_In_ const DXGI_SURFACE_DESC & _backBufferSurfaceDesc,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_D3D10_FRAME_RENDER)(
 			_In_ ID3D10Device * _d3dDevice,
 			_In_ double _fTime,
 			_In_ float _fElapsedTime,
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_D3D10_SWAPCHAINRELEASING)(
-			/* [r/w] */ void* _userContext);
+			_Inout_ void* _userContext);
 
 		// 설명 : 
 		typedef void (CALLBACK *CALLBACK_D3D10_DEVICE_DESTROYED)(
-			/* [r/w] */ void * _userContext);
+			_Inout_ void * _userContext);
 
 		//--------------------------------------------------------------------------------------
 		// Structs

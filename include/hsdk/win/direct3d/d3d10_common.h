@@ -25,7 +25,7 @@ namespace hsdk
 			_Out_ ID3D10ShaderResourceView ** _srv,
 			_In_ ID3D10Device * _d3d10Device,
 			_In_ const wchar_t * _filepath,
-			/* [r/w] */ void * _context);
+			_Inout_ void * _context);
 
 		// 설명 : 
 		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_VERTEXBUFFER)(
@@ -33,7 +33,7 @@ namespace hsdk
 			_In_ ID3D10Device * _dev,
 			_In_ D3D10_BUFFER_DESC _bufferDesc,
 			_In_ const void * _data,
-			/* [r/w] */ void * _context);
+			_Inout_ void * _context);
 
 		// 설명 : 
 		typedef long (CALLBACK * CALLBACK_D3D10_CREATE_INDEXBUFFER)(
@@ -41,7 +41,7 @@ namespace hsdk
 			_In_ ID3D10Device * _dev,
 			_In_ D3D10_BUFFER_DESC _bufferDesc,
 			_In_ const void * _data,
-			/* [r/w] */ void * _context);
+			_Inout_ void * _context);
 
 		//--------------------------------------------------------------------------------------
 		//

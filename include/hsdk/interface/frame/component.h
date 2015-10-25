@@ -37,7 +37,7 @@ namespace hsdk
 
 				// 설명 : 이 component로부터 _component를 제거.
 				INTERFACE_DECL_FUNC(remove_Component)(
-					/* [r/w] */ i_Component * _component) = 0;
+					_Inout_ i_Component * _component) = 0;
 
 				// 설명 : 이 component에 _component가 있는지 검사.
 				INTERFACE_DECL_FUNC_T(bool, contain_Component)(
@@ -94,7 +94,7 @@ namespace hsdk
 
 				// 설명 : 이벤트에 반응하는 component를 갱신.
 				INTERFACE_DECL_FUNC_T(bool, event_chain)(
-					/* [r/w] */ i_inputEventHelper * _eventhelper) = 0;
+					_Inout_ i_inputEventHelper * _eventhelper) = 0;
 
 				// 설명 : component 갱신.
 				INTERFACE_DECL_FUNC_T(void, update)(

@@ -2,7 +2,7 @@
 
 
 
-#include "common.h"
+#include "d8_common.h"
 
 
 
@@ -22,12 +22,11 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC(setup)(
-				_In_ unsigned int _indexOfSound,
 				_In_ const wchar_t * _directory);
 
 			// 설명 : 
 			CLASS_DECL_FUNC(setup)(
-				_In_ IDirectSoundBuffer8 * _soundPlayer);
+				_In_ IDirectSoundBuffer * _soundBuffer);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, userSet_Volume)(
@@ -57,9 +56,6 @@ namespace hsdk
 
 			// 설명 : 
 			AutoRelease<IDirectSound3DBuffer8> my_Sound3DOption;
-
-			// 설명 :
-			AutoRelease<IDirectSound3DListener8> my_Sound3DListener;
 
 		};
 

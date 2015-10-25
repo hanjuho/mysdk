@@ -85,19 +85,19 @@ namespace hsdk
 			INTERFACE_DECL_FUNC(create9)(
 				_Out_ Framework_Device & _device,
 				_In_ const D3D9_DEVICE_DESC & _desc,
-				/* [in] */ const Framework_Callbacks * _callback = nullptr);
+				_In_ const Framework_Callbacks * _callback = nullptr);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(reset9)(
 				_Out_ Framework_Device & _device,
 				_In_ const D3D9_DEVICE_DESC & _desc,
-				/* [in] */ const Framework_Callbacks * _callback = nullptr);
+				_In_ const Framework_Callbacks * _callback = nullptr);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(restore9)(
 				_Out_ Framework_Device & _device,
 				_In_ const D3D9_DEVICE_DESC & _pp,
-				/* [in] */ const Framework_Callbacks * _callback = nullptr);
+				_In_ const Framework_Callbacks * _callback = nullptr);
 
 			//--------------------------------------------------------------------------------------
 			//
@@ -107,20 +107,21 @@ namespace hsdk
 			INTERFACE_DECL_FUNC(create10)(
 				_Out_ Framework_Device & _device,
 				_In_ const D3D10_DEVICE_DESC & _desc,
-				/* [in] */ const Framework_Callbacks * _callback = nullptr);
+				_In_ const Framework_Callbacks * _callback = nullptr,
+				_In_ BOOL _createRenderTarget = TRUE);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(resize10)(
 				_Out_ Framework_Device & _device,
 				_In_ const D3D10_DEVICE_DESC & _desc,
-				/* [in] */ const Framework_Callbacks * _callback = nullptr);
+				_In_ const Framework_Callbacks * _callback = nullptr);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(reset10)(
 				_Out_ Framework_Device & _device,
 				_In_ const D3D10_DEVICE_DESC & _desc,
-				/* [in] */ const Framework_Callbacks * _callback = nullptr,
-				/* [in] */ BOOL _resetAll = false);
+				_In_ const Framework_Callbacks * _callback = nullptr,
+				_In_ BOOL _resetAll = false);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(setup_RenderTarget)(

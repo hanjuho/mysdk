@@ -77,8 +77,8 @@ namespace hsdk
 			$ 참고 : _param가 사용되며(_param는 nullptr 일 수 없음), 반드시 Manifold2D 이여야 함.
 			*/
 			INTERFACE_DECL_FUNC_T(void, operate)(
-				/* [r/w] */ i::i_Physics2DObject * _objA,
-				/* [r/w] */ i::i_Physics2DObject * _objB,
+				_Inout_ i::i_Physics2DObject * _objA,
+				_Inout_ i::i_Physics2DObject * _objB,
 				_In_ const i::i_Terrain2D * _terrain,
 				_In_ void * _param = nullptr)final;
 

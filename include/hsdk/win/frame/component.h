@@ -49,7 +49,7 @@ namespace hsdk
 
 			// 설명 : 이 component로부터 _component를 제거.
 			INTERFACE_DECL_FUNC(remove_Component)(
-				/* [r/w] */ i_Component * _component);
+				_Inout_ i_Component * _component);
 
 			// 설명 : 이 component에 _component가 있는지 검사.
 			INTERFACE_DECL_FUNC_T(bool, contain_Component)(
