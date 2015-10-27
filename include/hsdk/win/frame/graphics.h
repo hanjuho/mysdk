@@ -3,7 +3,7 @@
 
 
 #include "../../interface/frame/graphics.h"
-#include "../direct3d/d3d10_factory.h"
+#include "../direct3d/d3d10_common.h"
 #include <string>
 
 
@@ -65,6 +65,9 @@ namespace hsdk
 
 		private:
 
+			// 설명 :
+			direct3d::D3D10MY_CONTEXT my_Context;
+			
 			// 설명 :
 			ID3D10ShaderResourceView * my_Texture = nullptr;
 

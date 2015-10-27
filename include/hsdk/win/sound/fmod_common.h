@@ -5,15 +5,3 @@
 
 #include "../../../hsdk_common.h"
 #include <fmod.hpp>
-
-
-
-namespace hsdk
-{
-	namespace sound
-	{
-		
-		
-
-	}
-}

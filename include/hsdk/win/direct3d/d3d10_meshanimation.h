@@ -11,31 +11,7 @@ namespace hsdk
 {
 	namespace direct3d
 	{
-
-		// 설명 : 
-		enum D3D10MY_FRAME_HINT
-		{
-			// 설명 : The value from the default node transformation is taken
-			FRAME_HINT_DEFAULT = 0x0,
-
-			// 설명 : The nearest key value is used without interpolation
-			FRAME_HINT_CONSTANT = 0x1,
-
-			/*
-			설명 : The value of the nearest two keys is linearly
-			extrapolated for the current time value.
-			*/
-			FRAME_HINT_LINEAR = 0x2,
-
-			/*
-			설명 : The animation is repeated.
-			If the animation key go from n to m and the current	time is t,
-			use the value at (t-n) % (|m-n|).
-			*/
-			FRAME_HINT_REPEAT = 0x3
-
-		};
-
+		
 		// 설명 : 
 		DECL_STRUCT(D3D10MY_BONE)
 		{
@@ -46,7 +22,7 @@ namespace hsdk
 			// 설명 :
 			unsigned int parentID = -1;
 
-			// 설명 : The sum number of bone's children and the length in bone's array
+			// 설명 : sum of bone's children and length in bone's array
 			unsigned int length = -1;
 
 			// 설명 :
@@ -69,21 +45,6 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		DECL_STRUCT(D3D10MY_ANIMATION_KEY)
-		{
-
-			// 설명 : 
-			D3DXVECTOR3 position;
-
-			// 설명 : 
-			D3DXVECTOR3 rotation;
-
-			// 설명 : 
-			D3DXVECTOR3 scaling;
-
-		};
-
-		// 설명 : 
 		DECL_STRUCT(D3D10MY_ANIMATION_BONE_KEYFRAME)
 		{
 
@@ -91,10 +52,19 @@ namespace hsdk
 			unsigned int boneID;
 
 			// 설명 : 
-			D3D10MY_FRAME_HINT frameHint;
+			aiAnimBehaviour preFrameMoveHint;
+			
+			// 설명 : 
+			aiAnimBehaviour postFrameMoveHint;
 
 			// 설명 : 
-			std::vector<D3D10MY_ANIMATION_KEY> keyFrame;
+			std::vector<aiVectorKey> positionKeyFrame;
+			
+			// 설명 : 
+			std::vector<aiQuatKey> rotationKeyFrame;
+			
+			// 설명 : 
+			std::vector<aiVectorKey> scaleKeyFrame;
 
 		};
 
@@ -105,14 +75,50 @@ namespace hsdk
 			// 설명 : 
 			std::wstring name;
 
-			// 설명 : 
+			// 설명 : 애니메이션이 제어하는 뼈 채널
 			std::vector<D3D10MY_ANIMATION_BONE_KEYFRAME> boneFrames;
 
-			// 설명 : 
+			// 설명 :
 			double tickPerSecond;
 
-			// 설명 : 
+			// 설명 : 애니메이션 지속시간
 			double secDuration;
+
+		};
+
+		// 설명 :
+		DECL_STRUCT(D3D10MY_KEYFRAME_RECORD)
+		{
+
+			// 설명 :
+			unsigned int bone_id;
+
+			// 설명 : 
+			unsigned int position_key;
+
+			// 설명 : 
+			unsigned int rotation_key;
+
+			// 설명 : 
+			unsigned int scale_key;
+
+		};
+
+		// 설명 : 
+		DECL_STRUCT(D3D10MY_ANIMATIONPOS_RECORD)
+		{
+
+			// 설명 : 
+			unsigned int aniamtion;
+
+			// 설명 : 
+			double time;
+
+			// 설명 : 
+			std::vector<D3D10MY_KEYFRAME_RECORD> keyframe;
+
+			//
+			std::vector<D3DXMATRIX> pos;
 
 		};
 
@@ -154,25 +160,21 @@ namespace hsdk
 				_In_ double _tickPerSecond,
 				_In_ double _secondOfDuration);
 
-			// 설명 : 
-			DECL_FUNC(setup2_AnimationBoneKeyFrame)(
+			/*
+			설명 : 굉장히 이례적인 데이터 삽입, 구조가 복잡해서 하나 하나 넣을 수 없음.
+			$ 참고 1 : 뼈에 대한 지식 없이 수정하지 않길 바람.
+			*/
+			DECL_FUNC_T(D3D10MY_ANIMATION_BONE_KEYFRAME *, setup2_AnimationBoneKeyFrame)(
 				_In_ unsigned int _indexOfAnimation,
-				_In_ unsigned int _indexOfAnimateBones,
-				_In_ unsigned int _boneID,
-				_In_ unsigned int _numOfAnimateFrameKeys,
-				_In_ const D3DXVECTOR3 * _postionStream,
-				_In_ const D3DXVECTOR3 * _rotationStream,
-				_In_ const D3DXVECTOR3 * _scalingStream,
-				_In_ D3D10MY_FRAME_HINT _frameHin1t);
+				_In_ unsigned int _channelOfAnimateBone);
 
 			// 설명 : 
 			DECL_FUNC(userSet_AnimationBoneKey)(
 				_In_ unsigned int _indexOfAnimation,
-				_In_ unsigned int _indexOfAnimateBones,
+				_In_ unsigned int _channelOfAnimateBone,
 				_In_ unsigned int _indexfAnimateKey,
-				_In_ const D3DXVECTOR3 & _postionStream,
-				_In_ const D3DXVECTOR3 & _rotationStream,
-				_In_ const D3DXVECTOR3 & _scalingStream);
+				_In_ unsigned int _keyType,
+				_In_ const float * _value);
 
 			/*
 			설명 : setup bone matrix.
@@ -184,6 +186,10 @@ namespace hsdk
 
 			// 설명 :
 			DECL_FUNC_T(unsigned int, get_NumOfBones)(
+				_X_ void)const;
+
+			// 설명 :
+			DECL_FUNC_T(unsigned int, get_NumOfAnimations)(
 				_X_ void)const;
 
 			// 설명 :
@@ -199,10 +205,32 @@ namespace hsdk
 				_In_ const wchar_t * _nameOfBone)const;
 
 			// 설명 :
-			DECL_FUNC_T(void, transbone)(
-				_Out_ D3DXMATRIX * _matrixbuffer,
-				_Out_ unsigned int _numOfMatrixs,
-				_Out_ const D3DXMATRIX _form);
+			DECL_FUNC_T(const D3D10MY_ANIMATION *, fine_AnimationFromName)(
+				_In_ const wchar_t * _nameOfAnimation)const;
+
+			// 설명 :
+			DECL_FUNC_T(const D3D10MY_ANIMATION *, fine_AnimationFromID)(
+				_In_  unsigned int _id)const;
+
+			// 설명 :
+			DECL_FUNC_T(unsigned int, fine_AnimationIDFromName)(
+				_In_ const wchar_t * _nameOfAnimation)const;
+
+			// 설명 :
+			DECL_FUNC_T(const D3D10MY_ANIMATION_BONE_KEYFRAME &, get_BoneKeyFrame)(
+				_In_ unsigned int _indexOfAnimation,
+				_In_ unsigned int _channelOfAnimateBone)const;
+
+			// 설명 :
+			DECL_FUNC_T(void, create_Pos)(
+				_Out_ D3D10MY_ANIMATIONPOS_RECORD & _pos,
+				_In_ unsigned int _indexOfAnimation,
+				_In_ double _time);
+
+			// 설명 :
+			DECL_FUNC_T(void, trans_Pos)(
+				_Out_ D3D10MY_ANIMATIONPOS_RECORD & _pos,
+				_In_ double _elapsedTime);
 
 		private:
 

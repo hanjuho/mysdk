@@ -55,7 +55,6 @@
 #include "../autorelease.h"
 
 
-
 //--------------------------------------------------------------------------------------
 // Error codes
 //--------------------------------------------------------------------------------------
@@ -69,16 +68,17 @@
 #define Direct3DERR_RESETTINGDEVICEOBJECTS  MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x0908)
 #define Direct3DERR_DEVICEREMOVED           MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x090A)
 
+
 //--------------------------------------------------------------------------------------
 // mouse button index
 //--------------------------------------------------------------------------------------
-enum
+enum 
 {
-	Direct3D_LEFTBUTTON = 0,
-	Direct3D_MIDDLEBUTTON = 1,
-	Direct3D_RIGHTBUTTON = 2,
-	Direct3D_SIDEBUTTON1 = 3,
-	Direct3D_SIDEBUTTON2 = 4
+	FRAMEWORK_LEFTBUTTON = 0,
+	FRAMEWORK_MIDDLEBUTTON = 1,
+	FRAMEWORK_RIGHTBUTTON = 2,
+	FRAMEWORK_SIDEBUTTON1 = 3,
+	FRAMEWORK_SIDEBUTTON2 = 4
 };
 
 

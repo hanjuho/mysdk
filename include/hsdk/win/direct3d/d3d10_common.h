@@ -1,9 +1,16 @@
 #pragma once
+
+
+
+#pragma comment(lib, "assimp.lib")
 #pragma comment( lib, "d3dx10.lib" )
 
 
 
 #include "../common.h"
+#include <assimp/scene.h>
+#include <assimp/cimport.h>
+#include <assimp/postprocess.h>
 #include <d3dx10.h>
 #include <d3dx10math.h>
 #include <string>
@@ -205,15 +212,28 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		DECL_STRUCT(D3D10MY_TEXTURE)
+		DECL_STRUCT(D3D10MY_CONTEXT)
 		{
 
 			// 설명 : 
-			D3DX10_IMAGE_INFO info;
+			AutoRelease<ID3D10Buffer> vertexBuffer;
+
+			// 설명 :
+			unsigned int textSlot = 0;
 
 			// 설명 : 
-			AutoRelease<ID3D10ShaderResourceView> texture;
+			std::vector<D3DXMATRIX> textCoords;
+
+			// 설명 :
+			D3DXMATRIX matrix;
+
+			// 설명 :
+			D3DXVECTOR4 color;
+
+			// 설명 :
+			float intensity;
 
 		};
+
 	}
 }

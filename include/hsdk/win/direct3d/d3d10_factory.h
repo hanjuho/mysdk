@@ -2,10 +2,6 @@
 
 
 
-#pragma comment(lib, "assimp.lib")
-
-
-
 #include "d3d10_common.h"
 #include "d3d10_mesh.h"
 #include "d3d10_meshanimation.h"
@@ -29,12 +25,8 @@ namespace hsdk
 		public:
 
 			// 설명 :
-			CLASS_DECL_FUNC_T(void, destroy)(
+			CLASS_DECL_FUNC_T(void, clear)(
 				_X_ void);
-
-			//--------------------------------------------------------------------------------------
-			//
-			//--------------------------------------------------------------------------------------
 
 			// 설명 :
 			CLASS_DECL_FUNC(get_Rasterize)(
@@ -62,9 +54,8 @@ namespace hsdk
 			// 설명 :
 			CLASS_DECL_FUNC_T(const D3DX10_IMAGE_INFO *, get_Texture_info)(
 				_In_ const wchar_t * _directory);
-
-
-			// 설명 : DirectX가 지원하지 않는 텍스처를 로드.
+			
+			// 설명 :
 			CLASS_DECL_FUNC(create_Texture)(
 				_Out_ ID3D10ShaderResourceView ** _texture,
 				_In_ const wchar_t * _directory);
@@ -80,32 +71,6 @@ namespace hsdk
 				_In_ const wchar_t * _right, 
 				_In_ const wchar_t * _top,
 				_In_ const wchar_t * _bottom);
-
-			//--------------------------------------------------------------------------------------
-			//
-			//--------------------------------------------------------------------------------------
-
-			/*
-			설명 : 사용자 정의 UV 좌표를 가진 버텍스 버퍼 생성.
-			$ 정보 : 버텍스(float3, float2) * 4.
-			*/
-			CLASS_DECL_FUNC(create_UIPanel)(
-				_Out_ ID3D10Buffer ** _buffer,
-				_In_ D3D10_USAGE _usage)
-			{
-				return E_FAIL;
-			}
-
-			/*
-			설명 : 사용자 정의 UV 좌표를 가진 버텍스 버퍼 생성.
-			$ 정보 : 버텍스(D3D10_SkyFormat) * 6.
-			*/
-			CLASS_DECL_FUNC(create_SkyBox)(
-				_Out_ ID3D10Buffer ** _buffer,
-				_In_ D3D10_USAGE _usage)
-			{
-				return E_FAIL;
-			}
 
 			// 설명 : 
 			CLASS_DECL_FUNC(create_MeshSkyBox)(

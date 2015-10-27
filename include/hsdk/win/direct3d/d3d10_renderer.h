@@ -13,7 +13,7 @@ namespace hsdk
 	{
 
 		// 설명 :
-		DLL_DECL_CLASS(D3D10_MeshRenderer)
+		DLL_DECL_CLASS(D3D10_Renderer)
 		{
 
 		public:
@@ -50,6 +50,13 @@ namespace hsdk
 				_In_ ID3D10ShaderResourceView * _texture,
 				_In_ D3DXMATRIX & _texcoord,
 				_In_ float _persent = 1.0f);
+			
+			// 설명 :
+			CLASS_DECL_FUNC_T(void, render_Font)(
+				_In_ D3DXMATRIX & _world,
+				_In_ D3D10MY_CONTEXT & _context,
+				_In_ ID3D10ShaderResourceView * _fontTable,
+				_In_ float _persent = 1.0f);
 
 		private:
 
@@ -64,7 +71,7 @@ namespace hsdk
 		};
 
 		// 설명 : 
-		extern HSDK_DLL D3D10_MeshRenderer g_D3D10_MeshRenderer;
+		extern HSDK_DLL D3D10_Renderer g_D3D10_Renderer;
 
 		// 설명 :
 		extern HSDK_DLL D3DXMATRIX g_D3D10_ViewMatrix;
