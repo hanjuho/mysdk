@@ -4,6 +4,7 @@
 
 #include "d3d10_common.h"
 #include "d3d10_mesh.h"
+#include "d3d10_animation.h"
 
 
 
@@ -30,8 +31,8 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(void, render_Skinned)(
 				_In_ D3DXMATRIX & _world,
 				_In_ const D3D10_Mesh & _mesh,
-				_In_ D3DXMATRIX * _boneMatrixs,
-				_In_ unsigned int _matrixSize);
+				_In_ const D3D10_Animation & _animation,
+				_In_ const D3D10_Animation_Recorder & _pos);
 
 			// Ό³Έν :
 			CLASS_DECL_FUNC_T(void, render_SkyBox)(

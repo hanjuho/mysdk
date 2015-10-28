@@ -4,7 +4,7 @@
 
 #include "d3d10_common.h"
 #include "d3d10_mesh.h"
-#include "d3d10_meshanimation.h"
+#include "d3d10_animation.h"
 
 
 
@@ -82,7 +82,7 @@ namespace hsdk
 				_Out_ D3D10_Mesh & _mesh,
 				_In_ const wchar_t * _szFilePath,
 				_In_ const wchar_t * _szFileName,
-				_Out_ D3D10_MeshAnimation * _meshAnimation = nullptr);
+				_Out_ D3D10_Animation * _meshAnimation = nullptr);
 
 		};
 
