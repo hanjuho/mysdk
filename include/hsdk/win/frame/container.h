@@ -22,7 +22,8 @@ namespace hsdk
 				_In_ float _x = 0.0f,
 				_In_ float _y = 0.0f,
 				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f);
+				_In_ float _h = 0.0f,
+				_In_ i::frame::FRAME_FORM _form = i::frame::ABSOLUTE_FORM);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Container)(void);

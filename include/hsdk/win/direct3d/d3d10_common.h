@@ -62,7 +62,7 @@ namespace hsdk
 			D3DXVECTOR3 pos;
 
 			// 설명 : 
-			D3DXVECTOR3 norm;
+			D3DXVECTOR3 nor;
 
 			// 설명 : 
 			D3DXVECTOR2 tex;
@@ -77,7 +77,7 @@ namespace hsdk
 			D3DXVECTOR3 pos;
 
 			// 설명 : 
-			D3DXVECTOR3 norm;
+			D3DXVECTOR3 nor;
 
 			// 설명 : 
 			D3DXVECTOR2 tex;

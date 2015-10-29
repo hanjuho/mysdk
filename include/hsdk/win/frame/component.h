@@ -30,7 +30,8 @@ namespace hsdk
 				_In_ float _x = 0.0f,
 				_In_ float _y = 0.0f,
 				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f);
+				_In_ float _h = 0.0f,
+				_In_ i::frame::FRAME_FORM _form = i::frame::ABSOLUTE_FORM);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Component)(void);
@@ -96,6 +97,14 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(float, get_H)(
 				_X_ void)const;
 
+			// 설명 :
+			INTERFACE_DECL_FUNC_T(void, set_Form)(
+				_In_ i::frame::FRAME_FORM _form);
+
+			// 설명 :
+			INTERFACE_DECL_FUNC_T(i::frame::FRAME_FORM, get_Form)(
+				_X_  void)const;
+			
 			// 설명 : 파라미터 값이 true면 스크린을 보여주고, false면 감춤.
 			INTERFACE_DECL_FUNC(set_Visible)(
 				_In_ bool _visible);
@@ -227,6 +236,9 @@ namespace hsdk
 			$ 참고 : component의 id를 통해 부모로부터 하위 component를 호출 할 수 있음.
 			*/
 			unsigned int my_id;
+
+			// 설명 : 
+			i::frame::FRAME_FORM my_Form;
 
 			// 설명 : 화면 상의 절대 좌표 x
 			float my_AbsX;

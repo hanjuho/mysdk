@@ -7,8 +7,7 @@ template<typename INPUT, typename OUTPUT> IMPL_FUNC_T(OUTPUT, hsdk::direct3d::an
 	_In_ aiAnimBehaviour _preFrameHint,
 	_In_ aiAnimBehaviour _postFrameHint,
 	_In_ double _duration,
-	_In_ double _time,
-	_Out_opt_ unsigned int * _index)
+	_In_ double _time)
 {
 	const INPUT * const begin = &_keyFrame[0];
 	const INPUT * const end = &_keyFrame[_keyFrame.size() - 1];

@@ -132,9 +132,6 @@ namespace hsdk
 			// 설명 : 
 			unsigned int aniamtionID;
 
-			// 설명 : 
-			std::vector<D3D10MY_KEYFRAME_RECORD> keyframe;
-
 			//
 			std::vector<D3DXMATRIX> pos;
 
@@ -154,19 +151,37 @@ namespace hsdk
 			DLL_DECL_FUNC_T(void, animationRecordClear)(
 				_Out_ D3D10_Animation_Recorder & _recorder);
 
-			// 설명 : 
-			DLL_DECL_FUNC_T(unsigned int, create_Pos)(
+			/*
+			설명 : animation을 재생할 수 있는 포즈를 생성.
+			$ 참고 : 버퍼를 재생성하기 때문에 create_Pos가 성공하면 animate_Pos을 호출
+			*/
+			DLL_DECL_FUNC(create_Pos)(
 				_Out_ D3D10_Animation_Recorder & _pos,
 				_In_ const D3D10_Animation & _animation,
 				_In_ unsigned int _animationPos,
 				_In_ double _time);
 
+			// 설명 : 
+			DLL_DECL_FUNC_T(void, animate_Pos)(
+				_Out_ D3D10_Animation_Recorder & _pos,
+				_In_ const D3D10_Animation & _animation);
+			
+			// 설명 : 
+			DLL_DECL_FUNC(trans_Pos)(
+				_Out_ D3D10_Animation_Recorder & _pos,
+				_In_ const D3D10_Animation & _animation,
+				_In_ unsigned int _animationPos);
+			
+			// 설명 : 
+			DLL_DECL_FUNC_T(void, reset_Pos)(
+				_Out_ D3D10_Animation_Recorder & _pos,
+				_In_ const D3D10_Animation & _animation);
+			
 			// 설명 :
 			DLL_DECL_FUNC_T(D3DXMATRIX, compute_MatrixFromBoneKeyFrame)(
 				_In_ const D3D10MY_BONE_KEYFRAME & _boneKeyframe,
 				_In_ double _duration,
-				_In_ double _time,
-				_Out_opt_ D3D10MY_KEYFRAME_RECORD * _record = nullptr);
+				_In_ double _time);
 
 			// 설명 :
 			template<typename INPUT, typename OUTPUT> DECL_FUNC_T(OUTPUT, compute_VectorFromKeyFrame)(
@@ -174,8 +189,7 @@ namespace hsdk
 				_In_ aiAnimBehaviour _preFrameHint,
 				_In_ aiAnimBehaviour _postFrameHint,
 				_In_ double _duration,
-				_In_ double _time,
-				_Out_opt_ unsigned int * _index = nullptr);
+				_In_ double _time);
 
 			// 설명 :
 			DLL_DECL_FUNC_T(void, build_MeshBoneMatrix)(

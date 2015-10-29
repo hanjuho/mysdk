@@ -76,7 +76,7 @@ namespace hsdk
 
 			// 설명 : 
 			D3DXVECTOR4 my_BGColor = {
-				0.0f, 0.0f, 0.0f, 1.0f };
+				0.0f, 0.0f, 0.0f, 0.0f };
 
 			// 설명 : 
 			D3DXMATRIX my_Position = {
