@@ -3,7 +3,7 @@
 
 
 #include "container.h"
-#include <hash_map>
+#include "../direct3d/d3d10_rendertarget.h"
 
 
 namespace hsdk
@@ -22,8 +22,7 @@ namespace hsdk
 				_In_ float _w,
 				_In_ float _h,
 				_In_ float _x = 0.0f,
-				_In_ float _y = 0.0f,
-				_In_ i::frame::FRAME_FORM _form = i::frame::ABSOLUTE_FORM);
+				_In_ float _y = 0.0f);
 
 			// °¡»ó ¼Ò¸êÀÚ.
 			CLASS_DECL_DESTRUCTOR(RenderTargetContainer)(void);
@@ -46,8 +45,7 @@ namespace hsdk
 
 		private:
 
-			// 
-			AutoRelease<ID3D10Texture2D> my_RenderTarget;
+			direct3d::D3D10_RenderTarget my_RenderTarget;
 
 		};
 

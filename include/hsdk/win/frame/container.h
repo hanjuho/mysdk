@@ -3,7 +3,7 @@
 
 
 #include "component.h"
-#include <hash_map>
+#include <map>
 
 
 namespace hsdk
@@ -22,15 +22,18 @@ namespace hsdk
 				_In_ float _x = 0.0f,
 				_In_ float _y = 0.0f,
 				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f,
-				_In_ i::frame::FRAME_FORM _form = i::frame::ABSOLUTE_FORM);
+				_In_ float _h = 0.0f);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Container)(void);
 
+			// 설명 :
+			INTERFACE_
+
 			// 설명 : 이 container에 새로운 컴포넌트를 추가.
 			INTERFACE_DECL_FUNC(add_Component)(
-				/* [set] */ i_Component * _component);
+				/* [set] */ i_Component * _component,
+				_In_ i::frame::LAYOUT_COMPOSITION _composition = i::frame::COMPOSITION_DEFALUT);
 
 			// 설명 : 이 container로부터 _component를 제거.
 			INTERFACE_DECL_FUNC(remove_Component)(
@@ -71,7 +74,7 @@ namespace hsdk
 		protected:
 
 			// 설명 :
-			std::hash_map<unsigned int, Component *> m_Container;
+			std::map<unsigned int, Component *> m_Container;
 
 		};
 

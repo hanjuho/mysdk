@@ -63,34 +63,39 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(void, render)(
 				_X_ float _persent);
 
-		private:
+		public:
 
 			// 설명 :
-			direct3d::D3D10MY_CONTEXT my_Context;
+			direct3d::D3D10MY_CONTEXT context;
+			
+			// 설명 : 
+			D3DXVECTOR4 bgColor = {
+				0.0f, 0.0f, 0.0f, 1.0f };
+
+			// 설명 : 
+			D3DXMATRIX mPosition = {
+				1.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 1.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 1.0f };
+
+			// 설명 :
+			D3DXMATRIX mTexcoord = {
+				1.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 1.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 1.0f };
+
+		private:
 			
 			// 설명 :
 			ID3D10ShaderResourceView * my_Texture = nullptr;
 
 			// 설명 :
-			const D3DX10_IMAGE_INFO * my_Texture_info = nullptr;
-
-			// 설명 : 
-			D3DXVECTOR4 my_BGColor = {
-				0.0f, 0.0f, 0.0f, 0.0f };
-
-			// 설명 : 
-			D3DXMATRIX my_Position = {
-				1.0f, 0.0f, 0.0f, 0.0f,
-				0.0f, 1.0f, 0.0f, 0.0f,
-				0.0f, 0.0f, 1.0f, 0.0f,
-				0.0f, 0.0f, 0.0f, 1.0f };
+			float my_imageW = 0.0f;
 
 			// 설명 :
-			D3DXMATRIX my_Texcoord = {
-				1.0f, 0.0f, 0.0f, 0.0f,
-				0.0f, 1.0f, 0.0f, 0.0f,
-				0.0f, 0.0f, 1.0f, 0.0f,
-				0.0f, 0.0f, 0.0f, 1.0f };
+			float my_imageH = 0.0f;
 
 		};
 	}

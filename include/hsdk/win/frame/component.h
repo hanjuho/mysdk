@@ -30,8 +30,7 @@ namespace hsdk
 				_In_ float _x = 0.0f,
 				_In_ float _y = 0.0f,
 				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f,
-				_In_ i::frame::FRAME_FORM _form = i::frame::ABSOLUTE_FORM);
+				_In_ float _h = 0.0f);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Component)(void);
@@ -46,7 +45,8 @@ namespace hsdk
 
 			// 설명 : 이 component에 새로운 컴포넌트를 추가.
 			INTERFACE_DECL_FUNC(add_Component)(
-				/* [set] */ i_Component * _component);
+				/* [set] */ i_Component * _component,
+				_In_ i::frame::LAYOUT_COMPOSITION _composition = i::frame::COMPOSITION_DEFALUT);
 
 			// 설명 : 이 component로부터 _component를 제거.
 			INTERFACE_DECL_FUNC(remove_Component)(
@@ -97,14 +97,6 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(float, get_H)(
 				_X_ void)const;
 
-			// 설명 :
-			INTERFACE_DECL_FUNC_T(void, set_Form)(
-				_In_ i::frame::FRAME_FORM _form);
-
-			// 설명 :
-			INTERFACE_DECL_FUNC_T(i::frame::FRAME_FORM, get_Form)(
-				_X_  void)const;
-			
 			// 설명 : 파라미터 값이 true면 스크린을 보여주고, false면 감춤.
 			INTERFACE_DECL_FUNC(set_Visible)(
 				_In_ bool _visible);
@@ -212,7 +204,7 @@ namespace hsdk
 		protected:
 
 			// 설명 : component의 시각적 요소를 편집하는 객체.
-			Graphics m_D3D10Graphics;
+			Graphics m_Graphics;
 
 			// 설명 :  이 component 위에서 일어난 마우스 이벤트를 외부에 전달하는 객체.
 			AutoDelete<i::frame::i_Mouseable> m_Mouseable;
@@ -229,7 +221,7 @@ namespace hsdk
 			설명 : 이 component의 상위 component.
 			$ 참고 : 하위 component가 부모를 알아야 자신을 부모로부터 독립시킬 수 있음.
 			*/
-			Component * my_Parent;
+			Component * my_Parent = nullptr;
 
 			/*
 			설명 : component 고유 식별 번호.
@@ -237,14 +229,11 @@ namespace hsdk
 			*/
 			unsigned int my_id;
 
-			// 설명 : 
-			i::frame::FRAME_FORM my_Form;
-
 			// 설명 : 화면 상의 절대 좌표 x
-			float my_AbsX;
+			float my_AbsX = 0.0f;
 
 			// 설명 : 화면 상의 절대 좌표 y
-			float my_AbsY;
+			float my_AbsY = 0.0f;
 
 			/*
 			설명 : set_T, get_T 함수와 직결되는 변수, 값 x, y에 해당하는 변수는 보모로부터 상대적인 값을 가짐.
@@ -253,7 +242,7 @@ namespace hsdk
 			float my_Rectangle[4];
 
 			// 설명 :
-			bool my_Visible;
+			bool my_Visible = false;
 
 		};
 

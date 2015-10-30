@@ -3,6 +3,7 @@
 
 
 #include "common.h"
+#include "layout.h"
 
 
 
@@ -12,18 +13,6 @@ namespace hsdk
 	{
 		namespace frame
 		{
-
-			// 설명 : 
-			enum FRAME_FORM
-			{
-				
-				// 설명 : 
-				ABSOLUTE_FORM,
-
-				// 설명 : 
-				RELATIVE_FORM
-
-			};
 
 			// 설명 : 창의 구성 요소를 추상화.
 			DLL_DECL_INTERFACE(i_Component)
@@ -45,7 +34,8 @@ namespace hsdk
 
 				// 설명 : 이 component에 새로운 컴포넌트를 추가.
 				INTERFACE_DECL_FUNC(add_Component)(
-					/* [set] */ i_Component * _component) = 0;
+					/* [set] */ i_Component * _component,
+					_In_ LAYOUT_COMPOSITION _composition = COMPOSITION_DEFALUT) = 0;
 
 				// 설명 : 이 component로부터 _component를 제거.
 				INTERFACE_DECL_FUNC(remove_Component)(
@@ -95,14 +85,6 @@ namespace hsdk
 				// 설명 : 화면의 높이를 얻어옴.
 				INTERFACE_DECL_FUNC_T(float, get_H)(
 					_X_ void)const = 0;
-
-				// 설명 :
-				INTERFACE_DECL_FUNC_T(void, set_Form)(
-					_In_ FRAME_FORM _form) = 0;
-
-				// 설명 :
-				INTERFACE_DECL_FUNC_T(FRAME_FORM, get_Form)(
-					_X_  void)const = 0;
 
 				// 설명 : 파라미터 값이 true면 스크린을 보여주고, false면 감춤.
 				INTERFACE_DECL_FUNC(set_Visible)(

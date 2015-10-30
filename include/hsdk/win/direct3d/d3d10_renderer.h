@@ -18,9 +18,6 @@ namespace hsdk
 		{
 
 			// 설명 : 
-			VS_TEXMATRIX_0 = 1,
-
-			// 설명 : 
 			VS_CALLFUNCTION_0 = 1024
 
 		};
@@ -57,7 +54,10 @@ namespace hsdk
 			PS_LIGHT = 256,
 
 			// 
-			PS_CALLFUNCTION_0 = 1024
+			PS_CALLFUNCTION_0 = 4096,
+
+			// 설명 : 
+			PS_TEXMATRIX_0 = 65536
 
 		};
 
@@ -188,7 +188,7 @@ namespace hsdk
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_UITexture)(
 				_In_ ID3D10ShaderResourceView * _texture,
-				_In_ D3DXMATRIX * _texcoord);
+				_In_ const D3DXMATRIX * _texcoord);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_UIRectangle)(
@@ -201,27 +201,27 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixWorld)(
-				_In_ D3DXMATRIX * _matrix);
+				_In_ const D3DXMATRIX * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixView)(
-				_In_ D3DXMATRIX * _matrix);
+				_In_ const D3DXMATRIX * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixProj)(
-				_In_ D3DXMATRIX * _matrix);
-			
+				_In_ const D3DXMATRIX * _matrix);
+
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixWorldView)(
-				_In_ D3DXMATRIX * _matrix);
-			
+				_In_ const D3DXMATRIX * _matrix);
+
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixWorldViewProj)(
-				_In_ D3DXMATRIX * _matrix);
-			
+				_In_ const D3DXMATRIX * _matrix);
+
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixTexture)(
-				_In_ D3DXMATRIX * _matrix);
+				_In_ const D3DXMATRIX * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_ColorDiffuse)(
@@ -261,7 +261,7 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixSkyBox)(
-				_In_ D3DXMATRIX * _matrix);
+				_In_ const D3DXMATRIX * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_TextureSkyBox)(
@@ -269,7 +269,7 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatricesBone)(
-				_In_ D3DXMATRIX * _matrices,
+				_In_ const D3DXMATRIX * _matrices,
 				_In_ unsigned int _size);
 
 			// 설명 : 
@@ -309,6 +309,9 @@ namespace hsdk
 
 		// 설명 : 
 		extern HSDK_DLL const D3D10_RenderVariable & g_D3D10_RenderVariable;
+
+		// 설명 :
+		extern HSDK_DLL const D3DXMATRIX g_D3D10_identityMatrix;
 
 		// 설명 :
 		extern HSDK_DLL D3DXMATRIX g_D3D10_ViewMatrix;
