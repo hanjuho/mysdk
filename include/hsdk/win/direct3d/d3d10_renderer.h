@@ -179,7 +179,8 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(void, render_Skinned)(
 				_In_ D3D10_Mesh & _mesh,
 				_In_ D3D10_Animation & _animation,
-				_In_ D3D10_Animation_Recorder & _pos);
+				_In_ D3D10_Animation_Recorder & _pos,
+				_In_ unsigned int _pass = 0);
 
 			// Ό³Έν :
 			CLASS_DECL_FUNC_T(void, render_SkyBox)(

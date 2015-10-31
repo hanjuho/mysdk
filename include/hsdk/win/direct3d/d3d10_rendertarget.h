@@ -44,6 +44,9 @@ namespace hsdk
 		private:
 
 			// 설명 : 
+			D3D10_VIEWPORT my_Vp;
+
+			// 설명 : 
 			D3D10_TEXTURE2D_DESC my_Desc;
 
 			// 설명 : 

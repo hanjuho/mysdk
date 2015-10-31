@@ -34,7 +34,6 @@ namespace hsdk
 		{
 
 			friend class Container;
-			friend class RgComponent;
 
 		public:
 

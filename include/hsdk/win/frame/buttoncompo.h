@@ -22,6 +22,16 @@ namespace hsdk
 			CLASS_DECL_CONSTRUCTOR(ButtonCompo)(
 				_In_ PARENT_RELATION _relation = PARENT_RELATION_ABSOLUTE);
 
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, onMouse_Enter)(
+				_In_ int _x,
+				_In_ int _y);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, onMouse_Exit)(
+				_In_ int _x,
+				_In_ int _y);
+
 			// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 			INTERFACE_DECL_FUNC_T(void, onClick_Down)(
 				_In_ i::frame::MOUSE_BUTTON _button,
@@ -40,7 +50,11 @@ namespace hsdk
 
 		protected:
 
-			float m_GraphicsRenderState = 1.0f;
+			// 설명 : 
+			bool m_light = false;
+
+			// 설명 : 
+			bool m_alpha = false;
 
 		};
 
