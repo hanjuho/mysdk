@@ -3,7 +3,7 @@
 
 
 #include "component.h"
-#include <map>
+#include <list>
 
 
 namespace hsdk
@@ -19,16 +19,18 @@ namespace hsdk
 
 			// 생성자
 			CLASS_DECL_CONSTRUCTOR(Container)(
-				_In_ float _x = 0.0f,
-				_In_ float _y = 0.0f,
-				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f);
+				_In_ PARENT_RELATION _relation = PARENT_RELATION_ABSOLUTE);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Container)(void);
 
 			// 설명 :
-			INTERFACE_
+			INTERFACE_DECL_FUNC_T(void, set_Layout)(
+				_In_ i::frame::i_Layout * _layout);
+
+			// 설명 :
+			INTERFACE_DECL_FUNC_T(i::frame::i_Layout *, get_Layout)(
+				_X_ void);
 
 			// 설명 : 이 container에 새로운 컴포넌트를 추가.
 			INTERFACE_DECL_FUNC(add_Component)(
@@ -40,7 +42,7 @@ namespace hsdk
 				_Inout_ i_Component * _component);
 
 			// 설명 : 이 container에 _component가 있는지 검사.
-			INTERFACE_DECL_FUNC_T(bool, contain_Component)(
+			INTERFACE_DECL_FUNC(contain_Component)(
 				_In_ i_Component * _component)const;
 
 			// 설명 : 이 container로부터 _component를 제거.
@@ -67,14 +69,21 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, render)(
 				_X_ void);
 
-			// 설명 : 
+			// 설명 : container가 가진 전부를 초기화
+			INTERFACE_DECL_FUNC_T(void, reset)(
+				_X_ void);
+
+			// 설명 : component를 모두 제거
 			INTERFACE_DECL_FUNC_T(void, clear)(
 				_X_ void);
 
 		protected:
 
 			// 설명 :
-			std::map<unsigned int, Component *> m_Container;
+			std::list<Component *> m_Container;
+
+			// 설명 :
+			AutoDelete<i::frame::i_Layout> m_Layout;
 
 		};
 

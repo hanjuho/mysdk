@@ -20,10 +20,7 @@ namespace hsdk
 
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(ButtonCompo)(
-				_In_ float _x = 0.0f,
-				_In_ float _y = 0.0f,
-				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f);
+				_In_ PARENT_RELATION _relation = PARENT_RELATION_ABSOLUTE);
 
 			// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 			INTERFACE_DECL_FUNC_T(void, onClick_Down)(

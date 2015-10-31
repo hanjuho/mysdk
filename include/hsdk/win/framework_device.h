@@ -69,6 +69,9 @@ namespace hsdk
 			// 설명 :
 			AutoRelease<ID3D10RasterizerState> d3d10DefaultRasterizerState;
 
+			// 설명 : 
+			D3D10_VIEWPORT d3d10ViewPort;
+
 		};
 
 		// 설명 : 

@@ -16,21 +16,31 @@ namespace hsdk
 	namespace frame
 	{
 
+		// 설명 : 
+		enum PARENT_RELATION
+		{
+
+			// 설명 : 
+			PARENT_RELATION_ABSOLUTE,
+
+			// 설명 : 
+			PARENT_RELATION_RELATIVE
+
+		};
+
 		// 설명 : 창의 구성 요소를 D3D11로 구현.
 		DLL_DECL_CLASS(Component)
 			: public i::frame::i_Component
 		{
 
 			friend class Container;
+			friend class RgComponent;
 
 		public:
 
 			// 생성자.
 			CLASS_DECL_CONSTRUCTOR(Component)(
-				_In_ float _x = 0.0f,
-				_In_ float _y = 0.0f,
-				_In_ float _w = 0.0f,
-				_In_ float _h = 0.0f);
+				_In_ PARENT_RELATION _relation = PARENT_RELATION_ABSOLUTE);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(Component)(void);
@@ -53,7 +63,7 @@ namespace hsdk
 				_Inout_ i_Component * _component);
 
 			// 설명 : 이 component에 _component가 있는지 검사.
-			INTERFACE_DECL_FUNC_T(bool, contain_Component)(
+			INTERFACE_DECL_FUNC(contain_Component)(
 				_In_ i_Component * _component)const;
 
 			// 설명 : 이 component로부터 _component를 제거.
@@ -152,6 +162,16 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(i::frame::i_Actable *, get_Actable)(
 				_X_ void)const;
 
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, onMouse_Enter)(
+				_In_ int _x,
+				_In_ int _y);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, onMouse_Exit)(
+				_In_ int _x,
+				_In_ int _y);
+
 			// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 			INTERFACE_DECL_FUNC_T(void, onClick_Down)(
 				_In_ i::frame::MOUSE_BUTTON _button,
@@ -215,6 +235,18 @@ namespace hsdk
 			// 설명 :  이 component 위에서 일어난 액션 이벤트를 외부에 전달하는 객체.
 			AutoDelete<i::frame::i_Actable> m_Actable;
 
+			// 설명 : 화면 상의 절대 좌표 x
+			float m_AbsX = 0.0f;
+
+			// 설명 : 화면 상의 절대 좌표 y
+			float m_AbsY = 0.0f;
+
+			// 설명 : 
+			D3DXMATRIX m_Position;
+
+			// 설명 : 
+			i::frame::LAYOUT_COMPOSITION m_Composition;
+
 		private:
 
 			/*
@@ -223,17 +255,14 @@ namespace hsdk
 			*/
 			Component * my_Parent = nullptr;
 
+			// 설명 : 
+			PARENT_RELATION my_Relation;
+
 			/*
 			설명 : component 고유 식별 번호.
 			$ 참고 : component의 id를 통해 부모로부터 하위 component를 호출 할 수 있음.
 			*/
 			unsigned int my_id;
-
-			// 설명 : 화면 상의 절대 좌표 x
-			float my_AbsX = 0.0f;
-
-			// 설명 : 화면 상의 절대 좌표 y
-			float my_AbsY = 0.0f;
 
 			/*
 			설명 : set_T, get_T 함수와 직결되는 변수, 값 x, y에 해당하는 변수는 보모로부터 상대적인 값을 가짐.

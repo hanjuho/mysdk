@@ -23,6 +23,16 @@ namespace hsdk
 
 				}
 
+				// 설명 :
+				INTERFACE_DECL_FUNC_T(void, onMouse_Enter)(
+					_In_ int _x,
+					_In_ int _y) = 0;
+
+				// 설명 : 
+				INTERFACE_DECL_FUNC_T(void, onMouse_Exit)(
+					_In_ int _x,
+					_In_ int _y) = 0;
+
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Down)(
 					_In_ MOUSE_BUTTON _button,

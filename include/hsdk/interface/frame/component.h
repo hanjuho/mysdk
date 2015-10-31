@@ -42,7 +42,7 @@ namespace hsdk
 					_Inout_ i_Component * _component) = 0;
 
 				// 설명 : 이 component에 _component가 있는지 검사.
-				INTERFACE_DECL_FUNC_T(bool, contain_Component)(
+				INTERFACE_DECL_FUNC(contain_Component)(
 					_In_ i_Component * _component)const = 0;
 
 				// 설명 : 이 component로부터 _component를 제거.
@@ -137,6 +137,16 @@ namespace hsdk
 				// 설명 : 액션 이벤트에 반응하는 객체를 component로부터 호출.
 				INTERFACE_DECL_FUNC_T(i_Actable *, get_Actable)(
 					_X_ void)const = 0;
+
+				// 설명 : 
+				INTERFACE_DECL_FUNC_T(void, onMouse_Enter)(
+					_In_ int _x,
+					_In_ int _y) = 0;
+
+				// 설명 :
+				INTERFACE_DECL_FUNC_T(void, onMouse_Exit)(
+					_In_ int _x,
+					_In_ int _y) = 0;
 
 				// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 				INTERFACE_DECL_FUNC_T(void, onClick_Down)(

@@ -18,12 +18,6 @@ namespace hsdk
 		{
 		public:
 
-			// 생성자.
-			CLASS_DECL_CONSTRUCTOR(Graphics)(void);
-
-			// 가상 소멸자.
-			CLASS_DECL_DESTRUCTOR(Graphics)(void);
-
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(void, set_Background)(
 				_In_ const float(&_color)[4]);
@@ -52,32 +46,20 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, set_Text)(
 				_In_ const wchar_t * _text);
 
-			/*
-			설명 : graphics를 갱신.
-			$ 참고 : _rectangle(x, y, w, h)
-			*/
-			CLASS_DECL_FUNC_T(void, update)(
-				_In_ const float(&_rectangle)[4]);
-
-			// 설명 : graphics를 화면에 뿌려줌.
-			CLASS_DECL_FUNC_T(void, render)(
-				_X_ float _persent);
-
 		public:
-
-			// 설명 :
-			direct3d::D3D10MY_CONTEXT context;
-			
+						
 			// 설명 : 
 			D3DXVECTOR4 bgColor = {
 				0.0f, 0.0f, 0.0f, 1.0f };
 
-			// 설명 : 
-			D3DXMATRIX mPosition = {
-				1.0f, 0.0f, 0.0f, 0.0f,
-				0.0f, 1.0f, 0.0f, 0.0f,
-				0.0f, 0.0f, 1.0f, 0.0f,
-				0.0f, 0.0f, 0.0f, 1.0f };
+			// 설명 :
+			ID3D10ShaderResourceView * texture = nullptr;
+
+			// 설명 :
+			float imageW = 0.0f;
+
+			// 설명 :
+			float imageH = 0.0f;
 
 			// 설명 :
 			D3DXMATRIX mTexcoord = {
@@ -85,17 +67,6 @@ namespace hsdk
 				0.0f, 1.0f, 0.0f, 0.0f,
 				0.0f, 0.0f, 1.0f, 0.0f,
 				0.0f, 0.0f, 0.0f, 1.0f };
-
-		private:
-			
-			// 설명 :
-			ID3D10ShaderResourceView * my_Texture = nullptr;
-
-			// 설명 :
-			float my_imageW = 0.0f;
-
-			// 설명 :
-			float my_imageH = 0.0f;
 
 		};
 	}

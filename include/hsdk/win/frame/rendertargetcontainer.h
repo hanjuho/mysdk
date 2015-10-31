@@ -19,17 +19,10 @@ namespace hsdk
 
 			// 생성자
 			CLASS_DECL_CONSTRUCTOR(RenderTargetContainer)(
-				_In_ float _w,
-				_In_ float _h,
-				_In_ float _x = 0.0f,
-				_In_ float _y = 0.0f);
+				_In_ PARENT_RELATION _relation = PARENT_RELATION_ABSOLUTE);
 
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(RenderTargetContainer)(void);
-
-			// 설명 : component 갱신.
-			INTERFACE_DECL_FUNC_T(void, update)(
-				_X_ void);
 
 			// 설명 : component의 좌표를 갱신.
 			INTERFACE_DECL_FUNC_T(void, reform)(
@@ -45,6 +38,10 @@ namespace hsdk
 
 		private:
 
+			// 설명 : 
+			D3D10_VIEWPORT my_Vp;
+
+			// 설명 : 
 			direct3d::D3D10_RenderTarget my_RenderTarget;
 
 		};
