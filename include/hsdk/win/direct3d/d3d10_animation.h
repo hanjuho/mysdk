@@ -155,7 +155,7 @@ namespace hsdk
 			설명 : animation을 재생할 수 있는 포즈를 생성.
 			$ 참고 : 버퍼를 재생성하기 때문에 create_Pos가 성공하면 animate_Pos을 호출
 			*/
-			DLL_DECL_FUNC(create_Pos)(
+			DLL_DECL_FUNC(build_Pos)(
 				_Out_ D3D10_Animation_Recorder & _pos,
 				_In_ const D3D10_Animation & _animation,
 				_In_ unsigned int _animationPos,

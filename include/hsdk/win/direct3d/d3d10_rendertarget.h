@@ -34,6 +34,10 @@ namespace hsdk
 				_X_ void);
 
 			// 설명 : 
+			CLASS_DECL_FUNC_T(void, viewport)(
+				_X_ void);
+
+			// 설명 : 
 			CLASS_DECL_FUNC_T(ID3D10ShaderResourceView *, get_View)(
 				_X_ void)const;
 

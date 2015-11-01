@@ -1,20 +1,11 @@
 #pragma once
 
+
+
 #include "dxsdkver.h"
 #if ( _DXSDK_PRODUCT_MAJOR < 9 || _DXSDK_BUILD_MAJOR < 1949 )
 #error The installed DXSDK is out of date.
 #endif
-
-#pragma comment( lib, "dxerr.lib" )
-#pragma comment( lib, "dxguid.lib" )
-#pragma comment( lib, "d3d9.lib" )
-#pragma comment( lib, "d3dx9.lib" )
-#pragma comment( lib, "d3d10.lib" )
-#pragma comment( lib, "d3dx10.lib" )
-#pragma comment( lib, "d3d10_1.lib" )
-#pragma comment( lib, "dxgi.lib" )
-#pragma comment( lib, "comctl32.lib" )
-#pragma comment(lib, "winmm.lib")
 
 
 
@@ -463,8 +454,14 @@ namespace hsdk
 		// 설명 : convert DriverType DXGI to D3D9.
 		inline DECL_FUNC_T(D3DDEVTYPE, convert_DriverType_DXGIToD3D9)(
 			_In_ D3D10_DRIVER_TYPE _type);
-
 	}
+
+	// 설명 : 
+	template<typename T> DECL_FUNC_T(T, compute_Lerp)(
+		_In_ T _a,
+		_In_ T _b,
+		_In_ float _t);
+
 }
 
 

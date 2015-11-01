@@ -91,7 +91,7 @@ $ 때문에 가상 함수가 없는 클래스로 보일지라도 ZeroMemory를 호출했을 때 가상 함수
 (명시적 생성자) / (가상 소멸자) 선언.
 */
 #define CLASS_DECL_STRUCTOR(_class)	\
-	CLASS_DECL_DESTRUCTOR(_class)(VOID); \
+	CLASS_DECL_DESTRUCTOR(_class)(void); \
 	CLASS_DECL_CONSTRUCTOR(_class)
 
 /*
@@ -107,7 +107,7 @@ $ 그 A 클래스의 포인터가 A 클래스의 포인터 인 채로 소멸된다면 B 클래스의 소멸자�
 $ 주의 : CLASS_DECL_WARN_DESTRUCTOR의 설명 참조.
 */
 #define CLASS_DECL_WARN_STRUCTOR(_class)	\
-	CLASS_DECL_WARN_DESTRUCTOR(_class)(VOID); \
+	CLASS_DECL_WARN_DESTRUCTOR(_class)(void); \
 	CLASS_DECL_CONSTRUCTOR(_class)
 
 // 반환 값이 HRESULT로 고정된 멤버 함수 선언.

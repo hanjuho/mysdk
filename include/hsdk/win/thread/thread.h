@@ -18,7 +18,6 @@ namespace hsdk
 		설명 : 새로운 분기를 생성하는 객체
 		참고1 : 생성자 파라미터 _task가 nullptr 값이라면, Thread::func를 구현해야 함.
 		참고2 : 생성자 파라미터 _task가 nullptr 값이 아니라면, Thread::func는 사용되지 않음.
-
 		*/
 		DLL_DECL_CLASS(Thread) final
 			: public i::thread::i_Thread, public i_Task

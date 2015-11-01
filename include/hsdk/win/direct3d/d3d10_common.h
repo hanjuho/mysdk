@@ -2,11 +2,6 @@
 
 
 
-#pragma comment(lib, "assimp.lib")
-#pragma comment( lib, "d3dx10.lib" )
-
-
-
 #include "../common.h"
 #include <assimp/scene.h>
 #include <assimp/cimport.h>

@@ -5,6 +5,7 @@
 #include "d3d10_common.h"
 #include "d3d10_mesh.h"
 #include "d3d10_animation.h"
+#include "d3d10_terrain.h"
 
 
 
@@ -73,12 +74,18 @@ namespace hsdk
 				_In_ const wchar_t * _bottom);
 
 			// 설명 : 
-			CLASS_DECL_FUNC(create_MeshSkyBox)(
+			CLASS_DECL_FUNC(build_MeshTerran)(
+				_Out_ D3D10_Mesh & _mesh,
+				_In_ const D3D10_Terrain & _terrain,
+				_In_ const float * _heightbuffer);
+
+			// 설명 : 
+			CLASS_DECL_FUNC(build_MeshSkyBox)(
 				_Out_ D3D10_Mesh & _mesh,
 				_In_ float _size);
 
 			// 설명 : 
-			CLASS_DECL_FUNC(create_MeshFromFile)(
+			CLASS_DECL_FUNC(build_MeshFromFile)(
 				_Out_ D3D10_Mesh & _mesh,
 				_In_ const wchar_t * _szFilePath,
 				_In_ const wchar_t * _szFileName,

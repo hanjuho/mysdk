@@ -151,3 +151,12 @@ IMPL_FUNC_T(D3DDEVTYPE, hsdk::framework::convert_DriverType_DXGIToD3D9)(
 
 	return D3DDEVTYPE_NULLREF;
 }
+
+//--------------------------------------------------------------------------------------
+template<typename T> IMPL_FUNC_T(T, hsdk::compute_Lerp)(
+	_In_ T _a,
+	_In_ T _b,
+	_In_ float _t)
+{
+	return _a - ((_a + _b) * _t);
+}
