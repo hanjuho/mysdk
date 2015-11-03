@@ -263,7 +263,7 @@ namespace hsdk
 		extern HSDK_DLL Framework g_Framework;
 
 		// 설명 : framework grobal variable. you can read and write. just do not call update.
-		extern HSDK_DLL Framework_UserTimeStream & g_Direct3D_TimeStream;
+		extern HSDK_DLL Framework_UserTimeStream & g_Framework_TimeStream;
 
 		// 설명 : framework grobal variable.
 		extern HSDK_DLL Framework_Callbacks & g_Framework_Callbacks;

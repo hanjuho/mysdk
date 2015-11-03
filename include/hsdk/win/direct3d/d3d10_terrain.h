@@ -16,10 +16,10 @@ namespace hsdk
 		{
 			unsigned long width;
 			unsigned long height;
+			unsigned long row;
+			unsigned long col;
 			unsigned long vertices;
 			unsigned long triangles;
-			unsigned long cellsPerRow;
-			unsigned long cellsPerCol;
 			unsigned long verticsPerRow;
 			unsigned long verticsPerCol;
 			double xCellSpacing;
@@ -41,7 +41,8 @@ namespace hsdk
 			DLL_DECL_FUNC(load_RawFromFile)(
 				_Out_ float * _rawbuffer,
 				_In_ const wchar_t * _fileName,
-				_In_ unsigned int _size);
+				_In_ unsigned int _size,
+				_In_ unsigned int _displacement = 255);
 
 		}
 	}

@@ -183,6 +183,10 @@ namespace hsdk
 				_In_ unsigned int _pass = 0);
 
 			// 설명 :
+			CLASS_DECL_FUNC_T(void, render_Mesh)(
+				_In_ D3D10_Mesh & _mesh);
+
+			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_SkyBox)(
 				_In_ D3D10_Mesh & _mesh);
 
@@ -319,6 +323,9 @@ namespace hsdk
 
 		// 설명 :
 		extern HSDK_DLL D3DXMATRIX g_D3D10_ProjMatrix;
+
+		// 설명 :
+		extern HSDK_DLL D3DXMATRIX g_D3D10_ViewProjMatrix;
 
 	}
 }

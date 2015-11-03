@@ -74,6 +74,12 @@ namespace hsdk
 				_In_ const wchar_t * _bottom);
 
 			// 설명 : 
+			CLASS_DECL_FUNC(build_MeshBox)(
+				_Out_ D3D10_Mesh & _mesh,
+				_In_ D3DXVECTOR4 color,
+				_In_ float _size);
+
+			// 설명 : 
 			CLASS_DECL_FUNC(build_MeshTerran)(
 				_Out_ D3D10_Mesh & _mesh,
 				_In_ const D3D10_Terrain & _terrain,

@@ -40,10 +40,6 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, update)(
 				_X_ void);
 
-			// 설명 : 
-			INTERFACE_DECL_FUNC_T(void, restore)(
-				_X_ void);
-
 			// 설명 : mouse의 버튼이 눌렸을 때 발생하는 event.
 			CLASS_DECL_FUNC_T(void, onClick_Down)(
 				_In_ i::frame::MOUSE_BUTTON _button,
@@ -73,6 +69,10 @@ namespace hsdk
 				_In_ int _y,
 				_In_ int _w);
 
+			// 설명 : 
+			CLASS_DECL_FUNC_T(void, restore)(
+				_In_ i::frame::i_Component * _component);
+
 		public:
 
 			/*
@@ -82,9 +82,6 @@ namespace hsdk
 			POINT xy;
 
 		private:
-			
-			// 설명 : event helper가 주시하고 있는 component
-			i::frame::i_Component * const my_MainComponent;
 
 			// 설명 : event helper가 주시하고 있는 component
 			i::frame::i_Component * my_FocusComponent;

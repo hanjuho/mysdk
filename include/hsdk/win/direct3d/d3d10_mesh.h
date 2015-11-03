@@ -121,10 +121,7 @@ namespace hsdk
 			std::vector<unsigned int> boneNode;
 
 			// 설명 : 
-			D3DXVECTOR3 boundingBoxCenter;
-
-			// 설명 : 
-			D3DXVECTOR3 boundingBoxSize;
+			D3DXVECTOR3 boundingBox;
 
 		};
 

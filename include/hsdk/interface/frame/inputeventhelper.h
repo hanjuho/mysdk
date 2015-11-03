@@ -31,10 +31,6 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(void, update)(
 					_X_ void) = 0;
 
-				// Ό³Έν : 
-				INTERFACE_DECL_FUNC_T(void, restore)(
-					_X_ void) = 0;
-
 			};
 
 		}
