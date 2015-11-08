@@ -27,6 +27,13 @@ CLASS_IMPL_FUNC_T(ModelRenderer, void, initialize)(
 }
 
 //--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(ModelRenderer, void, update)(
+	_X_ void)
+{
+
+}
+
+//--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(ModelRenderer, void, render)(
 	_X_ void)
 {
@@ -35,7 +42,7 @@ CLASS_IMPL_FUNC_T(ModelRenderer, void, render)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(ModelRenderer, void, link_DataTable)(
-	/* [ref] */ i::i_DataTable * _datatable)
+	_Ref_ i::i_DataTable * _datatable)
 {
 	m_Datatable = _datatable;
 }

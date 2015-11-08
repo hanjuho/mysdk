@@ -116,14 +116,14 @@ CLASS_IMPL_FUNC_T(Controller, void, disappear)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Controller, void, link_ActionBase)(
-	/* [ref] */ i::i_ActionBase * _actionbase)
+	_Ref_ i::i_ActionBase * _actionbase)
 {
 	m_ActionBase = _actionbase;
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Controller, void, link_ActionListener)(
-	/* [ref] */ i::i_ActionListener * _actionlistener)
+	_Ref_ i::i_ActionListener * _actionlistener)
 {
 	m_ActionListener = _actionlistener;
 }

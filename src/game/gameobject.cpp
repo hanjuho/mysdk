@@ -69,7 +69,7 @@ CLASS_IMPL_FUNC_T(GameObject, void, render)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(GameObject, void, listen_Action)(
-	/* [ref] */ i::i_ActionLayer * _actionlayer)
+	_Ref_ i::i_ActionLayer * _actionlayer)
 {
 	unsigned int p = _actionlayer->priority();
 	if (p)

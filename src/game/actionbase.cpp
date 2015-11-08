@@ -84,7 +84,7 @@ CLASS_IMPL_FUNC_T(ActionBase, i::i_ActionLayer *, disappear)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(ActionBase, void, link_DataTable)(
-	/* [ref] */ i::i_DataTable * _datatable)
+	_Ref_ i::i_DataTable * _datatable)
 {
 	m_Datatable = _datatable;
 }

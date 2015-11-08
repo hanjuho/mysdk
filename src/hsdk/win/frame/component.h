@@ -65,7 +65,7 @@ namespace hsdk
 			INTERFACE_DECL_FUNC(contain_Component)(
 				_In_ i_Component * _component)const;
 
-			// 설명 : 이 component로부터 _component를 제거.
+			// 설명 :
 			INTERFACE_DECL_FUNC(get_Component)(
 				_Out_ i_Component * (&_component),
 				_In_ unsigned int _id)const;

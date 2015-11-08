@@ -26,6 +26,10 @@ namespace hsdk
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, initialize)(
 					_X_ void) = 0;
+
+				// 설명 : 
+				INTERFACE_DECL_FUNC_T(void, update)(
+					_X_ void) = 0;
 					
 				// 설명 : 
 				INTERFACE_DECL_FUNC_T(void, render)(

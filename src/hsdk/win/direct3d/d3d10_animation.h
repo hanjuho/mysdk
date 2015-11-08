@@ -12,30 +12,30 @@ namespace hsdk
 	namespace direct3d
 	{
 
-		// 설명 : 
+		// 설명 : one bone data
 		DECL_STRUCT(D3D10MY_BONE)
 		{
 
-			// 설명 :
+			// 설명 : bone's name
 			std::wstring name;
 
-			// 설명 :
+			// 설명 : parent id
 			unsigned int parent = -1;
 
 			// 설명 : sum of bone's children and length in bone's array
 			unsigned int length = -1;
 
-			// 설명 :
+			// 설명 : my id
 			unsigned int id = -1;
 
-			// 설명 : 
+			// 설명 : to itself matrix from parent
 			D3DXMATRIX mRelation = {
 				1.0f, 0.0f, 0.0f, 0.0f,
 				0.0f, 1.0f, 0.0f, 0.0f,
 				0.0f, 0.0f, 1.0f, 0.0f,
 				0.0f, 0.0f, 0.0f, 1.0f, };
 
-			// 설명 : 
+			// 설명 : offset matrix
 			D3DXMATRIX mOwn = {
 				1.0f, 0.0f, 0.0f, 0.0f,
 				0.0f, 1.0f, 0.0f, 0.0f,
@@ -44,7 +44,7 @@ namespace hsdk
 
 		};
 
-		// 설명 : 
+		// 설명 : it is bone's keyframe buffer and member of D3D10MY_ANIMATION.
 		DECL_STRUCT(D3D10MY_BONE_KEYFRAME)
 		{
 
@@ -68,7 +68,7 @@ namespace hsdk
 
 		};
 
-		// 설명 : 
+		// 설명 : it's animation data and member of D3D10_Animation.
 		DECL_STRUCT(D3D10MY_ANIMATION)
 		{
 
@@ -78,7 +78,7 @@ namespace hsdk
 			// 설명 : 
 			std::wstring name;
 
-			// 설명 : 애니메이션이 제어하는 뼈 채널
+			// 설명 :
 			std::vector<D3D10MY_BONE_KEYFRAME> boneKeyFrames;
 
 			// 설명 :
@@ -89,17 +89,17 @@ namespace hsdk
 
 		};
 
-		// 설명 : 
+		// 설명 : it's bone, animation buffer that made from d3d10factory.
 		DECL_STRUCT(D3D10_Animation)
 		{
 
-			// 설명 :
+			// 설명 : find bone dispather
 			std::map<std::wstring, unsigned int> bonePath;
 
 			// 설명 : 
 			std::vector<D3D10MY_BONE> bones;
 
-			// 설명 :
+			// 설명 : find animation dispather
 			std::map<std::wstring, unsigned int> animationPath;
 
 			// 설명 :
@@ -107,7 +107,7 @@ namespace hsdk
 
 		};
 
-		// 설명 :
+		// 설명 : no use
 		DECL_STRUCT(D3D10MY_KEYFRAME_RECORD)
 		{
 
@@ -125,7 +125,7 @@ namespace hsdk
 
 		};
 
-		// 설명 : 
+		// 설명 : it's The buffer that records bone keyframe matrices in time.
 		DECL_STRUCT(D3D10_Animation_Recorder)
 		{
 

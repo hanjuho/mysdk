@@ -28,12 +28,16 @@ namespace hsdk
 				_X_ void);
 
 			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, update)(
+				_X_ void);
+
+			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, render)(
 				_X_ void);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, link_DataTable)(
-				/* [ref] */ i::i_DataTable * _datatable);
+				_Ref_ i::i_DataTable * _datatable);
 
 		protected:
 

@@ -56,7 +56,7 @@ namespace hsdk
 
 			// Ό³Έν :
 			INTERFACE_DECL_FUNC_T(void, listen_Action)(
-				/* [ref] */ i::i_ActionLayer * _actionlayer)final;
+				_Ref_ i::i_ActionLayer * _actionlayer)final;
 
 		protected:
 

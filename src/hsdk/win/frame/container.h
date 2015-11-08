@@ -26,18 +26,24 @@ namespace hsdk
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(void, set_Layout)(
-				_In_ i::frame::i_Layout * _layout);
+				/* [set] */ i::frame::i_Layout * _layout);
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(i::frame::i_Layout *, get_Layout)(
 				_X_ void);
 
-			// 설명 : 이 container에 새로운 컴포넌트를 추가.
+			/*
+			설명 : 이 container에 새로운 컴포넌트를 추가.
+			$ 참고 : remove_Component()에 의해서 제거되지 않는 한, _component는 이 Container가 책임짐.
+			*/
 			INTERFACE_DECL_FUNC(add_Component)(
 				/* [set] */ i_Component * _component,
 				_In_ i::frame::LAYOUT_COMPOSITION _composition = i::frame::COMPOSITION_DEFALUT);
 
-			// 설명 : 이 container로부터 _component를 제거.
+			/*
+			설명 : 이 container로부터 _component를 제거.
+			$ 주의 : 아직 메모리상에서 사라지지 않음.
+			*/
 			INTERFACE_DECL_FUNC(remove_Component)(
 				_Inout_ i_Component * _component);
 
@@ -65,15 +71,15 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, reform)(
 				_X_ void);
 
-			// 설명 : container를 화면에 뿌려줌.
+			// 설명 : container를 화면에 뿌려줌, 자신을 render()를 호출하고 Component들의 render()를 호출.
 			INTERFACE_DECL_FUNC_T(void, render)(
 				_X_ void);
 
-			// 설명 : container가 가진 전부를 초기화
+			// 설명 : container가 가진 전부를 초기화, Graphics, Layout, Component가 모두 사라짐.
 			INTERFACE_DECL_FUNC_T(void, reset)(
 				_X_ void);
 
-			// 설명 : component를 모두 제거
+			// 설명 : component를 메모리 상에서 모두 제거, reset() 또는 소멸자에 의해서도 호출됨.
 			INTERFACE_DECL_FUNC_T(void, clear)(
 				_X_ void);
 

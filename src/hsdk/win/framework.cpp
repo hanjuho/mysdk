@@ -457,8 +457,8 @@ CLASS_IMPL_FUNC(Framework, transform)(
 			if (_clipMonitor)
 			{
 				clip_Screen(resultRect, g_Window.windowed);
-				resultWidth = resultRect.right - resultRect.left + adjRect.left - 8;
-				resultHeight = resultRect.bottom - resultRect.top + adjRect.top - 8;
+				resultWidth = resultRect.right + adjRect.left - 8;
+				resultHeight = resultRect.bottom + adjRect.top - 8;
 			}
 
 			hr = S_OK;

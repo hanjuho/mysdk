@@ -26,7 +26,7 @@ namespace hsdk
 
 				// Ό³Έν :
 				INTERFACE_DECL_FUNC_T(void, listen_Action)(
-					/* [ref] */ i_ActionLayer * _actionlayer) = 0;
+					_Ref_ i_ActionLayer * _actionlayer) = 0;
 
 			};
 

@@ -43,7 +43,7 @@ CLASS_IMPL_FUNC_T(ActionLayer, unsigned int, priority)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(ActionLayer, void, link_DataTable)(
-	/* [ref] */ i::i_DataTable * _datatable)
+	_Ref_ i::i_DataTable * _datatable)
 {
 	m_DataTable = _datatable;
 }

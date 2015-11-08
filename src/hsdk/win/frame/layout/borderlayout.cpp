@@ -226,23 +226,28 @@ CLASS_IMPL_FUNC(BorderLayout, link_Form)(
 			if (my_LinkedForm[COMPOSITION_EAST])
 			{
 				my_LinkedForm[COMPOSITION_EAST][SPACE_TOP] = new_Top;
-				my_LinkedForm[COMPOSITION_EAST][SPACE_BOTTOM] -= my_HAbs;
+				my_LinkedForm[COMPOSITION_EAST][SPACE_BOTTOM] =
+					get_SpaceAbs(SPACE_BOTTOM) - new_Top;
 			}
 
 			// 서쪽
 			if (my_LinkedForm[COMPOSITION_WEST])
 			{
 				my_LinkedForm[COMPOSITION_WEST][SPACE_TOP] = new_Top;
-				my_LinkedForm[COMPOSITION_WEST][SPACE_BOTTOM] -= my_HAbs;
+				my_LinkedForm[COMPOSITION_WEST][SPACE_BOTTOM] =
+					get_SpaceAbs(SPACE_BOTTOM) - new_Top;
 			}
 
 			// 중앙
 			if (my_LinkedForm[COMPOSITION_DEFALUT])
 			{
 				my_LinkedForm[COMPOSITION_DEFALUT][SPACE_TOP] = new_Top;
-				if (my_LinkedForm[COMPOSITION_WEST][SPACE_BOTTOM] < my_HAbs)
+				if (my_LinkedForm[COMPOSITION_SOUTH])
 				{
-					// 모르겠다
+					if (my_LinkedForm[COMPOSITION_SOUTH][SPACE_BOTTOM] < my_HAbs)
+					{
+						// 모르겠다
+					}
 				}
 				else
 				{
@@ -286,9 +291,9 @@ CLASS_IMPL_FUNC(BorderLayout, link_Form)(
 				// 동쪽 레이아웃 너비가 최소 너비보다 크다면
 				if (min_W < west_W)
 				{
-					float newLeft = min_W + get_SpaceAbs(SPACE_RIGHT);
-					my_LinkedForm[COMPOSITION_WEST][SPACE_LEFT] = newLeft;
-					my_LinkedForm[COMPOSITION_WEST][SPACE_RIGHT] = min_W;
+					float newLeft = get_SpaceAbs(SPACE_RIGHT) - min_W;
+					my_LinkedForm[COMPOSITION_EAST][SPACE_LEFT] = newLeft;
+					my_LinkedForm[COMPOSITION_EAST][SPACE_RIGHT] = min_W;
 
 					right = newLeft - hgap;
 				}
@@ -586,8 +591,8 @@ CLASS_IMPL_FUNC_T(BorderLayout, float, get_Top)(
 	if (my_LinkedForm[COMPOSITION_NORTH])
 	{
 		// 북쪽은 최상층, 지배자
-		value = my_LinkedForm[COMPOSITION_NORTH][SPACE_LEFT] +
-			my_LinkedForm[COMPOSITION_NORTH][SPACE_RIGHT];
+		value = my_LinkedForm[COMPOSITION_NORTH][SPACE_TOP] +
+			my_LinkedForm[COMPOSITION_NORTH][SPACE_BOTTOM];
 
 		// 레이아웃간 차이만큼 다시 증가
 		value += get_VGapAbs();

@@ -64,7 +64,7 @@ namespace hsdk
 
 			// Ό³Έν : 
 			CLASS_DECL_FUNC_T(void, link_DataTable)(
-				/* [ref] */ i::i_DataTable * _datatable);
+				_Ref_ i::i_DataTable * _datatable);
 
 		protected:
 

@@ -65,11 +65,11 @@ namespace hsdk
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, link_ActionBase)(
-				/* [ref] */ i::i_ActionBase * _actionbase);
+				_Ref_ i::i_ActionBase * _actionbase);
 
 			// 설명 : 
 			CLASS_DECL_FUNC_T(void, link_ActionListener)(
-				/* [ref] */ i::i_ActionListener * _actionlistener);
+				_Ref_ i::i_ActionListener * _actionlistener);
 
 		protected:
 

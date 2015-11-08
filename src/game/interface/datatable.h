@@ -25,9 +25,9 @@ namespace hsdk
 								
 				// 설명 : 
 				INTERFACE_DECL_FUNC(read_Table)(
+					_Out_ void * _data,
 					_In_ unsigned int _offset,
-					_In_ unsigned int _size,
-					_Out_ void * (&_data))const = 0;
+					_In_ unsigned int _size)const = 0;
 
 				// 설명 : 
 				INTERFACE_DECL_FUNC(write_Table)(
