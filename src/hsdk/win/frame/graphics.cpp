@@ -53,7 +53,7 @@ CLASS_IMPL_FUNC_T(Graphics, void, set_imageDetail)(
 			_rectangle[2] / imageW,
 			_rectangle[3] / imageH, 0.0f);
 
-		mTexcoord = t * s;
+		mTexcoord = s * t;
 	}
 }
 

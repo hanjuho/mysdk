@@ -1,5 +1,6 @@
 #include "common.h"
 
+
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(DXGI_FORMAT, hsdk::framework::convert_Format_D3D9ToDXGI)(
 	_In_ D3DFORMAT _format)

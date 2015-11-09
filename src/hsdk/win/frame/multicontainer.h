@@ -16,7 +16,11 @@ namespace hsdk
 			: public Container
 		{
 		public:
-			
+
+			// 생성자
+			CLASS_DECL_CONSTRUCTOR(MultiContainer)(
+				_In_ PARENT_RELATION _relation = PARENT_RELATION_ABSOLUTE);
+
 			// 가상 소멸자.
 			CLASS_DECL_DESTRUCTOR(MultiContainer)(void);
 
@@ -24,8 +28,16 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(void, select_Buffer)(
 				_In_ unsigned int _index,
 				_In_ bool _store = true);
-			
-			// 설명 : component를 메모리 상에서 모두 제거, reset() 또는 소멸자에 의해서도 호출됨.
+
+			// 설명 : 
+			CLASS_DECL_FUNC_T(unsigned int, get_CurrentBuffer)(
+				_X_ void);
+
+			// 설명 : container가 가진 전부를 초기화, Graphics, Layout, Component가 모두 사라짐.
+			INTERFACE_DECL_FUNC_T(void, reset)(
+				_X_ void);
+
+			// 설명 : 현재 버퍼에 있는 component를 메모리 상에서 모두 제거.
 			INTERFACE_DECL_FUNC_T(void, clear)(
 				_X_ void);
 
@@ -41,3 +53,7 @@ namespace hsdk
 
 	}
 }
+
+
+
+#include "multicontainer.inl"

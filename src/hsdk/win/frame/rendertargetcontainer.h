@@ -6,14 +6,15 @@
 #include "../direct3d/d3d10_rendertarget.h"
 
 
+
 namespace hsdk
 {
 	namespace frame
 	{
 
 		// 설명 : 창의 구성 요소를 win32로 구현.
-		DECL_CLASS(RenderTargetContainer)
-			: public Container
+		template<typename CONTAINER> DECL_CLASS(RenderTargetContainer)
+			: public CONTAINER
 		{
 		public:
 
@@ -45,3 +46,7 @@ namespace hsdk
 
 	}
 }
+
+
+
+#include "rendertargetcontainer.inl"
