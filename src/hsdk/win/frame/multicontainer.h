@@ -33,12 +33,12 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(unsigned int, get_CurrentBuffer)(
 				_X_ void);
 
-			// 설명 : container가 가진 전부를 초기화, Graphics, Layout, Component가 모두 사라짐.
-			INTERFACE_DECL_FUNC_T(void, reset)(
+			// 설명 : 현재 버퍼에 있는 component를 메모리 상에서 모두 제거.
+			INTERFACE_DECL_FUNC_T(void, clear_Component)(
 				_X_ void);
 
-			// 설명 : 현재 버퍼에 있는 component를 메모리 상에서 모두 제거.
-			INTERFACE_DECL_FUNC_T(void, clear)(
+			// 설명 : container가 가진 전부를 초기화, Graphics, Layout, Component가 모두 사라짐.
+			INTERFACE_DECL_FUNC_T(void, reset)(
 				_X_ void);
 
 		protected:

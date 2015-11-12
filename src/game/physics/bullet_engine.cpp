@@ -295,10 +295,3 @@ CLASS_IMPL_FUNC_T(Bullet_Engine, btVector3, maxWorldSize)(
 {
 	return my_WorldMaxSize;
 }
-
-
-//--------------------------------------------------------------------------------------
-// 
-//--------------------------------------------------------------------------------------
-
-Bullet_Engine hsdk::bullet::g_BulletEngine(1.0f);

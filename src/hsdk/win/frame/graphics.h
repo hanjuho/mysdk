@@ -51,10 +51,7 @@ namespace hsdk
 			// 설명 : 
 			D3DXVECTOR4 bgColor = {
 				0.0f, 0.0f, 0.0f, 1.0f };
-
-			// 설명 :
-			ID3D10ShaderResourceView * texture = nullptr;
-
+			
 			// 설명 :
 			float imageW = 0.0f;
 
@@ -67,6 +64,9 @@ namespace hsdk
 				0.0f, 1.0f, 0.0f, 0.0f,
 				0.0f, 0.0f, 1.0f, 0.0f,
 				0.0f, 0.0f, 0.0f, 1.0f };
+
+			// 설명 :
+			ID3D10ShaderResourceView * refTexture = nullptr;
 
 		};
 	}

@@ -17,7 +17,7 @@ CLASS_IMPL_CONSTRUCTOR(Container, Container)(
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_DESTRUCTOR(Container, Container)(void)
 {
-	clear();
+	reset();
 }
 
 //--------------------------------------------------------------------------------------
@@ -190,6 +190,21 @@ CLASS_IMPL_FUNC(Container, get_Component)(
 }
 
 //--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(Container, void, clear_Component)(
+	_X_ void)
+{
+	auto begin = m_Container.begin();
+	auto end = m_Container.end();
+	while (begin != end)
+	{
+		DEL_POINTER(*begin);
+		++begin;
+	}
+
+	m_Container.clear();
+}
+
+//--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Container, bool, event_chain)(
 	_In_ hsdk::i::frame::i_inputEventHelper * _eventhelper)
 {
@@ -283,22 +298,7 @@ CLASS_IMPL_FUNC_T(Container, void, render)(
 CLASS_IMPL_FUNC_T(Container, void, reset)(
 	_X_ void)
 {
-	clear();
+	clear_Component();
+	Component::reset();
 	m_Layout.~AutoDelete();
-	m_Graphics = Graphics();
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(Container, void, clear)(
-	_X_ void)
-{
-	auto begin = m_Container.begin();
-	auto end = m_Container.end();
-	while (begin != end)
-	{
-		DEL_POINTER(*begin);
-		++begin;
-	}
-
-	m_Container.clear();
 }

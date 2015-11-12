@@ -12,11 +12,7 @@ template<unsigned int INDEX> CLASS_IMPL_CONSTRUCTOR(hsdk::frame::MultiContainer<
 //--------------------------------------------------------------------------------------
 template<unsigned int INDEX> CLASS_IMPL_DESTRUCTOR(hsdk::frame::MultiContainer<INDEX>, MultiContainer)(void)
 {
-	for (unsigned int index = 0; index < INDEX; ++index)
-	{
-		m_Container = m_Buffer[index];
-		Container::clear();
-	}
+	reset();
 }
 
 //--------------------------------------------------------------------------------------
@@ -38,7 +34,7 @@ template<unsigned int INDEX> CLASS_IMPL_FUNC_T(hsdk::frame::MultiContainer<INDEX
 	}
 	else
 	{
-		Container::clear();
+		clear_Component();
 		m_Container = m_Buffer[_index];
 	}
 
@@ -53,24 +49,29 @@ template<unsigned int INDEX> CLASS_IMPL_FUNC_T(hsdk::frame::MultiContainer<INDEX
 }
 
 //--------------------------------------------------------------------------------------
-template<unsigned int INDEX> CLASS_IMPL_FUNC_T(hsdk::frame::MultiContainer<INDEX>, void, reset)(
+template<unsigned int INDEX> CLASS_IMPL_FUNC_T(hsdk::frame::MultiContainer<INDEX>, void, clear_Component)(
 	_X_ void)
 {
-	for (unsigned int index = 0; index < INDEX; ++index)
-	{
-		m_Container = m_Buffer[index];
-		Container::clear();
-	}
-	m_CurrentBuffer = 0;
-
-	m_Layout.~AutoDelete();
-	m_Graphics = Graphics();
+	Container::clear_Component();
+	m_Buffer[m_CurrentBuffer].clear();
 }
 
 //--------------------------------------------------------------------------------------
-template<unsigned int INDEX> CLASS_IMPL_FUNC_T(hsdk::frame::MultiContainer<INDEX>, void, clear)(
+template<unsigned int INDEX> CLASS_IMPL_FUNC_T(hsdk::frame::MultiContainer<INDEX>, void, reset)(
 	_X_ void)
 {
-	Container::clear();
-	m_Buffer[m_CurrentBuffer].clear();
+	// 임시 버퍼를 클리어
+	for (unsigned int index = 0; index < INDEX; ++index)
+	{
+		// 임시 버퍼 선택
+		m_CurrentBuffer = index;
+		m_Container = m_Buffer[index];
+
+		// 임시 버퍼 클리어
+		clear_Component();
+	}
+
+	m_CurrentBuffer = 0;
+	Component::reset();
+	m_Layout.~AutoDelete();
 }

@@ -46,11 +46,11 @@ namespace hsdk
 
 			// 설명 : 이 component를 포함하고 있는 부모의 주소 반환.
 			INTERFACE_DECL_FUNC_T(i_Component *, parent)(
-				_X_ void)const;
+				_X_ void);
 
 			// 설명 : component의 시각적 요소에 접근.
 			INTERFACE_DECL_FUNC_T(i::frame::i_Graphics *, graphics)(
-				_X_ void)const;
+				_X_ void);
 
 			// 설명 : 이 component에 새로운 컴포넌트를 추가.
 			INTERFACE_DECL_FUNC(add_Component)(
@@ -69,6 +69,10 @@ namespace hsdk
 			INTERFACE_DECL_FUNC(get_Component)(
 				_Out_ i_Component * (&_component),
 				_In_ unsigned int _id)const;
+
+			// 설명 : 사용되지 않음.
+			INTERFACE_DECL_FUNC_T(void, clear_Component)(
+				_X_ void);
 
 			// 설명 : 이 component의 고유 식별 번호.
 			INTERFACE_DECL_FUNC_T(unsigned int, get_id)(
@@ -226,13 +230,13 @@ namespace hsdk
 			Graphics m_Graphics;
 
 			// 설명 :  이 component 위에서 일어난 마우스 이벤트를 외부에 전달하는 객체.
-			AutoDelete<i::frame::i_Mouseable> m_Mouseable;
+			i::frame::i_Mouseable * m_Mouseable = nullptr;
 
 			// 설명 :  이 component 위에서 일어난 키보드 이벤트를 외부에 전달하는 객체.
-			AutoDelete<i::frame::i_Keyboardable> m_Keyboardable;
+			i::frame::i_Keyboardable * m_Keyboardable = nullptr;
 
 			// 설명 :  이 component 위에서 일어난 액션 이벤트를 외부에 전달하는 객체.
-			AutoDelete<i::frame::i_Actable> m_Actable;
+			i::frame::i_Actable * m_Actable = nullptr;
 
 			// 설명 : 화면 상의 절대 좌표 x
 			float m_AbsX = 0.0f;

@@ -130,8 +130,5 @@ namespace hsdk
 
 		};
 
-		// Ό³Έν :
-		extern Bullet_Engine g_BulletEngine;
-
 	}
 }

@@ -23,14 +23,14 @@ CLASS_IMPL_FUNC_T(Graphics, void, set_image)(
 {
 	IF_INVALID(_filename)
 	{
-		texture = nullptr;
+		refTexture = nullptr;
 		imageW = 0.0f;
 		imageH = 0.0f;
 		return;
 	}
 
 	const D3DX10_IMAGE_INFO * info;
-	IF_SUCCEEDED(direct3d::g_D3D10_Factory.get_Texture(&texture, _filename, &info))
+	IF_SUCCEEDED(direct3d::g_D3D10_Factory.get_Texture(&refTexture, _filename, &info))
 	{
 		imageW = (float)info->Width;
 		imageH = (float)info->Height;
@@ -41,7 +41,7 @@ CLASS_IMPL_FUNC_T(Graphics, void, set_image)(
 CLASS_IMPL_FUNC_T(Graphics, void, set_imageDetail)(
 	_In_ const float(&_rectangle)[4])
 {
-	if (texture)
+	if (refTexture)
 	{
 		D3DXMATRIX t;
 		D3DXMatrixTranslation(&t,

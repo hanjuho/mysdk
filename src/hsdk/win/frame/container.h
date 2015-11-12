@@ -56,6 +56,10 @@ namespace hsdk
 				_Out_ i_Component * (&_component),
 				_In_ unsigned int _id)const;
 
+			// 설명 : component를 메모리 상에서 모두 제거, reset()에 의해서도 호출됨.
+			INTERFACE_DECL_FUNC_T(void, clear_Component)(
+				_X_ void);
+
 			/*
 			설명 : 이벤트에 반응하는 하위 혹은 이 container를 갱신(단, 부모를 거슬러 올라가진 않음).
 			$ 참고 : 반환값이 true일 경우, i_inputEvent는 하위 혹은 이 component를 주시하게 됨.
@@ -77,10 +81,6 @@ namespace hsdk
 
 			// 설명 : container가 가진 전부를 초기화, Graphics, Layout, Component가 모두 사라짐.
 			INTERFACE_DECL_FUNC_T(void, reset)(
-				_X_ void);
-
-			// 설명 : component를 메모리 상에서 모두 제거, reset() 또는 소멸자에 의해서도 호출됨.
-			INTERFACE_DECL_FUNC_T(void, clear)(
 				_X_ void);
 
 		protected:

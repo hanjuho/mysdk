@@ -62,6 +62,23 @@ namespace hsdk
 		}
 
 		/*
+		설명 : 객체로부터 포인터를 뺏어옴.
+		$ 참고 : 파라미터가 유효하다면 삭제됨.
+		$ 경고 : 반환된 포인터는 사용자가 삭제할 것을 권장.
+		*/
+		CLASS_DECL_FUNC_T(void, steal)(
+			_Out_ T * (&_pointer))
+		{
+			if (_pointer)
+			{
+				DEL_COM(_pointer);
+			}
+
+			_pointer = m_Ptr;
+			m_Ptr = nullptr;
+		}
+
+		/*
 		설명 : 객체의 복사본을 만들어내는 함수.
 		$ 주의 : 포인터를 복사(Addref함수가 호출됨).
 		*/

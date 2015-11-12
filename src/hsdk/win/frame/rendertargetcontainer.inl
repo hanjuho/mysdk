@@ -14,7 +14,7 @@ template<typename CONTAINER> CLASS_IMPL_CONSTRUCTOR(hsdk::frame::RenderTargetCon
 //--------------------------------------------------------------------------------------
 template<typename CONTAINER> CLASS_IMPL_DESTRUCTOR(hsdk::frame::RenderTargetContainer<CONTAINER>, RenderTargetContainer)(void)
 {
-
+	reset();
 }
 
 //--------------------------------------------------------------------------------------
@@ -38,12 +38,12 @@ template<typename CONTAINER> CLASS_IMPL_FUNC_T(hsdk::frame::RenderTargetContaine
 		{
 			direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(&direct3d::g_D3D10_identityMatrix);
 			direct3d::g_D3D10_Renderer.set_ScalarPSTime(1.0f);
-			if (m_Graphics.texture)
+			if (m_Graphics.refTexture)
 			{
 				direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 				direct3d::g_D3D10_Renderer.set_ScalarPSFlag(direct3d::PS_TEXTURE_0 | direct3d::PS_CALLFUNCTION_0 | direct3d::PS_TEXMATRIX_0);
 				direct3d::g_D3D10_Renderer.render_UITexture(
-					m_Graphics.texture,
+					m_Graphics.refTexture,
 					&m_Graphics.mTexcoord);
 			}
 			else
@@ -76,10 +76,9 @@ template<typename CONTAINER> CLASS_IMPL_FUNC_T(hsdk::frame::RenderTargetContaine
 }
 
 //--------------------------------------------------------------------------------------
-template<typename CONTAINER> CLASS_IMPL_FUNC_T(hsdk::frame::RenderTargetContainer<CONTAINER>, void, clear)(
+template<typename CONTAINER> CLASS_IMPL_FUNC_T(hsdk::frame::RenderTargetContainer<CONTAINER>, void, reset)(
 	_X_ void)
 {
-	CONTAINER::clear();
-
+	CONTAINER::reset();
 	my_RenderTarget = direct3d::D3D10_RenderTarget();
 }

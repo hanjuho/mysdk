@@ -26,21 +26,21 @@ CLASS_IMPL_CONSTRUCTOR(Component, Component)(
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_DESTRUCTOR(Component, Component)(void)
 {
-
+	reset();
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Component, hsdk::i::frame::i_Component *, parent)(
-	_X_ void)const
+	_X_ void)
 {
 	return my_Parent;
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Component, hsdk::i::frame::i_Graphics *, graphics)(
-	_X_ void)const
+	_X_ void)
 {
-	return (hsdk::i::frame::i_Graphics *)&m_Graphics;
+	return &m_Graphics;
 }
 
 //--------------------------------------------------------------------------------------
@@ -71,6 +71,13 @@ CLASS_IMPL_FUNC(Component, get_Component)(
 	_In_ unsigned int _id)const
 {
 	return E_NOTIMPL;
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(Component, void, clear_Component)(
+	_X_ void)
+{
+
 }
 
 //--------------------------------------------------------------------------------------
@@ -216,12 +223,12 @@ CLASS_IMPL_FUNC_T(Component, void, render)(
 	{
 		direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(&m_Position);
 		direct3d::g_D3D10_Renderer.set_ScalarPSTime(1.0f);
-		if (m_Graphics.texture)
+		if (m_Graphics.refTexture)
 		{
 			direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 			direct3d::g_D3D10_Renderer.set_ScalarPSFlag(direct3d::PS_TEXTURE_0 | direct3d::PS_CALLFUNCTION_0 | direct3d::PS_TEXMATRIX_0);
 			direct3d::g_D3D10_Renderer.render_UITexture(
-				m_Graphics.texture,
+				m_Graphics.refTexture,
 				&m_Graphics.mTexcoord);
 		}
 		else
@@ -238,13 +245,17 @@ CLASS_IMPL_FUNC_T(Component, void, render)(
 CLASS_IMPL_FUNC_T(Component, void, reset)(
 	_X_ void)
 {
-
+	DEL_POINTER(m_Mouseable);
+	DEL_POINTER(m_Keyboardable);
+	DEL_POINTER(m_Actable);
+	m_Graphics = Graphics();
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Component, void, set_Mouseable)(
 	_In_ hsdk::i::frame::i_Mouseable * _mouseable)
 {
+	DEL_POINTER(m_Mouseable);
 	m_Mouseable = _mouseable;
 }
 
@@ -259,6 +270,7 @@ CLASS_IMPL_FUNC_T(Component, hsdk::i::frame::i_Mouseable *, get_Mouseable)(
 CLASS_IMPL_FUNC_T(Component, void, set_Keyboardable)(
 	/* [set] */ hsdk::i::frame::i_Keyboardable * _Keyboardable)
 {
+	DEL_POINTER(m_Keyboardable);
 	m_Keyboardable = _Keyboardable;
 }
 
@@ -273,6 +285,7 @@ CLASS_IMPL_FUNC_T(Component, hsdk::i::frame::i_Keyboardable *, get_Keyboardable)
 CLASS_IMPL_FUNC_T(Component, void, set_Actable)(
 	/* [set] */ hsdk::i::frame::i_Actable * _actable)
 {
+	DEL_POINTER(m_Actable);
 	m_Actable = _actable;
 }
 

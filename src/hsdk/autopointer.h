@@ -16,17 +16,6 @@ namespace hsdk
 
 		typedef T TYPE;
 
-		/*
-		설명 : 객체를 무효화.
-		$ 경고 : 반환된 포인터는 사용자가 삭제할 것을 권장.
-		*/
-		CLASS_DECL_FUNC_T(void, invalid)(
-			_Out_ T * (&_pointer))
-		{
-			_pointer = m_Ptr;
-			m_Ptr = nullptr;
-		}
-
 		// 설명 : T * 로 취급.
 		CLASS_DECL_FUNC_T(, operator T *)(
 			_X_ void)const

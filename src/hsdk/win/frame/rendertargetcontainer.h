@@ -34,7 +34,7 @@ namespace hsdk
 				_X_ void);
 
 			// Ό³Έν : 
-			INTERFACE_DECL_FUNC_T(void, clear)(
+			INTERFACE_DECL_FUNC_T(void, reset)(
 				_X_ void);
 
 		private:

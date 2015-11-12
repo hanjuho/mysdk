@@ -71,7 +71,7 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, render)(
 
 		unsigned int ps_flag = 0;
 
-		if (m_Graphics.texture)
+		if (m_Graphics.refTexture)
 		{
 			ps_flag = direct3d::PS_TEXTURE_0 | direct3d::PS_TEXMATRIX_0;
 			if (m_light)
@@ -91,7 +91,7 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, render)(
 			direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 			direct3d::g_D3D10_Renderer.set_ScalarPSFlag(ps_flag);
 			direct3d::g_D3D10_Renderer.render_UITexture(
-				m_Graphics.texture,
+				m_Graphics.refTexture,
 				&m_Graphics.mTexcoord);
 		}
 		else

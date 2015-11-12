@@ -26,11 +26,11 @@ namespace hsdk
 
 				// 설명 : 이 component를 포함하고 있는 부모의 주소 반환.
 				INTERFACE_DECL_FUNC_T(i_Component *, parent)(
-					_X_ void)const = 0;
+					_X_ void) = 0;
 
 				// 설명 : component의 시각적 요소에 접근.
 				INTERFACE_DECL_FUNC_T(i_Graphics *, graphics)(
-					_X_ void)const = 0;
+					_X_ void) = 0;
 
 				// 설명 : 이 component에 새로운 컴포넌트를 추가.
 				INTERFACE_DECL_FUNC(add_Component)(
