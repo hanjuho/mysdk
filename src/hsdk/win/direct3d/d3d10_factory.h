@@ -46,7 +46,10 @@ namespace hsdk
 				return E_FAIL;
 			}
 
-			// 설명 : _directory에 있는 pixel file을 로드.
+			/*
+			설명 : _directory에 있는 pixel file을 로드.
+			$ 참고 : Factory 내부에서 캐시가 관리되고 있으며, 중복 참조시 참조 카운트가 증가되지 않음.
+			*/
 			CLASS_DECL_FUNC(get_Texture)(
 				_Out_ ID3D10ShaderResourceView ** _texture,
 				_In_ const wchar_t * _directory,
@@ -76,7 +79,7 @@ namespace hsdk
 			// 설명 : 
 			CLASS_DECL_FUNC(build_MeshBox)(
 				_Out_ D3D10_Mesh & _mesh,
-				_In_ D3DXVECTOR4 color,
+				_In_ D3DXVECTOR4 _color,
 				_In_ float _size);
 
 			// 설명 : 

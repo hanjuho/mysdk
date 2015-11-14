@@ -26,7 +26,7 @@ namespace hsdk
 			unsigned int length = -1;
 
 			// 설명 : my id
-			unsigned int id = -1;
+			unsigned int boneNumber = -1;
 
 			// 설명 : to itself matrix from parent
 			D3DXMATRIX mRelation = {
@@ -73,7 +73,7 @@ namespace hsdk
 		{
 
 			// 설명 : 
-			unsigned int animID;
+			unsigned int animNumber;
 
 			// 설명 : 
 			std::wstring name;

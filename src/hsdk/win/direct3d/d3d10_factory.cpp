@@ -265,13 +265,12 @@ CLASS_IMPL_FUNC(D3D10_Factory, create_SkyBoxTexture)(
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC(D3D10_Factory, build_MeshBox)(
 	_Out_ D3D10_Mesh & _mesh,
-	_In_ D3DXVECTOR4 color,
+	_In_ D3DXVECTOR4 _color,
 	_In_ float _size)
 {
 	mesh::meshClear(_mesh);
 	_mesh.meshs.resize(1);
-	_mesh.materials.resize(1);
-	_mesh.materials[0].diffuse = color;
+	_mesh.materials.resize(6);
 
 	// °á°ú
 	HRESULT hr = E_FAIL;
@@ -385,15 +384,19 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshBox)(
 		refmesh.indexbuffer.indexType = DXGI_FORMAT_R16_UINT;
 
 
-		refmesh.subsets.resize(1);
-		D3D10MY_RENDER_DESC & refdesc = refmesh.subsets[0];
+		refmesh.subsets.resize(6);
+		for (unsigned int sindex = 0; sindex < 6; ++sindex)
 		{
-			refdesc.material_id = 0;
-			refdesc.indexCount = ARRAYSIZE(indices);
-			refdesc.indexStart = 0;
+			D3D10MY_RENDER_DESC & refdesc = refmesh.subsets[sindex];
+
+			refdesc.material_id = sindex;
+			refdesc.indexCount = 6;
+			refdesc.indexStart = sindex * 6;
 			refdesc.vertexbufferCount = ARRAYSIZE(vertices);
 			refdesc.vertexbufferStart = 0;
 			refdesc.primitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
+			_mesh.materials[sindex].diffuse = _color;
 		}
 	}
 
@@ -687,8 +690,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 		atow,
 		aiProcessPreset_TargetRealtime_MaxQuality |
 		aiProcess_FlipUVs |
-		aiProcess_SortByPType |
-		aiProcess_LimitBoneWeights);
+		aiProcess_SortByPType);
 
 	IF_INVALID(scene)
 	{
@@ -701,6 +703,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 
 	HRESULT hr;
 
+	HRESULT hrAnim = scene->HasAnimations();
 	if (_animation)
 	{
 		std::list<aiNode *> bones;
@@ -717,10 +720,9 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 
 			auto begin = _animation->bones.begin();
 			auto end = _animation->bones.end();
-
 			while (begin != end)
 			{
-				_animation->bonePath[begin->name] = begin->id;
+				_animation->bonePath[begin->name] = begin->boneNumber;
 				++begin;
 			}
 		}
@@ -732,7 +734,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 				const aiAnimation & animation = *scene->mAnimations[aindex];
 				D3D10MY_ANIMATION & refanimation = _animation->animations[aindex];
 				{
-					refanimation.animID = aindex;
+					refanimation.animNumber = aindex;
 
 					mbstowcs_s<256>(nullptr, buffer, animation.mName.C_Str(), sizeof(buffer));
 					refanimation.name = buffer;
@@ -771,10 +773,9 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 			{
 				auto begin = _animation->animations.begin();
 				auto end = _animation->animations.end();
-
 				while (begin != end)
 				{
-					_animation->animationPath[begin->name] = begin->animID;
+					_animation->animationPath[begin->name] = begin->animNumber;
 					++begin;
 				}
 			}
@@ -1090,7 +1091,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 
 	g_importer.FreeScene();
 
-	return S_OK;
+	return ADD_FLAG(S_OK, hrAnim);
 }
 
 //--------------------------------------------------------------------------------------
@@ -1138,7 +1139,7 @@ IMPL_FUNC_T(unsigned int, build_BonesFromAiNode)(
 	}
 
 	D3D10MY_BONE & refbone = _bones[_index];
-	refbone.id = _index;
+	refbone.boneNumber = _index;
 	refbone.parent = _parent;
 	refbone.length = length;
 

@@ -67,14 +67,10 @@ namespace hsdk
 		$ 경고 : 반환된 포인터는 사용자가 삭제할 것을 권장.
 		*/
 		CLASS_DECL_FUNC_T(void, steal)(
-			_Out_ T * (&_pointer))
+			_Out_ T ** _pointer)
 		{
-			if (_pointer)
-			{
-				DEL_COM(_pointer);
-			}
-
-			_pointer = m_Ptr;
+			DEL_COM((*_pointer));
+			(*_pointer) = m_Ptr;
 			m_Ptr = nullptr;
 		}
 

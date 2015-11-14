@@ -387,7 +387,8 @@ CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_Skinned)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_Mesh)(
-	_In_ D3D10_Mesh & _mesh)
+	_In_ D3D10_Mesh & _mesh,
+	_In_ unsigned int _pass)
 {
 	g_refDevice_1->IASetInputLayout(g_Basic_inputLayout);
 
@@ -411,7 +412,7 @@ CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_Mesh)(
 			set_ColorDiffuse(_mesh.materials[desc.material_id].diffuse);
 			set_TextureDiffuse(_mesh.materials[desc.material_id].diffuseRV);
 			g_refDevice_1->IASetPrimitiveTopology(desc.primitiveType);
-			g_Basic_Technique->GetPassByIndex(0)->Apply(0);
+			g_Basic_Technique->GetPassByIndex(_pass)->Apply(0);
 			g_refDevice_1->DrawIndexed(
 				desc.indexCount,
 				desc.indexStart,

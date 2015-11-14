@@ -184,7 +184,8 @@ namespace hsdk
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_Mesh)(
-				_In_ D3D10_Mesh & _mesh);
+				_In_ D3D10_Mesh & _mesh,
+				_In_ unsigned int _pass = 0);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_SkyBox)(
