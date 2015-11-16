@@ -394,7 +394,6 @@ CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_Mesh)(
 
 	auto begin = _mesh.meshs.begin();
 	auto end = _mesh.meshs.end();
-
 	while (begin != end)
 	{
 		g_refDevice_1->IASetVertexBuffers(0, 1,
