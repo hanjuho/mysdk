@@ -7,6 +7,10 @@
 using namespace hsdk::bullet;
 
 
+// 설명 : 
+#define TERRAIN_COUNT 5
+
+
 //--------------------------------------------------------------------------------------
 void bullet_Callback(
 	_In_ btDynamicsWorld * _world,
@@ -33,19 +37,6 @@ void bullet_Callback(
 
 		callback(manifold, _timeStep);
 	}
-}
-
-//--------------------------------------------------------------------------------------
-IMPL_FUNC_T(int, compute_Pow2)(
-	_In_ int _value)
-{
-	int pow2 = 1;
-	while (pow2 < _value)
-	{
-		pow2 <<= 1;
-	}
-
-	return pow2;
 }
 
 //--------------------------------------------------------------------------------------
@@ -108,30 +99,29 @@ CLASS_IMPL_FUNC(Bullet_Engine, setup1_Terrain)(
 	_In_ unsigned int _size)
 {
 	// 이미 터레인이 있다면 터레인 생성 불가
-	if (my_DynamicsWorld->getCollisionObjectArray().size())
+	if (TERRAIN_COUNT <= my_DynamicsWorld->getCollisionObjectArray().size())
 	{
 		return 1;
 	}
 
-	// 
 	if (_cellX < 1 || _cellY < 1)
 	{
 		return HSDK_FAIL;
 	}
 
-	//
-	int x = compute_Pow2(abs(_cellX));
-	int z = compute_Pow2(abs(_cellY));
+	// 지면은 항상 2의 배수의 크기만큼 생성되어야 함
+	int x = compute_Find2(abs(_cellX));
+	int z = compute_Find2(abs(_cellY));
 
 	int vx = x + 1;
 	int vz = z + 1;
 
-	// float 데이터를 사용할 것임으로 4배
+	// float 데이터를 사용할 것임으로 4배 길이를 복사
 	my_HeightBuffer.resize(vx * vz * 4, 0);
 	memcpy(&my_HeightBuffer[0], _heightBuffer, sizeof(float)* _size);
 
+	// 최대 높이와 최저 높이를 계산
 	float minH, maxH;
-
 	minH = maxH = _heightBuffer[0];
 	for (unsigned int index = 1; index < _size; ++index)
 	{
@@ -139,43 +129,110 @@ CLASS_IMPL_FUNC(Bullet_Engine, setup1_Terrain)(
 		minH = std::min(value, minH);
 		maxH = std::max(value, maxH);
 	}
+	
+	// 경계 상자 생성
+	my_Shapes[0] = new btHeightfieldTerrainShape(vx, vz, &my_HeightBuffer[0], 1.0f, minH, maxH, 1, PHY_FLOAT, false);
 
-	//
+	float thickness = 5.0f;
+	my_Shapes[1] = new btStaticPlaneShape({ 1.0f, 0.0f, 0.0f }, thickness);
+	my_Shapes[2] = new btStaticPlaneShape({ -1.0f, 0.0f, 0.0f }, thickness);
+	my_Shapes[3] = new btStaticPlaneShape({ 0.0f, 0.0f, -1.0f }, thickness);
+	my_Shapes[4] = new btStaticPlaneShape({ 0.0f, 0.0f, 1.0f }, thickness);
+		
+	// 필드 물리 상자
+	AutoDelete<btRigidBody> field[5];
+		
 	btTransform form;
 	form.setIdentity();
+	
+	unsigned int index;
+
+	//-------------------------------------------
+
+	// 지면 매트릭스 오프셋
 	form.setOrigin(btVector3(0.0f, maxH / 2.0f, 0.0f));
+	index = 0;
 
-	//
-	add(form, new btHeightfieldTerrainShape(vx, vz,
-		&my_HeightBuffer[0], 1.0f, minH, maxH, 1, PHY_FLOAT, false), 0.0f)
-		->setCompanionId(BULLET_COMPANION_TERRAINID);
+	// 지면 물리 상자 생성
+	IF_FAILED(create(&field[index], form, my_Shapes[index], 0.0f))
+	{
+		return HSDK_FAIL;
+	}
+	field[index]->setCompanionId(BULLET_COMPANION_TERRAINID);
+	
+	//-------------------------------------------
 
-	float xx = float((x + 10) / 2);
-	float zz = float((z + 10) / 2);
-
-	//
+	float xx = float(x / 2) + thickness;
+	float zz = float(z / 2) + thickness;
+	
+	//-------------------------------------------
+	
+	// 동쪽 경계면 매트릭스 오프셋
 	form.setOrigin(btVector3(-xx, 0.0f, 0.0f));
-	add(form, new btStaticPlaneShape(
-	{ 1.0f, 0.0f, 0.0f }, 5.0f), 0.0f)->setCompanionId(BULLET_COMPANION_EASTWALLID);
+	index = 1;
 
-	//
+	// 동쪽 경계면 상자 생성
+	IF_FAILED(create(&field[index], form, my_Shapes[index], 0.0f))
+	{
+		return HSDK_FAIL;
+	}
+	field[index]->setCompanionId(BULLET_COMPANION_EASTWALLID);
+
+	//-------------------------------------------
+	//-------------------------------------------
+
+	// 서쪽 경계면 매트릭스 오프셋
 	form.setOrigin(btVector3(xx, 0.0f, 0.0f));
-	add(form, new btStaticPlaneShape(
-	{ -1.0f, 0.0f, 0.0f }, 5.0f), 0.0f)->setCompanionId(BULLET_COMPANION_WESTWALLID);
+	index = 2;
 
-	//
+	// 서쪽 경계면 상자 생성
+	IF_FAILED(create(&field[index], form, my_Shapes[index], 0.0f))
+	{
+		return HSDK_FAIL;
+	}
+	field[index]->setCompanionId(BULLET_COMPANION_WESTWALLID);
+	
+	//-------------------------------------------
+	//-------------------------------------------
+
+	// 남쪽 경계면 매트릭스 오프셋
 	form.setOrigin(btVector3(0.0f, 0.0f, zz));
-	add(form, new btStaticPlaneShape(
-	{ 0.0f, 0.0f, -1.0f }, 5.0f), 0.0f)->setCompanionId(BULLET_COMPANION_SOUTHID);
+	index = 3;
 
-	//
+	// 남쪽 경계면 상자 생성
+	IF_FAILED(create(&field[index], form, my_Shapes[index], 0.0f))
+	{
+		return HSDK_FAIL;
+	}
+	field[index]->setCompanionId(BULLET_COMPANION_SOUTHID);
+
+	//-------------------------------------------
+	//-------------------------------------------
+
+	// 북쪽 경계면 매트릭스 오프셋
 	form.setOrigin(btVector3(0.0f, 0.0f, -zz));
-	add(form, new btStaticPlaneShape(
-	{ 0.0f, 0.0f, 1.0f }, 5.0f), 0.0f)->setCompanionId(BULLET_COMPANION_NORTHID);
+	index = 4;
 
+	// 북쪽 경계면 상자 생성
+	IF_FAILED(create(&field[index], form, my_Shapes[index], 0.0f))
+	{
+		return HSDK_FAIL;
+	}
+	field[index]->setCompanionId(BULLET_COMPANION_SOUTHID);
 
-	//
-	if (my_DynamicsWorld->getCollisionObjectArray().size() != 5)
+	//-------------------------------------------
+	//-------------------------------------------
+
+	for (unsigned int i = index; i != -1; --i)
+	{
+		btRigidBody * body = nullptr;
+		field[i].steal(&body);
+
+		add(body);
+	}
+	
+	// 지면이 모두 추가되지 않은 경우
+	if (TERRAIN_COUNT != my_DynamicsWorld->getCollisionObjectArray().size())
 	{
 		reset();
 
@@ -204,7 +261,8 @@ CLASS_IMPL_FUNC_T(Bullet_Engine, void, reset)(
 
 	//remove the rigidbodies from the dynamics world and delete them
 	// 첫번째 유닛은 반드시 터레인이므로 reset()으로 밖에 지울 수 없다.
-	for (int index = my_DynamicsWorld->getNumCollisionObjects() - 1; index != -1; --index)
+	const unsigned int size = my_DynamicsWorld->getNumCollisionObjects();
+	for (unsigned int index = 0; index < size; ++index)
 	{
 		btCollisionObject * obj = my_DynamicsWorld->getCollisionObjectArray()[index];
 		btRigidBody * body = btRigidBody::upcast(obj);
@@ -222,21 +280,25 @@ CLASS_IMPL_FUNC_T(Bullet_Engine, void, reset)(
 }
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(Bullet_Engine, btRigidBody *, add)(
+CLASS_IMPL_FUNC(Bullet_Engine, create)(
+	_Out_ btRigidBody ** _body,
 	_In_ const btTransform & _form,
 	_In_ btCollisionShape * _shape,
-	_In_ float _mass)
+	_In_ float _mass)const
 {
-	btAssert((!_shape || _shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
+	if(_shape == nullptr || _shape->getShapeType() == INVALID_SHAPE_PROXYTYPE)
+	{
+		return HSDK_FAIL;
+	}
 
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	// rigidbody is dynamic if and only if mass is non zero, otherwise static
 	btVector3 localInertia(0, 0, 0);
 	if (_mass != 0.0f)
 	{
 		_shape->calculateLocalInertia(_mass, localInertia);
 	}
 
-	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
+	// using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 	btDefaultMotionState * myMotionState =
 		new btDefaultMotionState(_form);
 
@@ -245,13 +307,23 @@ CLASS_IMPL_FUNC_T(Bullet_Engine, btRigidBody *, add)(
 		_mass, myMotionState, _shape, localInertia);
 
 	//
-	btRigidBody * body = new btRigidBody(cInfo);
+	DEL_POINTER((*_body));
+	if ((*_body) = new btRigidBody(cInfo))
+	{
+		return 0;
+	}
+	else
+	{
+		return HSDK_FAIL;
+	}
+}
 
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(Bullet_Engine, void, add)(
+	_In_ btRigidBody * _body)
+{
 	// 
-	my_DynamicsWorld->addRigidBody(body);
-
-	//
-	return body;
+	my_DynamicsWorld->addRigidBody(_body);
 }
 
 //--------------------------------------------------------------------------------------
@@ -267,7 +339,8 @@ CLASS_IMPL_FUNC_T(Bullet_Engine, void, clear)(
 {
 	//remove the rigidbodies from the dynamics world and delete them
 	// 첫번째 유닛은 반드시 터레인이므로 reset()으로 밖에 지울 수 없다.
-	for (int index = my_DynamicsWorld->getNumCollisionObjects() - 1; index != 1; --index)
+	const unsigned int size = my_DynamicsWorld->getNumCollisionObjects();
+	for (unsigned int index = TERRAIN_COUNT; index < size; ++index)
 	{
 		btCollisionObject * obj = my_DynamicsWorld->getCollisionObjectArray()[index];
 		btRigidBody * body = btRigidBody::upcast(obj);

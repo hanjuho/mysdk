@@ -11,9 +11,9 @@ using namespace hsdk::direct3d;
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(void, hsdk::direct3d::mesh::meshClear)(
-	_Out_ D3D10_Mesh & _mesh)
+	_Out_ D3D10_Mesh * _mesh)
 {
-	_mesh.meshPath.clear();
-	_mesh.materials.clear();
-	_mesh.meshs.clear();
+	_mesh->meshPath.clear();
+	_mesh->materials.clear();
+	_mesh->meshs.clear();
 }

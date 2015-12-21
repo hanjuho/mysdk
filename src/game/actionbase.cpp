@@ -7,19 +7,6 @@ using namespace game;
 
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_CONSTRUCTOR(ActionBase, ActionBase)(void)
-: m_Datatable(nullptr)
-{
-
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_DESTRUCTOR(ActionBase, ActionBase)(void)
-{
-
-}
-
-//--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(ActionBase, i::i_ActionLayer *, attack)(
 	_In_ long _flag)
 {

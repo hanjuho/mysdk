@@ -19,6 +19,11 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, onMouse_Enter)(
 	_In_ int _x,
 	_In_ int _y)
 {
+	if (parent())
+	{
+		parent()->redraw();
+	}
+
 	m_light = true;
 	return Component::onMouse_Enter(_x, _y);
 }
@@ -28,6 +33,11 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, onMouse_Exit)(
 	_In_ int _x,
 	_In_ int _y)
 {
+	if (parent())
+	{
+		parent()->redraw();
+	}
+
 	m_light = false;
 	m_alpha = false;
 	return Component::onMouse_Exit(_x, _y);
@@ -39,6 +49,11 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, onClick_Down)(
 	_In_ int _x,
 	_In_ int _y)
 {
+	if (parent())
+	{
+		parent()->redraw();
+	}
+
 	if (_button == i::frame::LBUTTON)
 	{
 		m_alpha = true;
@@ -53,6 +68,11 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, onClick_Up)(
 	_In_ int _x,
 	_In_ int _y)
 {
+	if (parent())
+	{
+		parent()->redraw();
+	}
+
 	if (_button == i::frame::LBUTTON)
 	{
 		m_alpha = false;

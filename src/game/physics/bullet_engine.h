@@ -58,7 +58,11 @@ namespace hsdk
 				_In_ int _depth,
 				_In_ CALLBACK_COLLISIONRESULT _callback = nullptr);
 
-			// 설명 : 
+			/*
+			설명 : 지형의 너비, 높이, 깊이를 설정, 생성.
+			$ 참고 1 : _cellX, _cellY는 반드시 2의 배수여야 함(그렇지 않은 경우 내부에서 2의 배수로 수정함).
+			$ 참고 2 : 총 5개의 물리도형이 추가되며, 이 도형은 reset()으로만 지울 수 있음.
+			*/
 			CLASS_DECL_FUNC(setup1_Terrain)(
 				_In_ int _cellX,
 				_In_ int _cellY,
@@ -69,25 +73,30 @@ namespace hsdk
 			CLASS_DECL_FUNC_T(void, update)(
 				_X_ float _time);
 
-			// 설명 : 
+			// 설명 : 이 함수를 호출하면 setup0 부터 다시 호출하여야 함.
 			CLASS_DECL_FUNC_T(void, reset)(
 				_X_ void);
 
 			/*
-			설명 : btRigidBody는 단순히 _shape를 참조할 뿐이기 때문에 여러 btRigidBody가 하나의 btCollisionShape를 참조할 수 있음.
-			$ 참고 1 : btCollisionShape * _shape의 삭제는 책임지지 않음.
-			$ 참고 2 : 이 함수의 호출이 실패하면 반환 값은 nullptr이며, 반환 값은 Bullet_Engine내부와 연결되기 때문에 포인터가 지워져서는 안됨.
+			설명 : _body를 내부에서 생성하여 반환만 함.
+			$ 참고 1 : btRigidBody는 단순히 _shape를 참조할 뿐이기 때문에 여러 btRigidBody가 하나의 btCollisionShape를 참조할 수 있음.
+			$ 참고 2 : btCollisionShape * _shape의 삭제는 책임지지 않음.
 			*/
-			CLASS_DECL_FUNC_T(btRigidBody *, add)(
+			CLASS_DECL_FUNC(create)(
+				_Out_ btRigidBody ** _body,
 				_In_ const btTransform & _form,
 				_In_ btCollisionShape * _shape,
-				_In_ float _mass);
+				_In_ float _mass)const;
 
-			// 설명 : 
+			// 설명 : 물리적인 형태를 월드에 추가, 포인터에 대한 소유권도 함께 넘김.
+			CLASS_DECL_FUNC_T(void, add)(
+				_In_ btRigidBody * _body);
+
+			// 설명 : 물리적인 형태를 월드에 제거, 포인터에 대한 소유권도 함께 가져옴.
 			CLASS_DECL_FUNC_T(void, remove)(
 				_In_ btRigidBody * _body);
 
-			// 설명 : 
+			// 설명 : 터레인을 제외한 월드의 모든 오브젝트를 제거.
 			CLASS_DECL_FUNC_T(void, clear)(
 				_X_ void);
 
@@ -114,6 +123,9 @@ namespace hsdk
 			std::vector<unsigned char> my_HeightBuffer;
 
 			// 설명 : 
+			AutoDelete<btCollisionShape> my_Shapes[5];
+
+			// 설명 : 
 			AutoDelete<btAxisSweep3> my_OverlappingPairCache;
 
 			// 설명 : 
@@ -129,6 +141,19 @@ namespace hsdk
 			AutoDelete<btDiscreteDynamicsWorld> my_DynamicsWorld;
 
 		};
+		
+		// 설명 : 		
+		inline IMPL_FUNC_T(int, compute_Find2)(
+			_In_ int _value)
+		{
+			int pow2 = 1;
+			while (pow2 < _value)
+			{
+				pow2 <<= 1;
+			}
+
+			return pow2;
+		}
 
 	}
 }

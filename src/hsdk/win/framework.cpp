@@ -253,7 +253,7 @@ CLASS_IMPL_FUNC(Framework, setup2_Device9)(
 
 	HRESULT hr;
 	if (FAILED(hr = g_DeviceFactory->create9(
-		g_Device, 
+		&g_Device, 
 		_desc, 
 		&g_Callbacks)))
 	{
@@ -302,7 +302,7 @@ CLASS_IMPL_FUNC(Framework, setup2_Device10)(
 
 	HRESULT hr;
 	if (FAILED(hr = g_DeviceFactory->create10(
-		g_Device,
+		&g_Device,
 		_desc,
 		&g_Callbacks,
 		false)))
@@ -547,7 +547,7 @@ CLASS_IMPL_FUNC(Framework, transform)(
 				g_D3D10Descs->sd.BufferDesc.Height = resultHeight;
 
 				IF_FAILED(hr = g_DeviceFactory->resize10(
-					g_Device, *g_D3D10Descs, &g_Callbacks))
+					&g_Device, *g_D3D10Descs, &g_Callbacks))
 				{
 					memcpy(g_D3D10Descs, &backUp, sizeof(D3D10_DEVICE_DESC));
 					return hr;
@@ -563,7 +563,7 @@ CLASS_IMPL_FUNC(Framework, transform)(
 				g_D3D9Descs->pp.BackBufferHeight = resultHeight;
 
 				IF_FAILED(hr = g_DeviceFactory->restore9(
-					g_Device, *g_D3D9Descs, &g_Callbacks))
+					&g_Device, *g_D3D9Descs, &g_Callbacks))
 				{
 					memcpy(g_D3D9Descs, &backUp, sizeof(D3D9_DEVICE_DESC));
 					return hr;
@@ -595,7 +595,7 @@ CLASS_IMPL_FUNC(Framework, transform)(
 				}
 
 				IF_FAILED(g_DeviceFactory->reset10(
-					g_Device, newDesc, &g_Callbacks))
+					&g_Device, newDesc, &g_Callbacks))
 				{
 					g_State.setupDevice = FALSE;
 					return setup2_Device10(*g_D3D10Descs);
@@ -625,7 +625,7 @@ CLASS_IMPL_FUNC(Framework, transform)(
 				}
 
 				IF_FAILED(g_DeviceFactory->reset9(
-					g_Device, newDesc, &g_Callbacks))
+					&g_Device, newDesc, &g_Callbacks))
 				{
 					g_State.setupDevice = FALSE;
 					return setup2_Device9(newDesc);
@@ -824,7 +824,7 @@ CLASS_IMPL_FUNC_T(Framework, void, render)(
 			if (D3DERR_DEVICELOST == hr)
 			{
 				g_DeviceFactory->resize10(
-					g_Device,
+					&g_Device,
 					*g_D3D10Descs,
 					&g_Callbacks);
 			}
@@ -856,7 +856,7 @@ CLASS_IMPL_FUNC_T(Framework, void, render)(
 			if (D3DERR_DEVICELOST == hr)
 			{
 				g_DeviceFactory->restore9(
-					g_Device,
+					&g_Device,
 					*g_D3D9Descs,
 					&g_Callbacks);
 			}

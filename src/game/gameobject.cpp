@@ -7,57 +7,10 @@ using namespace game;
 
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_CONSTRUCTOR(GameObject, GameObject)(
-	/* [set] */ i::i_DataTable * _datatable,
-	/* [set] */ Controller * _controller,
-	/* [set] */ ActionBase *_actionbase,
-	/* [set] */ ModelRenderer * _renderer)
-	: m_DataTable(_datatable), m_Controller(_controller),
-	m_ActionBase(_actionbase), m_Renderer(_renderer)
-{
-	IF_FALSE(_datatable && _controller &&_actionbase && _renderer)
-	{
-		throw HSDK_FAIL;
-	}
-
-	m_Controller->link_ActionBase(_actionbase);
-	m_Controller->link_ActionListener(this);
-	m_ActionBase->link_DataTable(_datatable);
-	m_Renderer->link_DataTable(_datatable);
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_DESTRUCTOR(GameObject, GameObject)(void)
-{
-
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(GameObject, i::i_DataTable *, datatalbe)(
-	_X_ void)const
-{
-	return m_DataTable;
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(GameObject, i::i_Controller *, controller)(
-	_X_ void)const
-{
-	return m_Controller;
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(GameObject, i::i_ModelRenderer *, renderer)(
-	_X_ void)const
-{
-	return m_Renderer;
-}
-
-//--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(GameObject, void, update)(
 	_X_ void)
 {
-
+	act_ActionLayers();
 }
 
 //--------------------------------------------------------------------------------------
@@ -65,6 +18,84 @@ CLASS_IMPL_FUNC_T(GameObject, void, render)(
 	_X_ void)
 {
 	m_Renderer->render();
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, void, set_Datatalbe)(
+	/* [set] */ i::i_DataTable * _datatable)
+{
+	m_DataTable = _datatable;
+	if (_datatable && m_ActionBase)
+	{
+		m_ActionBase->link_DataTable(_datatable);
+	}
+
+	if (_datatable && m_Renderer)
+	{
+		m_Renderer->link_DataTable(_datatable);
+	}
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, void, set_Controller)(
+	/* [set] */ Controller * _controller)
+{
+	m_Controller = _controller;
+	if (_controller && m_ActionBase)
+	{
+		m_Controller->link_ActionBase(m_ActionBase);
+		m_Controller->link_ActionListener(this);
+	}
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, void, set_ActionBase)(
+	/* [set] */ ActionBase * _actionbase)
+{
+	m_ActionBase = _actionbase;
+	if (_actionbase && m_DataTable)
+	{
+		m_ActionBase->link_DataTable(m_DataTable);
+	}
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, void, set_Renderer)(
+	/* [set] */ Renderer * _renderer)
+{
+	m_Renderer = _renderer;
+	if (_renderer && m_DataTable)
+	{
+		m_Renderer->link_DataTable(m_DataTable);
+	}
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, i::i_DataTable *, get_Datatalbe)(
+	_X_ void)const
+{
+	return m_DataTable;
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, i::i_Controller *, get_Controller)(
+	_X_ void)const
+{
+	return m_Controller;
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, i::i_ActionBase *, get_ActionBase)(
+	_X_ void)const
+{
+	return m_ActionBase;
+}
+
+//--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(GameObject, i::i_Renderer *, get_Renderer)(
+	_X_ void)const
+{
+	return m_Renderer;
 }
 
 //--------------------------------------------------------------------------------------

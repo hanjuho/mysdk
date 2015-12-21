@@ -14,11 +14,11 @@ namespace hsdk
 		{
 
 			// 설명 : 
-			DECL_INTERFACE(i_ModelRenderer)
+			DECL_INTERFACE(i_Renderer)
 			{
 
 				// 소멸자.
-				CLASS_DECL_DESTRUCTOR(i_ModelRenderer)(void)
+				CLASS_DECL_DESTRUCTOR(i_Renderer)(void)
 				{
 
 				}

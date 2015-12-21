@@ -1,5 +1,4 @@
-#include "actionlayer.h"
-#include "interface/datatable.h"
+#include "renderer.h"
 
 
 
@@ -8,29 +7,29 @@ using namespace game;
 
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(ActionLayer, void, initialize)(
+CLASS_IMPL_FUNC_T(Renderer, void, initialize)(
 	_X_ void)
 {
 
 }
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(ActionLayer, bool, act)(
-	_In_ float _dt)const
+CLASS_IMPL_FUNC_T(Renderer, void, update)(
+	_X_ void)
 {
-	return false;
+
 }
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(ActionLayer, unsigned int, priority)(
-	_X_ void)const
+CLASS_IMPL_FUNC_T(Renderer, void, render)(
+	_X_ void)
 {
-	return 0xffffffff;
+
 }
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(ActionLayer, void, link_DataTable)(
+CLASS_IMPL_FUNC_T(Renderer, void, link_DataTable)(
 	_Ref_ i::i_DataTable * _datatable)
 {
-	m_DataTable = _datatable;
+	m_Datatable = _datatable;
 }

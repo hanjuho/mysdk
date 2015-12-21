@@ -197,6 +197,10 @@ if (nullptr == p)
 #define HSDK_FAIL \
 	0x80000000
 
+// hr 무효 상태
+#define HSDK_NOTIMPL \
+	0xFFFFFFFF
+
 
 
 // p를 소거하고, 무효화.

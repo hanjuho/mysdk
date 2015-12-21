@@ -7,19 +7,6 @@ using namespace game;
 
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_CONSTRUCTOR(Controller, Controller)(void)
-: m_ActionBase(nullptr), m_ActionListener(nullptr)
-{
-
-}
-
-//--------------------------------------------------------------------------------------
-CLASS_IMPL_DESTRUCTOR(Controller, Controller)(void)
-{
-
-}
-
-//--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Controller, void, attack)(
 	_In_ long _flag)
 {

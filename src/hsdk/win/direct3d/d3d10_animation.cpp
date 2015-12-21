@@ -3,22 +3,22 @@
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(void, hsdk::direct3d::animation::animationClear)(
-	_Out_ D3D10_Animation & _animation)
+	_Out_ D3D10_Animation * _animation)
 {
-	_animation.animationPath.clear();
-	_animation.animations.clear();
+	_animation->animationPath.clear();
+	_animation->animations.clear();
 
-	_animation.bonePath.clear();
-	_animation.bones.clear();
+	_animation->bonePath.clear();
+	_animation->bones.clear();
 }
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(void, hsdk::direct3d::animation::animationRecordClear)(
-	_Out_ D3D10_Animation_Recorder & _recorder)
+	_Out_ D3D10_Animation_Recorder * _recorder)
 {
-	_recorder.aniamtionID = -1;
-	_recorder.pos.clear();
-	_recorder.time = 0.0f;
+	_recorder->aniamtionID = -1;
+	_recorder->pos.clear();
+	_recorder->time = 0.0f;
 }
 
 //--------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::animation::build_MeshBoneMatrix)(
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC(hsdk::direct3d::animation::build_Pos)(
-	_Out_ D3D10_Animation_Recorder & _pos,
+	_Out_ D3D10_Animation_Recorder * _pos,
 	_In_ const D3D10_Animation & _animation,
 	_In_ unsigned int _animationPos,
 	_In_ double _time)
@@ -52,10 +52,10 @@ IMPL_FUNC(hsdk::direct3d::animation::build_Pos)(
 		return E_FAIL;
 	}
 
-	_pos.aniamtionID = _animationPos;
-	_pos.pos.resize(limit);
+	_pos->aniamtionID = _animationPos;
+	_pos->pos.resize(limit);
 	
-	D3DXMatrixIdentity(&_pos.pos[0]);
+	D3DXMatrixIdentity(&_pos->pos[0]);
 
 	animate_Pos(_pos, _animation);
 
@@ -64,17 +64,17 @@ IMPL_FUNC(hsdk::direct3d::animation::build_Pos)(
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(void, hsdk::direct3d::animation::animate_Pos)(
-	_Out_ D3D10_Animation_Recorder & _pos,
+	_Out_ D3D10_Animation_Recorder * _pos,
 	_In_ const D3D10_Animation & _animation)
 {
-	D3DXMATRIX * dispatch = &_pos.pos[0];
+	D3DXMATRIX * dispatch = &_pos->pos[0];
 	bool animateBuffer[256] = { 0 };
 	{
 		const D3D10MY_ANIMATION & animation = 
-			_animation.animations[_pos.aniamtionID];
+			_animation.animations[_pos->aniamtionID];
 
 		double duration = animation.duration;
-		double time = _pos.time * animation.tickPerSecond;
+		double time = _pos->time * animation.tickPerSecond;
 		
 		// 시간 초과
 		if (duration < time)
@@ -90,7 +90,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::animation::animate_Pos)(
 			}
 
 			// 새로운 타임을 저장
-			_pos.time = time / animation.tickPerSecond;
+			_pos->time = time / animation.tickPerSecond;
 		}
 		// 시간이 0보다 작음
 		else if (time < 0)
@@ -106,7 +106,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::animation::animate_Pos)(
 			}
 
 			// 새로운 타임을 저장
-			_pos.time = time / animation.tickPerSecond;
+			_pos->time = time / animation.tickPerSecond;
 		}
 
 		const unsigned int length = animation.boneKeyFrames.size();
@@ -143,7 +143,7 @@ IMPL_FUNC_T(void, hsdk::direct3d::animation::animate_Pos)(
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC(hsdk::direct3d::animation::trans_Pos)(
-	_Out_ D3D10_Animation_Recorder & _pos,
+	_Out_ D3D10_Animation_Recorder * _pos,
 	_In_ const D3D10_Animation & _animation,
 	_In_ unsigned int _animationPos)
 {
@@ -152,7 +152,7 @@ IMPL_FUNC(hsdk::direct3d::animation::trans_Pos)(
 		return E_FAIL;
 	}
 
-	_pos.aniamtionID = _animationPos;
+	_pos->aniamtionID = _animationPos;
 	reset_Pos(_pos, _animation);
 
 	return S_OK;
@@ -160,10 +160,10 @@ IMPL_FUNC(hsdk::direct3d::animation::trans_Pos)(
 
 //--------------------------------------------------------------------------------------
 IMPL_FUNC_T(void, hsdk::direct3d::animation::reset_Pos)(
-	_Out_ D3D10_Animation_Recorder & _pos,
+	_Out_ D3D10_Animation_Recorder * _pos,
 	_In_ const D3D10_Animation & _animation)
 {
-	_pos.time = 0.0f;
+	_pos->time = 0.0f;
 	animate_Pos(_pos, _animation);
 }
 

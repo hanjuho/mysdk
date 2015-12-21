@@ -129,12 +129,16 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, update)(
 				_X_ void);
 
+			// 설명 : component를 화면에 뿌려줌.
+			INTERFACE_DECL_FUNC_T(void, render)(
+				_X_ void);
+
 			// 설명 : component의 좌표를 갱신.
 			INTERFACE_DECL_FUNC_T(void, reform)(
 				_X_ void);
 
-			// 설명 : component를 화면에 뿌려줌.
-			INTERFACE_DECL_FUNC_T(void, render)(
+			// 설명 : component를 다시 그림.
+			INTERFACE_DECL_FUNC_T(void, redraw)(
 				_X_ void);
 
 			// 설명 : component에게 문제가 생겼을 때, component를 초기화.

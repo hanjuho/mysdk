@@ -17,12 +17,6 @@ namespace hsdk
 		{
 		public:
 
-			// 생성자.
-			CLASS_DECL_CONSTRUCTOR(ActionLayer)(void);
-
-			// 소멸자.
-			CLASS_DECL_DESTRUCTOR(ActionLayer)(void);
-
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, initialize)(
 				_X_ void);
@@ -42,7 +36,7 @@ namespace hsdk
 		protected:
 
 			// 설명 : 
-			i::i_DataTable * m_DataTable;
+			i::i_DataTable * m_DataTable = nullptr;
 
 		};
 

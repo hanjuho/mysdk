@@ -17,7 +17,7 @@ namespace hsdk
 			DECL_STRUCT(i_Controller);
 			DECL_STRUCT(i_ActionLayer);
 			DECL_STRUCT(i_ActionListener);
-			DECL_STRUCT(i_ModelRenderer);
+			DECL_STRUCT(i_Renderer);
 			DECL_STRUCT(i_GameObject);
 			DECL_STRUCT(i_GameEngine);
 

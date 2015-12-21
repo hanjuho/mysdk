@@ -71,12 +71,16 @@ namespace hsdk
 			INTERFACE_DECL_FUNC_T(void, update)(
 				_X_ void);
 
+			// 설명 : container를 화면에 뿌려줌, 자신을 render()를 호출하고 Component들의 render()를 호출.
+			INTERFACE_DECL_FUNC_T(void, render)(
+				_X_ void);
+
 			// 설명 : component의 좌표를 갱신.
 			INTERFACE_DECL_FUNC_T(void, reform)(
 				_X_ void);
 
-			// 설명 : container를 화면에 뿌려줌, 자신을 render()를 호출하고 Component들의 render()를 호출.
-			INTERFACE_DECL_FUNC_T(void, render)(
+			// 설명 : component를 다시 그림.
+			INTERFACE_DECL_FUNC_T(void, redraw)(
 				_X_ void);
 
 			// 설명 : container가 가진 전부를 초기화, Graphics, Layout, Component가 모두 사라짐.

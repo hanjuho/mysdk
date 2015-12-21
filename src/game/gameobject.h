@@ -2,12 +2,11 @@
 
 
 
-#include "interface/gameobject.h"
 #include "interface/datatable.h"
 #include "interface/actionlayer.h"
 #include "controller.h"
 #include "actionbase.h"
-#include "modelrenderer.h"
+#include "renderer.h"
 #include "../hsdk/autodelete.h"
 #include <list>
 
@@ -20,31 +19,9 @@ namespace hsdk
 
 		// 설명 : 
 		DECL_CLASS(GameObject)
-			: public i::i_GameObject, public i::i_ActionListener
+			: public i::i_ActionListener
 		{
 		public:
-
-			// 생성자.
-			CLASS_DECL_CONSTRUCTOR(GameObject)(
-				/* [set] */ i::i_DataTable * _datatable,
-				/* [set] */ Controller * _controller,
-				/* [set] */ ActionBase *_actionbase,
-				/* [set] */ ModelRenderer * _renderer);
-
-			// 소멸자.
-			CLASS_DECL_DESTRUCTOR(GameObject)(void);
-
-			// 설명 : 
-			INTERFACE_DECL_FUNC_T(i::i_DataTable *, datatalbe)(
-				_X_ void)const;
-
-			// 설명 : 
-			INTERFACE_DECL_FUNC_T(i::i_Controller *, controller)(
-				_X_ void)const;
-
-			// 설명 : 
-			INTERFACE_DECL_FUNC_T(i::i_ModelRenderer *, renderer)(
-				_X_ void)const;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, update)(
@@ -53,6 +30,38 @@ namespace hsdk
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, render)(
 				_X_ void);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, set_Datatalbe)(
+				/* [set] */ i::i_DataTable * _datatable);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, set_Controller)(
+				/* [set] */ Controller * _controller);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, set_ActionBase)(
+				/* [set] */ ActionBase * _actionbase);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(void, set_Renderer)(
+				/* [set] */ Renderer * _renderer);
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(i::i_DataTable *, get_Datatalbe)(
+				_X_ void)const;
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(i::i_Controller *, get_Controller)(
+				_X_ void)const;
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(i::i_ActionBase *, get_ActionBase)(
+				_X_ void)const;
+
+			// 설명 : 
+			INTERFACE_DECL_FUNC_T(i::i_Renderer *, get_Renderer)(
+				_X_ void)const;
 
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(void, listen_Action)(
@@ -76,7 +85,7 @@ namespace hsdk
 			AutoDelete<ActionBase> m_ActionBase;
 
 			// 설명 : 
-			AutoDelete<ModelRenderer> m_Renderer;
+			AutoDelete<Renderer> m_Renderer;
 
 		private:
 

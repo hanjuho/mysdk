@@ -145,7 +145,7 @@ namespace hsdk
 
 			//Ό³Έν :
 			DECL_FUNC_T(void, meshClear)(
-				_Out_ D3D10_Mesh & _mesh);
+				_Out_ D3D10_Mesh * _mesh);
 
 		}
 	}

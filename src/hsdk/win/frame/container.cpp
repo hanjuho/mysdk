@@ -244,6 +244,24 @@ CLASS_IMPL_FUNC_T(Container, void, update)(
 }
 
 //--------------------------------------------------------------------------------------
+CLASS_IMPL_FUNC_T(Container, void, render)(
+	_X_ void)
+{
+	if (is_Visible())
+	{
+		Component::render();
+
+		auto begin = m_Container.begin();
+		auto end = m_Container.end();
+		while (begin != end)
+		{
+			(*begin)->render();
+			++begin;
+		}
+	}
+}
+
+//--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(Container, void, reform)(
 	_X_ void)
 {
@@ -277,20 +295,15 @@ CLASS_IMPL_FUNC_T(Container, void, reform)(
 }
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(Container, void, render)(
+CLASS_IMPL_FUNC_T(Container, void, redraw)(
 	_X_ void)
 {
-	if (is_Visible())
+	auto begin = m_Container.begin();
+	auto end = m_Container.end();
+	while (begin != end)
 	{
-		Component::render();
-
-		auto begin = m_Container.begin();
-		auto end = m_Container.end();
-		while (begin != end)
-		{
-			(*begin)->render();
-			++begin;
-		}
+		(*begin)->redraw();
+		++begin;
 	}
 }
 

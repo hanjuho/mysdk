@@ -2,7 +2,7 @@
 
 
 
-#include "interface/modelrenderer.h"
+#include "interface/renderer.h"
 
 
 
@@ -12,16 +12,10 @@ namespace hsdk
 	{
 
 		// 설명 : 
-		DECL_CLASS(ModelRenderer)
-			: public i::i_ModelRenderer
+		DECL_CLASS(Renderer)
+			: public i::i_Renderer
 		{
 		public:
-
-			// 생성자.
-			CLASS_DECL_CONSTRUCTOR(ModelRenderer)(void);
-
-			// 소멸자.
-			CLASS_DECL_DESTRUCTOR(ModelRenderer)(void);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, initialize)(
@@ -42,7 +36,7 @@ namespace hsdk
 		protected:
 
 			// 설명 :
-			i::i_DataTable * m_Datatable;
+			i::i_DataTable * m_Datatable = nullptr;
 
 		};
 

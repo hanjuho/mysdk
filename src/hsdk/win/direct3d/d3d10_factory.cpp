@@ -264,19 +264,19 @@ CLASS_IMPL_FUNC(D3D10_Factory, create_SkyBoxTexture)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC(D3D10_Factory, build_MeshBox)(
-	_Out_ D3D10_Mesh & _mesh,
+	_Out_ D3D10_Mesh * _mesh,
 	_In_ D3DXVECTOR4 _color,
 	_In_ float _size)
 {
 	mesh::meshClear(_mesh);
-	_mesh.meshs.resize(1);
-	_mesh.materials.resize(6);
+	_mesh->meshs.resize(1);
+	_mesh->materials.resize(6);
 
 	// 결과
 	HRESULT hr = E_FAIL;
 
 	// 매쉬 생성
-	D3D10MY_MESH & refmesh = _mesh.meshs[0];
+	D3D10MY_MESH & refmesh = _mesh->meshs[0];
 	{
 		// Create vertex buffer
 		D3D10_BasicFormat vertices[] =
@@ -396,7 +396,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshBox)(
 			refdesc.vertexbufferStart = 0;
 			refdesc.primitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-			_mesh.materials[sindex].diffuse = _color;
+			_mesh->materials[sindex].diffuse = _color;
 		}
 	}
 
@@ -405,19 +405,19 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshBox)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC(D3D10_Factory, build_MeshTerran)(
-	_Out_ D3D10_Mesh & _mesh,
+	_Out_ D3D10_Mesh * _mesh,
 	_In_ const D3D10_Terrain & _terrain,
 	_In_ const float * _heightbuffer)
 {
 	mesh::meshClear(_mesh);
-	_mesh.meshs.resize(1);
-	_mesh.materials.resize(1);
+	_mesh->meshs.resize(1);
+	_mesh->materials.resize(1);
 
 	// 결과
 	HRESULT hr = E_FAIL;
 
 	// 매쉬 생성
-	D3D10MY_MESH & refmesh = _mesh.meshs[0];
+	D3D10MY_MESH & refmesh = _mesh->meshs[0];
 	{
 
 		std::vector<D3D10_BasicFormat> ptr_vertexs(_terrain.vertices);
@@ -548,15 +548,15 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshTerran)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC(D3D10_Factory, build_MeshSkyBox)(
-	_Out_ D3D10_Mesh & _mesh,
+	_Out_ D3D10_Mesh * _mesh,
 	_In_ float _size)
 {
 	mesh::meshClear(_mesh);
-	_mesh.meshs.resize(1);
-	_mesh.materials.resize(1);
+	_mesh->meshs.resize(1);
+	_mesh->materials.resize(1);
 
 	D3D10MY_MESH & refmesh =
-		_mesh.meshs[0];
+		_mesh->meshs[0];
 
 	HRESULT hr = E_FAIL;
 
@@ -665,7 +665,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshSkyBox)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
-	_Out_ D3D10_Mesh & _mesh,
+	_Out_ D3D10_Mesh * _mesh,
 	_In_ const wchar_t * _filePath,
 	_In_ const wchar_t * _fileName,
 	_Out_ D3D10_Animation * _animation)
@@ -698,7 +698,7 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 	}
 
 	{
-		_mesh.meshPath = wtoa;
+		_mesh->meshPath = wtoa;
 	}
 
 	HRESULT hr;
@@ -783,14 +783,14 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 	}
 
 	{
-		_mesh.materials.resize(scene->mNumMaterials ? scene->mNumMaterials : 1);
-		_mesh.meshs.resize(scene->mNumMeshes);
+		_mesh->materials.resize(scene->mNumMaterials ? scene->mNumMaterials : 1);
+		_mesh->meshs.resize(scene->mNumMeshes);
 	}
 
 	for (unsigned int mindex = 0; mindex < scene->mNumMaterials; ++mindex)
 	{
 		const aiMaterial & matl = *scene->mMaterials[mindex];
-		D3D10MY_MATERIAL & refmaterial = _mesh.materials[mindex];
+		D3D10MY_MATERIAL & refmaterial = _mesh->materials[mindex];
 		{
 			aiString aiPath;
 			const unsigned int ndt = matl.GetTextureCount(aiTextureType_DIFFUSE);
@@ -886,17 +886,17 @@ CLASS_IMPL_FUNC(D3D10_Factory, build_MeshFromFile)(
 
 	if (scene->mNumMaterials == 0)
 	{
-		_mesh.materials[0].diffuse = D3DXVECTOR4(1.f, 1.f, 1.f, 1.f);
-		_mesh.materials[0].ambient = D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.f);
-		_mesh.materials[0].specular = D3DXVECTOR4(0.f, 0.f, 0.f, 0.f);
-		_mesh.materials[0].emissive = D3DXVECTOR4(0.f, 0.f, 0.f, 0.f);
-		_mesh.materials[0].shininess = 0.0f;
+		_mesh->materials[0].diffuse = D3DXVECTOR4(1.f, 1.f, 1.f, 1.f);
+		_mesh->materials[0].ambient = D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.f);
+		_mesh->materials[0].specular = D3DXVECTOR4(0.f, 0.f, 0.f, 0.f);
+		_mesh->materials[0].emissive = D3DXVECTOR4(0.f, 0.f, 0.f, 0.f);
+		_mesh->materials[0].shininess = 0.0f;
 	}
 
 	for (unsigned int index = 0; index < scene->mNumMeshes; ++index)
 	{
 		const aiMesh & mesh = *scene->mMeshes[index];
-		D3D10MY_MESH & refmesh = _mesh.meshs[index];
+		D3D10MY_MESH & refmesh = _mesh->meshs[index];
 
 		D3D10_PRIMITIVE_TOPOLOGY topology;
 		unsigned int faceSize = 0;

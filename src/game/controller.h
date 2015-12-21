@@ -18,12 +18,6 @@ namespace hsdk
 		{
 		public:
 
-			// 생성자.
-			CLASS_DECL_CONSTRUCTOR(Controller)(void);
-
-			// 소멸자.
-			CLASS_DECL_DESTRUCTOR(Controller)(void);
-
 			// 설명 :
 			INTERFACE_DECL_FUNC_T(void, attack)(
 				_In_ long _flag);
@@ -74,10 +68,10 @@ namespace hsdk
 		protected:
 
 			// 설명 : 
-			i::i_ActionBase * m_ActionBase;
+			i::i_ActionBase * m_ActionBase = nullptr;
 
 			// 설명 : 
-			i::i_ActionListener * m_ActionListener;
+			i::i_ActionListener * m_ActionListener = nullptr;
 
 		};
 
