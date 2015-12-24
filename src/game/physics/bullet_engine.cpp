@@ -101,7 +101,7 @@ CLASS_IMPL_FUNC(Bullet_Engine, setup1_Terrain)(
 	// 이미 터레인이 있다면 터레인 생성 불가
 	if (TERRAIN_COUNT <= my_DynamicsWorld->getCollisionObjectArray().size())
 	{
-		return 1;
+		return HSDK_FAIL;
 	}
 
 	if (_cellX < 1 || _cellY < 1)
@@ -150,7 +150,7 @@ CLASS_IMPL_FUNC(Bullet_Engine, setup1_Terrain)(
 	//-------------------------------------------
 
 	// 지면 매트릭스 오프셋
-	form.setOrigin(btVector3(0.0f, maxH / 2.0f, 0.0f));
+	form.setOrigin(btVector3(0.0f, maxH * 0.5f, 0.0f));
 	index = 0;
 
 	// 지면 물리 상자 생성
@@ -259,7 +259,7 @@ CLASS_IMPL_FUNC_T(Bullet_Engine, void, reset)(
 		return;
 	}
 
-	//remove the rigidbodies from the dynamics world and delete them
+	// remove the rigidbodies from the dynamics world and delete them.
 	// 첫번째 유닛은 반드시 터레인이므로 reset()으로 밖에 지울 수 없다.
 	const unsigned int size = my_DynamicsWorld->getNumCollisionObjects();
 	for (unsigned int index = 0; index < size; ++index)

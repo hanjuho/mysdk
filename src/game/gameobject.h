@@ -2,8 +2,8 @@
 
 
 
-#include "interface/datatable.h"
 #include "interface/actionlayer.h"
+#include "datatable.h"
 #include "controller.h"
 #include "actionbase.h"
 #include "renderer.h"
@@ -33,7 +33,7 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, set_Datatalbe)(
-				/* [set] */ i::i_DataTable * _datatable);
+				/* [set] */ DataTable * _datatable);
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, set_Controller)(
@@ -76,7 +76,7 @@ namespace hsdk
 		protected:
 
 			// 설명 : 
-			AutoDelete<i::i_DataTable> m_DataTable;
+			AutoDelete<DataTable> m_DataTable;
 
 			// 설명 : 
 			AutoDelete<Controller> m_Controller;

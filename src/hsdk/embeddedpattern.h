@@ -126,13 +126,15 @@ namespace hsdk
 			// 설명 : 
 			INTERFACE_DECL_FUNC(create_User)(
 				_Out_ PTR_USER * _user,
-				_In_ const REF_KEY _key) = 0;
+				_In_ const REF_KEY _key,
+				_In_ void * _context = nullptr) = 0;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(create_User)(
 				_Out_ PTR_USER * _user,
 				_In_ unsigned int _id,
-				_In_ const PTR_DATA _data) = 0;
+				_In_ const PTR_DATA _data,
+				_In_ void * _context = nullptr) = 0;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(create_ID)(

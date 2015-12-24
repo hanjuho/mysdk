@@ -1,4 +1,4 @@
-#include "renderer.h"
+#include "datatable.h"
 
 
 
@@ -7,15 +7,15 @@ using namespace game;
 
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(Renderer, void, render)(
-	_X_ void)
+CLASS_IMPL_FUNC_T(DataTable, btRigidBody *, get_Body)(
+	_X_ void)const
 {
-
+	return m_Body;
 }
 
 //--------------------------------------------------------------------------------------
-CLASS_IMPL_FUNC_T(Renderer, void, link_DataTable)(
-	_Ref_ i::i_DataTable * _datatable)
+CLASS_IMPL_FUNC_T(DataTable, void, set_Body)(
+	_In_ btRigidBody * _body)
 {
-	m_Datatable = _datatable;
+	m_Body = _body;
 }

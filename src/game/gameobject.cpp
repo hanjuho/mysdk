@@ -22,7 +22,7 @@ CLASS_IMPL_FUNC_T(GameObject, void, render)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(GameObject, void, set_Datatalbe)(
-	/* [set] */ i::i_DataTable * _datatable)
+	/* [set] */ DataTable * _datatable)
 {
 	m_DataTable = _datatable;
 	if (_datatable && m_ActionBase)
@@ -110,9 +110,6 @@ CLASS_IMPL_FUNC_T(GameObject, void, listen_Action)(
 			//
 			_actionlayer->initialize();
 			my_Action = _actionlayer;
-
-			//
-			m_Renderer->initialize();
 		}
 	}
 	else
