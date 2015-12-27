@@ -194,11 +194,11 @@ namespace hsdk
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_UITexture)(
 				_In_ ID3D10ShaderResourceView * _texture,
-				_In_ const D3DXMATRIX * _texcoord);
+				_In_ const float * _texcoord);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_UIRectangle)(
-				_In_ D3DXVECTOR4 * _color);
+				_In_ const float * _color);
 
 			// 설명 :
 			CLASS_DECL_FUNC_T(void, render_Font)(
@@ -207,27 +207,27 @@ namespace hsdk
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixWorld)(
-				_In_ const D3DXMATRIX * _matrix);
+				_In_ const float * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixView)(
-				_In_ const D3DXMATRIX * _matrix);
+				_In_ const float * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixProj)(
-				_In_ const D3DXMATRIX * _matrix);
+				_In_ const float * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixWorldView)(
-				_In_ const D3DXMATRIX * _matrix);
+				_In_ const float * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixWorldViewProj)(
-				_In_ const D3DXMATRIX * _matrix);
+				_In_ const float * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_MatrixTexture)(
-				_In_ const D3DXMATRIX * _matrix);
+				_In_ const float * _matrix);
 
 			// 설명 : 
 			DECL_FUNC_T(void, set_ColorDiffuse)(

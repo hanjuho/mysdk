@@ -57,6 +57,11 @@ CLASS_IMPL_FUNC_T(GameObject, void, set_ActionBase)(
 	{
 		m_ActionBase->link_DataTable(m_DataTable);
 	}
+
+	if (m_Controller && _actionbase)
+	{
+		m_Controller->link_ActionBase(_actionbase);
+	}
 }
 
 //--------------------------------------------------------------------------------------

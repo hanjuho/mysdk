@@ -46,6 +46,10 @@ namespace hsdk
 				INTERFACE_DECL_FUNC_T(unsigned int, state)(
 					_X_ void)const = 0;
 
+				// Ό³Έν :
+				INTERFACE_DECL_FUNC_T(const float *, matrix)(
+					_X_ void)const = 0;
+
 			};
 
 		}

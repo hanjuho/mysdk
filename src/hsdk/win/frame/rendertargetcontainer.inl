@@ -27,22 +27,19 @@ template<typename CONTAINER> CLASS_IMPL_FUNC_T(hsdk::frame::RenderTargetContaine
 		{
 			IF_SUCCEEDED(my_RenderTarget.begin(m_Graphics.bgColor))
 			{
-				direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(&direct3d::g_D3D10_identityMatrix);
+				direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(direct3d::g_D3D10_identityMatrix);
 				direct3d::g_D3D10_Renderer.set_ScalarPSTime(1.0f);
 				if (m_Graphics.refTexture)
 				{
 					direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 					direct3d::g_D3D10_Renderer.set_ScalarPSFlag(direct3d::PS_TEXTURE_0 | direct3d::PS_CALLFUNCTION_0 | direct3d::PS_TEXMATRIX_0);
-					direct3d::g_D3D10_Renderer.render_UITexture(
-						m_Graphics.refTexture,
-						&m_Graphics.mTexcoord);
+					direct3d::g_D3D10_Renderer.render_UITexture(m_Graphics.refTexture, m_Graphics.mTexcoord);
 				}
 				else
 				{
 					direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 					direct3d::g_D3D10_Renderer.set_ScalarPSFlag(direct3d::PS_MARERIAL_0 | direct3d::PS_CALLFUNCTION_0);
-					direct3d::g_D3D10_Renderer.render_UIRectangle(
-						&m_Graphics.bgColor);
+					direct3d::g_D3D10_Renderer.render_UIRectangle(m_Graphics.bgColor);
 				}
 
 				my_RenderTarget.viewport();
@@ -61,11 +58,10 @@ template<typename CONTAINER> CLASS_IMPL_FUNC_T(hsdk::frame::RenderTargetContaine
 			m_Render = FALSE;
 		}
 
-		direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(&m_Position);
+		direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(m_Position);
 		direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 		direct3d::g_D3D10_Renderer.set_ScalarPSFlag(direct3d::PS_TEXTURE_0);
-		direct3d::g_D3D10_Renderer.render_UITexture(
-			my_RenderTarget.get_View(), &direct3d::g_D3D10_identityMatrix);
+		direct3d::g_D3D10_Renderer.render_UITexture(my_RenderTarget.get_View(), direct3d::g_D3D10_identityMatrix);
 	}
 }
 

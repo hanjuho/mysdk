@@ -461,7 +461,7 @@ CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_SkyBox)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_UIRectangle)(
-	_In_ D3DXVECTOR4 * _color)
+	_In_ const float * _color)
 {
 	set_ColorDiffuse((float *)_color);
 
@@ -477,7 +477,7 @@ CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_UIRectangle)(
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_UITexture)(
 	_In_ ID3D10ShaderResourceView * _texture,
-	_In_ const D3DXMATRIX * _texcoord)
+	_In_ const float * _texcoord)
 {
 	set_MatrixTexture(_texcoord);
 	set_TextureDiffuse(_texture);
@@ -501,42 +501,42 @@ CLASS_IMPL_FUNC_T(D3D10_Renderer, void, render_Font)(
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, set_MatrixWorld)(
-	_In_ const D3DXMATRIX * _matrix)
+	_In_ const float * _matrix)
 {
 	g_RenderVariable.mWorld->SetMatrix((float *)_matrix);
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, set_MatrixView)(
-	_In_ const D3DXMATRIX * _matrix)
+	_In_ const float * _matrix)
 {
 	g_RenderVariable.mView->SetMatrix((float *)_matrix);
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, set_MatrixProj)(
-	_In_ const D3DXMATRIX * _matrix)
+	_In_ const float * _matrix)
 {
 	g_RenderVariable.mProj->SetMatrix((float *)_matrix);
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, set_MatrixWorldView)(
-	_In_ const D3DXMATRIX * _matrix)
+	_In_ const float * _matrix)
 {
 	g_RenderVariable.mWorldView->SetMatrix((float *)_matrix);
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, set_MatrixWorldViewProj)(
-	_In_ const D3DXMATRIX * _matrix)
+	_In_ const float * _matrix)
 {
 	g_RenderVariable.mWorldViewProj->SetMatrix((float *)_matrix);
 }
 
 //--------------------------------------------------------------------------------------
 CLASS_IMPL_FUNC_T(D3D10_Renderer, void, set_MatrixTexture)(
-	_In_ const D3DXMATRIX * _matrix)
+	_In_ const float * _matrix)
 {
 	g_RenderVariable.mTexture->SetMatrix((float *)_matrix);
 }

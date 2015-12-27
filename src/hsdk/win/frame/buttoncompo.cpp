@@ -87,7 +87,7 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, render)(
 {
 	if (is_Visible())
 	{
-		direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(&m_Position);
+		direct3d::g_D3D10_Renderer.set_MatrixWorldViewProj(m_Position);
 
 		unsigned int ps_flag = 0;
 
@@ -110,16 +110,13 @@ CLASS_IMPL_FUNC_T(ButtonCompo, void, render)(
 
 			direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 			direct3d::g_D3D10_Renderer.set_ScalarPSFlag(ps_flag);
-			direct3d::g_D3D10_Renderer.render_UITexture(
-				m_Graphics.refTexture,
-				&m_Graphics.mTexcoord);
+			direct3d::g_D3D10_Renderer.render_UITexture(m_Graphics.refTexture, m_Graphics.mTexcoord);
 		}
 		else
 		{
 			direct3d::g_D3D10_Renderer.set_ScalarVSFlag(0);
 			direct3d::g_D3D10_Renderer.set_ScalarPSFlag(direct3d::PS_MARERIAL_0 | direct3d::PS_CALLFUNCTION_0);
-			direct3d::g_D3D10_Renderer.render_UIRectangle(
-				&m_Graphics.bgColor);
+			direct3d::g_D3D10_Renderer.render_UIRectangle(m_Graphics.bgColor);
 		}
 	}
 }

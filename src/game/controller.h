@@ -58,11 +58,11 @@ namespace hsdk
 				_In_ long _flag);
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(void, link_ActionBase)(
+			INTERFACE_DECL_FUNC_T(void, link_ActionBase)(
 				_Ref_ i::i_ActionBase * _actionbase);
 
 			// 설명 : 
-			CLASS_DECL_FUNC_T(void, link_ActionListener)(
+			INTERFACE_DECL_FUNC_T(void, link_ActionListener)(
 				_Ref_ i::i_ActionListener * _actionlistener);
 
 		protected:

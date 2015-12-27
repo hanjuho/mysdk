@@ -164,11 +164,11 @@ namespace hsdk
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC(push)(
-				/* [set] */ PTR_USER * _user) = 0;
+				/* [set] */ PTR_USER _user) = 0;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, pop)(
-				_In_ PTR_USER * _user) = 0;
+				_In_ PTR_USER _user) = 0;
 
 			// 설명 : 
 			INTERFACE_DECL_FUNC_T(void, pop)(
